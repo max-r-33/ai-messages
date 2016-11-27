@@ -5,6 +5,7 @@
   "main": "webpack.config.js",
   "dependencies": {
     "apiai": "^3.0.3",
+    "axios": "^0.15.3",
     "babel-core": "^6.17.0",
     "babel-loader": "^6.2.0",
     "babel-plugin-add-module-exports": "^0.1.2",

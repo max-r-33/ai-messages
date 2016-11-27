@@ -4,7 +4,7 @@ var apiai = require('apiai');
 var config = require('../config.js');
 var ai = apiai(config.apiaiToken);
 var app = require('../server.js');
-// var db = app.get('db');
+var db = app.get('db');
 var getGameScore = require('./BasketballControllers/getGameScore.js');
 var getTeamRecord = require('./BasketballControllers/getTeamRecord.js');
 
@@ -20,6 +20,7 @@ module.exports = {
             if (response.result.action === 'get.game.score') {
                 getGameScore.getScore(response).then(function(result) {
                     res.send(result);
+                    //db.create_message(['117390815415116', result]);
                 });
             } else if (apiaiResponse.result.action === 'get.team.record') {
                 getTeamRecord.getRecord(response).then(function(result) {

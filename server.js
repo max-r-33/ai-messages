@@ -1,4 +1,5 @@
 var express = require('express');
+var app = module.exports = express();
 var cors = require('cors');
 var massive = require('massive');
 var bodyParser = require('body-parser');
@@ -7,7 +8,6 @@ var config = require('./config.js');
 var session = require('express-session');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
-var app = module.exports = express();
 var massiveInstance = massive.connectSync({
     connectionString: config.database
 });

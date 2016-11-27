@@ -9,12 +9,14 @@ module.exports = {
         var found = false;
         var defer = q.defer();
 
+        //gets date from api.ai, or builds today's date if there is not one given.
         if (apiaiResponse.result.parameters.date !== '') {
             date = apiaiResponse.result.parameters.date.split('-').join('');
         } else {
             date = d.getFullYear() + '' + (d.getMonth() + 1) + '' + (d.getDate() - 1);
             console.log("DATE: " + date);
         }
+
         var options = {
             url: 'https://erikberg.com/events.json?date=' + date + '&sport=nba',
             headers: {
@@ -22,6 +24,8 @@ module.exports = {
                 "Authorization": "Bearer " + config.basketballToken
             }
         };
+
+        //request to events endpoint
         request(options, function(error, res, body) {
             var teamToSearch = apiaiResponse.result.parameters.teamName;
             var events = JSON.parse(body).event;
@@ -49,6 +53,7 @@ module.exports = {
                         ' ' + matchingEvent.away_points_scored + ' to ' + matchingEvent.home_points_scored;
                 }
 
+                //builds object to return
                 responseObj.teamSearchedFor = {
                     homeOrAway: homeOrAway,
                     periodScore: matchingEvent[homeOrAway + '_period_scores']
@@ -61,9 +66,9 @@ module.exports = {
 
                 defer.resolve(responseObj);
             } else {
-
-                defer.resolve('The ' + teamToSearch + ' did not play yesterday');
-
+                defer.resolve({
+                    message: 'The ' + teamToSearch + ' did not play yesterday'
+                });
             }
         });
         return defer.promise;
