@@ -2,15 +2,16 @@ var request = require('request');
 var q = require('q');
 var apiai = require('apiai');
 var config = require('../config.js');
-var app = apiai(config.apiaiToken);
-
+var ai = apiai(config.apiaiToken);
+var app = require('../server.js');
+// var db = app.get('db');
 var getGameScore = require('./BasketballControllers/getGameScore.js');
 var getTeamRecord = require('./BasketballControllers/getTeamRecord.js');
 
 module.exports = {
     handleRequest: function(req, res, next) {
 
-        var request = app.textRequest(req.body.textRequest, {
+        var request = ai.textRequest(req.body.textRequest, {
             sessionId: 'abbcccdddd'
         });
 
