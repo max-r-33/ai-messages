@@ -12,11 +12,11 @@ export default class NavBar extends React.Component {
             <div>
                 <div className='nav-container'>
                     <ul>
-                        <li><Link to='/'><h1>Name</h1></Link></li>
+                        <li className='logo'><Link to='/'>Name</Link></li>
                         <div className='right'>
-                            <li><Link to='/'>Home</Link></li>
-                            <li><Link to='messages'>Messages</Link></li>
-                            <li><Link to='#'>log out</Link></li>
+                            <li className='sliding-u-l-r'><Link to='/'>Home</Link></li>
+                            <li className='sliding-u-l-r'><Link to='messages'>Messages</Link></li>
+                            <li className='sliding-u-l-r'><Link to='#'>Log out</Link></li>
                         </div>
                     </ul>
                 </div>

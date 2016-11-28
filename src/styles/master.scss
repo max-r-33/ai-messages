@@ -5,9 +5,11 @@ $blue: #AEC5EB;
 $orange: #FFA37C;
 $orangeHover: #EA9A77;
 $grey: #D2D7DF;
+$font: 'Helvetica Neue';
+$font-weight:800;
 /*$black: #1D1F15;*/
 body {
-    font-family: 'Helvetica Neue';
+    font-family: $font;
     background-color: $white;
     color: $black;
 }
@@ -26,7 +28,7 @@ a {
 .btn {
     background-color: $white;
     border: 1px solid $black;
-    font-weight: 200;
+    font-weight:600;
     padding: 10px;
     transition: all 0.2s ease-in-out;
     border-radius:8px;
@@ -39,4 +41,7 @@ a {
     -moz-box-shadow: inset 0px 0px 4px 4px $grey;
     box-shadow: inset 0px 0px 4px 4px $grey;
     cursor:pointer;
+}
+.btn:focus {
+    outline:0;
 }
