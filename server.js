@@ -32,7 +32,7 @@ app.use(passport.session());
 
 //ENDPOINTS
 
-app.post('/api/handleRequest', BasketballController.handleRequest);
+app.post('/api/handleRequest',BasketballController.handleRequest);
 app.get('/api/getAllMessages/:id', MessagesController.getAllMessages);
 
 //preps data to put on session
@@ -66,6 +66,7 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 }), function(req, res) {
     console.log(req.session);
 });
+
 app.get('/me', function(req, res, next) {
     res.send(req.user);
 });
