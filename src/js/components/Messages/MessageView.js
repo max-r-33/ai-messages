@@ -18,13 +18,15 @@ export default class MessageView extends React.Component {
             ]
         };
     }
-    componentDidMount(){
+    componentDidMount() {
         console.log('component did mount');
         axios.get('http://localhost:9000/api/getAllMessages/117390815415116').then(response => {
             messagesArr = response.data.map(function(msg, i) {
                 return {text: msg.message.message, key: i, sender: msg.message.sender};
             });
-            this.setState({messages: messagesArr});
+            if (messagesArr.length > 0) {
+                this.setState({messages: messagesArr});
+            }
         });
     }
     handleMessageSend(text, event) {

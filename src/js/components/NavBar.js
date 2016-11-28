@@ -8,11 +8,13 @@ export default class NavBar extends React.Component {
             marginTop: "60px"
         }
         return (
-            <div >
-                <h1>Nav Bar</h1>
-                <Link to='/'>home</Link>
-                <Link to='messages'>messages</Link>
-                <Link to='#'>log out</Link>
+            <div className='nav-container'>
+                <ul>
+                    <li><h1>Name</h1></li>
+                    <li><Link to='/'>home</Link></li>
+                    <li><Link to='messages'>messages</Link></li>
+                    <li><Link to='#'>log out</Link></li>
+                </ul>
                 {this.props.children}
             </div>
         );
