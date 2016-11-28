@@ -4,6 +4,7 @@ var cors = require('cors');
 var massive = require('massive');
 var bodyParser = require('body-parser');
 var BasketballController = require('./controllers/BasketballController.js');
+var MessagesController = require('./controllers/MessagesController.js');
 var config = require('./config.js');
 var session = require('express-session');
 var passport = require('passport');
@@ -26,6 +27,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.post('/api/handleRequest', BasketballController.handleRequest);
+app.get('/api/getAllMessages/:id', MessagesController.getAllMessages);
 
 //preps data to put on session
 passport.serializeUser(function(user, done) {
@@ -50,6 +52,7 @@ passport.use(new FacebookStrategy({
 }));
 
 
+//auth endpoints
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     successRedirect: '/me',

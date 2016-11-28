@@ -18,6 +18,15 @@ export default class MessageView extends React.Component {
             ]
         };
     }
+    componentDidMount(){
+        console.log('component did mount');
+        axios.get('http://localhost:9000/api/getAllMessages/117390815415116').then(response => {
+            messagesArr = response.data.map(function(msg, i) {
+                return {text: msg.message.message, key: i};
+            });
+            this.setState({messages: messagesArr});
+        });
+    }
     handleMessageSend(text, event) {
         event.preventDefault();
         messagesArr = this.state.messages;
@@ -27,6 +36,7 @@ export default class MessageView extends React.Component {
         };
         messagesArr.push(newMsg);
         this.setState({messages: messagesArr});
+        //sends request to backend
         axios.post('http://localhost:9000/api/handleRequest', {textRequest: text}).then(response => {
             console.log(response);
             messagesArr.push({
@@ -35,7 +45,6 @@ export default class MessageView extends React.Component {
             });
             this.setState({messages: messagesArr});
         });
-
     }
     render() {
         return (
