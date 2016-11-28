@@ -39,16 +39,6 @@
         "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --colors --inline",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "keywords": [
-        "react",
-        "babel",
-        "es2015",
-        "webpack",
-        "sass",
-        "es6",
-        "hello world kit",
-        "kit"
-    ],
-    "author": "srini.cug@gmail.com",
-    "license": "MIT"
+    "author": "",
+    "license": ""
 }

@@ -6,13 +6,18 @@ export default class MessageContainer extends React.Component{
     render(){
         var msgs = this.props.msgArr;
         var messagesToDisplay = msgs.map(function(message){
-            return (
-                <Message key={message.key} messageText={message.text} />
-            );
+            if(message.sender === 'user'){
+                return (
+                    <Message senderClass='user' key={message.key} messageText={message.text} />
+                );
+            }else{
+                return (
+                    <Message senderClass='bot' key={message.key} messageText={message.text} />
+                );
+            }
         });
         return (
-            <div>
-                <h1>Message Container</h1>
+            <div className='container message-container'>
                 {messagesToDisplay}
             </div>
         );

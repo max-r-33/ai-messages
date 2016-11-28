@@ -1,8 +1,19 @@
-$white : #F7FBFB;
-$black : #1D1F15;
+$white: #F7FBFB;
+$black: #1D1F15;
 
-body{
+body {
+    box-sizing: border-box;
     font-family: 'Helvetica Neue';
     background-color: $white;
     color: $black;
+}
+
+li, ul {
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline;
 }

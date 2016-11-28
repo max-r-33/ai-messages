@@ -4,7 +4,10 @@ import { Router, Route, IndexRoute, hashHistory } from "react-router";
 import MessageView from './components/Messages/MessageView';
 import HomeView from './components/Home/HomeView';
 import NavBar from './components/NavBar';
-import styles from '../styles/master.scss';
+import MessageContainerStyles from '../styles/messageContainer.scss';
+import reset from '../styles/reset.scss';
+import skeleton from '../styles/skeleton.scss';
+import master from '../styles/master.scss';
 
 const app = document.getElementById('app');
 

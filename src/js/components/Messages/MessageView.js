@@ -34,7 +34,8 @@ export default class MessageView extends React.Component {
         messagesArr = this.state.messages;
         var newMsg = {
             text: text,
-            key: messagesArr[messagesArr.length - 1].key + 1
+            key: messagesArr[messagesArr.length - 1].key + 1,
+            sender: 'user'
         };
         messagesArr.push(newMsg);
         this.setState({messages: messagesArr});
@@ -51,7 +52,6 @@ export default class MessageView extends React.Component {
     render() {
         return (
             <div>
-                <h1>MessageView</h1>
                 <MessageContainer msgArr={this.state.messages}/>
                 <TextRegion sendMessage={this.handleMessageSend.bind(this)}/>
             </div>

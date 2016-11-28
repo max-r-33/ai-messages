@@ -1,0 +1,21 @@
+@import 'master';
+
+.message{
+    padding:15px;
+    min-width: 300px;
+    height:4vh;
+    .bot{
+        border:1px solid $black;
+        border-radius: 5px;
+        text-align: left;
+        position: absolute;
+        left:0px;
+    }
+    .user{
+        border:1px solid red;
+        border-radius: 5px;
+        text-align: right;
+        position: absolute;
+        right:0px;
+    }
+}

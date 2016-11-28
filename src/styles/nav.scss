@@ -1,0 +1,11 @@
+@import 'master';
+
+.nav-container{
+    background: $black;
+    color: $white;
+    height:8vh;
+    
+    .right{
+        text-align:right;
+    }
+}
