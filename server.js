@@ -3,19 +3,23 @@ var app = module.exports = express();
 var cors = require('cors');
 var massive = require('massive');
 var bodyParser = require('body-parser');
-var BasketballController = require('./controllers/BasketballController.js');
-var MessagesController = require('./controllers/MessagesController.js');
 var config = require('./config.js');
 var session = require('express-session');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+
+//controllers
+var BasketballController = require('./controllers/BasketballController.js');
+var MessagesController = require('./controllers/MessagesController.js');
+
+//db setup
 var massiveInstance = massive.connectSync({
     connectionString: config.database
 });
-
 app.set('db', massiveInstance);
 var db = app.get('db');
 
+//express setup
 app.use(cors());
 app.use(bodyParser.json());
 app.use(session({
@@ -25,6 +29,8 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+//ENDPOINTS
 
 app.post('/api/handleRequest', BasketballController.handleRequest);
 app.get('/api/getAllMessages/:id', MessagesController.getAllMessages);
@@ -60,7 +66,6 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 }), function(req, res) {
     console.log(req.session);
 });
-
 app.get('/me', function(req, res, next) {
     res.send(req.user);
 });

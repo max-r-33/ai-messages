@@ -11,7 +11,6 @@ var session = require('express-session');
 module.exports = {
     handleRequest: function(req, res, next) {
         var db = app.get('db');
-
         //saves user's message to database
         db.create_message(['117390815415116', {'message':req.body.textRequest, 'sender':'user'}], function(err, msg){
             if(err){

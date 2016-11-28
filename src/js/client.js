@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
-
 import MessageView from './components/Messages/MessageView';
 import HomeView from './components/Home/HomeView';
 import NavBar from './components/NavBar';
