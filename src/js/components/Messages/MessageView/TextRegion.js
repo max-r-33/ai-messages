@@ -14,14 +14,16 @@ export default class TextRegion extends React.Component {
 
     render() {
         return (
-            <div>
-                <form onChange={event => this.handleChange(event)}>
-                    <input id='textField' value={this.state.value} placeholder="Message" type='text'></input>
-                    <button onClick={(event) => {
-                        this.props.sendMessage(this.state.value, event);
-                        this.setState({value: ''});
-                    }}>Send</button>
-                </form>
+            <div className='container'>
+                <div className='textRegion'>
+                    <form onChange={event => this.handleChange(event)} autocomplete='off'>
+                        <input id='textField' value={this.state.value} placeholder="Message" type='text'></input>
+                        <button className='btn btn-3' onClick={(event) => {
+                            this.props.sendMessage(this.state.value, event);
+                            this.setState({value: ''});
+                        }}>Send</button>
+                    </form>
+                </div>
             </div>
         );
     }

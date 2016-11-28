@@ -1,14 +1,19 @@
 $white: #F7FBFB;
-$black: #1D1F15;
-
+$black: #353535;
+$blackHover: #090A06;
+$blue: #AEC5EB;
+$orange: #FFA37C;
+$orangeHover: #EA9A77;
+$grey: #D2D7DF;
+/*$black: #1D1F15;*/
 body {
-    box-sizing: border-box;
     font-family: 'Helvetica Neue';
     background-color: $white;
     color: $black;
 }
 
-li, ul {
+li,
+ul {
     display: inline;
 }
 
@@ -16,4 +21,22 @@ a {
     text-decoration: none;
     color: inherit;
     display: inline;
+}
+
+.btn {
+    background-color: $white;
+    border: 1px solid $black;
+    font-weight: 200;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+    border-radius:8px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.btn:hover {
+    -webkit-box-shadow: inset 0px 0px 4px 4px $grey;
+    -moz-box-shadow: inset 0px 0px 4px 4px $grey;
+    box-shadow: inset 0px 0px 4px 4px $grey;
+    cursor:pointer;
 }

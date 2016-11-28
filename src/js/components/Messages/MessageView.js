@@ -5,6 +5,7 @@ import Sessions from 'express-session';
 import axios from 'axios';
 
 var messagesArr = [];
+var elem;
 
 export default class MessageView extends React.Component {
     constructor(props) {
@@ -27,6 +28,10 @@ export default class MessageView extends React.Component {
             if (messagesArr.length > 0) {
                 this.setState({messages: messagesArr});
             }
+            //scrolls message view to the bottom
+            //so user sees newest messages first
+            elem = document.getElementById('msgCont');
+            elem.scrollTop = elem.scrollHeight;
         });
     }
     handleMessageSend(text, event) {
@@ -39,6 +44,7 @@ export default class MessageView extends React.Component {
         };
         messagesArr.push(newMsg);
         this.setState({messages: messagesArr});
+        elem.scrollTop = elem.scrollHeight;
         //sends request to backend
         axios.post('http://localhost:9000/api/handleRequest', {textRequest: text}).then(response => {
             console.log(response);
@@ -47,6 +53,7 @@ export default class MessageView extends React.Component {
                 key: messagesArr[messagesArr.length - 1].key + 1
             });
             this.setState({messages: messagesArr});
+            elem.scrollTop = elem.scrollHeight;
         });
     }
     render() {

@@ -2,7 +2,6 @@ import React from 'react';
 import Message from './MessageContainer/Message'
 
 export default class MessageContainer extends React.Component{
-
     render(){
         var msgs = this.props.msgArr;
         var messagesToDisplay = msgs.map(function(message){
@@ -17,7 +16,7 @@ export default class MessageContainer extends React.Component{
             }
         });
         return (
-            <div className='container message-container'>
+            <div id='msgCont' className='container message-container'>
                 {messagesToDisplay}
             </div>
         );
