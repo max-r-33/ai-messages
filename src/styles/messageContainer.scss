@@ -1,6 +1,12 @@
 @import 'master';
 
 .message-container {
+    margin-top:85px;
+    margin-bottom:0px;
     height: 83vh;
     overflow: scroll;
+}
+
+.hiddenscrollbars::-webkit-scrollbar {
+    display: none;
 }

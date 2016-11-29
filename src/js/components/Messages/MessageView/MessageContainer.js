@@ -16,7 +16,7 @@ export default class MessageContainer extends React.Component{
             }
         });
         return (
-            <div id='msgCont' className='message-container'>
+            <div id='msgCont' className='hiddenscrollbars message-container'>
                 {messagesToDisplay}
             </div>
         );
