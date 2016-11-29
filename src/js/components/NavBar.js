@@ -15,7 +15,8 @@ export default class NavBar extends React.Component {
                         <div className='right'>
                             <li className='sliding-u-l-r'><Link to='/'>Home</Link></li>
                             <li className='sliding-u-l-r'><Link to='messages'>Messages</Link></li>
-                            <li className='sliding-u-l-r'><Link to='#'>Log out</Link></li>
+                            <li className='sliding-u-l-r'><Link to='login'>Log In</Link></li>
+                            <li className='sliding-u-l-r'><Link to='signup'>Sign Up</Link></li>
                         </div>
                     </ul>
                 </div>

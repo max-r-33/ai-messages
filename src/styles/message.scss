@@ -20,6 +20,7 @@
 
     .bot:hover {
         background-color: $blackHover;
+        cursor:default;
     }
 
     .user {
@@ -33,5 +34,6 @@
 
     .user:hover {
         background-color: $orangeHover;
+        cursor:default;
     }
 }

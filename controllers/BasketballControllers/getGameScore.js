@@ -29,6 +29,7 @@ var buildMessageObject = function(body, apiaiResponse) {
                 ' ' + matchingEvent.away_points_scored + ' to ' + matchingEvent.home_points_scored;
         }
 
+
         //builds object to return
         responseObj.teamSearchedFor = {
             homeOrAway: homeOrAway,
@@ -39,6 +40,7 @@ var buildMessageObject = function(body, apiaiResponse) {
             homeOrAway: otherTeam,
             periodScore: matchingEvent[otherTeam + '_period_scores']
         };
+
         return responseObj;
     } else {
         responseObj.error = 'no event found';
@@ -74,21 +76,23 @@ module.exports = {
         request(options, function(error, res, body) {
             var responseObj = buildMessageObject(body, apiaiResponse);
             if (responseObj.error !== 'no event found') {
+                responseObj.message += ' yesterday.';
                 defer.resolve(responseObj);
             } else {
                 //if the correct game is not found, then send another request with the next
                 //earliest date
                 date = d.getFullYear() + '' + (d.getMonth() + 1) + '' + (d.getDate() - 2);
                 options.url = 'https://erikberg.com/events.json?date=' + date + '&sport=nba';
-                console.log(options);
+
                 request(options, function(error, res, body) {
-                    console.log(JSON.parse(body));
                     var responseObj = buildMessageObject(body, apiaiResponse);
                     console.log(responseObj);
                     if (responseObj.error !== 'no event found') {
                         defer.resolve(responseObj);
+                        responseObj.message += ' two days ago.';
                     } else {
-                        defer.resolve('No event found');
+                        responseObj.message ="The " + apiaiResponse.result.parameters.teamName + " haven't played for the past few days.";
+                        defer.resolve(responseObj);
                     }
                 });
             }
