@@ -58,7 +58,7 @@ export default class MessageView extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className='messageView'>
                 <MessageContainer msgArr={this.state.messages}/>
                 <TextRegion sendMessage={this.handleMessageSend.bind(this)}/>
             </div>

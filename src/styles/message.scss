@@ -1,21 +1,18 @@
 @import 'master';
 
 .message {
-    margin-top:80px;
-    margin-bottom:80px;
-    border:1px solid $white;
+    border: 1px solid $white;
+    margin-bottom: 70px;
+
     .spacing {
-        padding: 15px 15px;
+        padding: 15px;
         border-radius: 15px;
-        min-width: 300px;
-        position: absolute;
     }
 
     .bot {
+        float: left;
         border-top-left-radius: 20px;
         border-bottom-left-radius: 0;
-        text-align: left;
-        left: 0;
         background-color: $black;
         color: $white;
         transition: background-color 0.3s ease-in-out;
@@ -26,13 +23,11 @@
     }
 
     .user {
+        float: right;
         border-top-right-radius: 20px;
         border-bottom-right-radius: 0;
-        text-align: right;
-        right: 0;
         background-color: $orange;
         color: $black;
-        margin-right:20px;
         transition: background-color 0.3s ease-in-out;
     }
 

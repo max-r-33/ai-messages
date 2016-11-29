@@ -3,9 +3,13 @@
 .nav-container {
     background: $black;
     color: $white;
-    height: 75px;
-
+    height: 65px;
+    position: fixed;
+    top:0px;
+    width:100vw;
+    text-align: center;
     .right {
+        display: none;
         float: right;
         vertical-align: middle;
         font-weight: $font-weight;
@@ -18,7 +22,8 @@
     }
 
     .logo {
-        font-size: 40px;
+        font-size:30px;
+        line-height: 55px;
         font-weight: $font-weight;
         margin-left: 20px;
         border-bottom: 4px solid $white;
@@ -45,5 +50,21 @@
     .sliding-u-l-r:hover:after {
         width: 100%;
         background: $orange;
+    }
+
+    @media(min-width:800px){
+        .logo{
+            font-size: 40px;
+            float: left;
+            line-height: 50px;
+        }
+        .right{
+            display: inline;
+        }
+        .nav-container{
+            text-align: left;
+            height:75px;
+        }
+
     }
 }

@@ -1,30 +1,43 @@
 @import 'master';
 
-.textRegion{
-    margin-top:15px;
-    height:6vh;
-    input{
-        width:75%;
-        font-size:30px;
+.textRegion {
+    margin-top: 15px;
+    height: 6vh;
+    position: relative;
+    bottom: -25px;
+
+    input {
+        width: 75%;
+        font-size: 18px;
         font-weight: 500;
-        padding:10px;
+        padding: 10px;
         background-color: $white;
-        border:1px solid $black;
-        border-radius:8px;
-        border-top-right-radius:0px;
-        border-bottom-right-radius:0px;
-        border-right:0px;
-        transition: all .2s ease-in-out;
-    }
-    input:focus{
-        outline:none;
-        -webkit-box-shadow: inset 0px 0px 4px 4px $grey;
-        -moz-box-shadow: inset 0px 0px 4px 4px $grey;
-        box-shadow: inset 0px 0px 4px 4px $grey;
-    }
-    .btn{
-        width:24.2%;
-        font-size:30px;
+        border: 1px solid $black;
+        border-radius: 8px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: 0;
+        transition: all 0.2s ease-in-out;
     }
 
+    input:focus {
+        outline: none;
+        -webkit-box-shadow: inset 0 0 4px 4px $grey;
+        -moz-box-shadow: inset 0 0 4px 4px $grey;
+        box-shadow: inset 0 0 4px 4px $grey;
+    }
+
+    .btn {
+        width: 25%;
+        font-size: 18px;
+    }
+    @media(min-width:600px) {
+        input {
+            font-size: 30px;
+        }
+
+        .btn {
+            font-size: 30px;
+        }
+    }
 }

@@ -4,8 +4,8 @@ import React from 'react';
 export default class Message extends React.Component{
     render(){
         return (
-            <div className='message row'>
-                <div className={`five columns spacing ${this.props.senderClass}`}>
+            <div className='message'>
+                <div className={`spacing ${this.props.senderClass}`}>
                     <p>{this.props.messageText}</p>
                 </div>
             </div>

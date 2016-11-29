@@ -1,7 +1,6 @@
 import React from "react";
 import {Link} from "react-router";
-import navStyle from '../../styles/nav.scss';
-import messageStyle from '../../styles/message.scss';
+
 export default class NavBar extends React.Component {
     render() {
         const {history} = this.props;

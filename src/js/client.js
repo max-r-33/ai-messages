@@ -5,10 +5,12 @@ import MessageView from './components/Messages/MessageView';
 import HomeView from './components/Home/HomeView';
 import NavBar from './components/NavBar';
 import reset from '../styles/reset.scss';
-import skeleton from '../styles/skeleton.scss';
 import master from '../styles/master.scss';
-import MessageContainerStyles from '../styles/messageContainer.scss';
+import messageContainerStyles from '../styles/messageContainer.scss';
 import textRegionStyles from '../styles/textRegion.scss';
+import messageViewStyles from '../styles/messageView.scss';
+import navStyle from '../styles/nav.scss';
+import messageStyle from '../styles/message.scss';
 
 const app = document.getElementById('app');
 
