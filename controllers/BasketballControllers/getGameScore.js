@@ -2,107 +2,78 @@ var request = require('request');
 var q = require('q');
 var config = require('../../config');
 
-var buildMessageObject = function(body, apiaiResponse) {
-    var teamToSearch = apiaiResponse.result.parameters.teamName;
-    var events = JSON.parse(body).event;
-    var matchingEvent, homeOrAway, otherTeam;
+var getDifferenceInDays = function(end, start) {
+    var date1 = new Date(start);
+    var date2 = new Date(end);
+    console.log(date1 + ' minus ' + date2);
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return diffDays;
+};
+
+var buildMessageObject = function(body, apiaiResponse, date) {
     var responseObj = {};
+    var event = JSON.parse(body);
+    event = event[0];
 
-    //loops through all events and checks if any of them
-    //involve the team the user asked about
-    events.forEach(function(event) {
-        if (event.away_team.full_name === teamToSearch) {
-            matchingEvent = event;
-            homeOrAway = 'away';
-            otherTeam = 'home';
-        } else if (event.home_team.full_name === teamToSearch) {
-            matchingEvent = event;
-            homeOrAway = 'home';
-            otherTeam = 'away';
-        }
-    });
+    responseObj.date = event.event_start_date_time;
 
-    //if an event was found build a response object
-    if (matchingEvent) {
-        //checks if the team being searched for is the home team or away team and if they won and constructs appropriate message
-        if (parseInt(matchingEvent[homeOrAway + '_points_scored']) > parseInt(matchingEvent[otherTeam + '_points_scored'])) {
-            responseObj.text = "The " + matchingEvent[homeOrAway + '_team'].full_name + ' beat the ' + matchingEvent[otherTeam + '_team'].full_name +
-                ' ' + matchingEvent[homeOrAway + '_points_scored'] + ' to ' + matchingEvent[otherTeam + '_points_scored'];
-        } else {
-            responseObj.text = "The " + matchingEvent[homeOrAway + '_team'].full_name + ' lost to the ' + matchingEvent[otherTeam + '_team'].full_name +
-                ' ' + matchingEvent.away_points_scored + ' to ' + matchingEvent.home_points_scored;
-        }
+    //gets todays date and the game date and figures out the difference
+    //in number of days.
+    var d = responseObj.date.split('T')[0].split('-');
+    var gameDate = [d[1], d[2], d[0]].join('/');
+    var dObj = new Date();
+    var today = dObj.getMonth()+1 + '/' + dObj.getDate() + '/' + dObj.getFullYear();
 
-
-        //builds object to return
-        responseObj.teamSearchedFor = {
-            homeOrAway: homeOrAway,
-            periodScore: matchingEvent[homeOrAway + '_period_scores']
-        };
-
-        responseObj.opposingTeam = {
-            homeOrAway: otherTeam,
-            periodScore: matchingEvent[otherTeam + '_period_scores']
-        };
-
-        return responseObj;
-    } else {
-        responseObj.error = 'no event found';
-        return responseObj;
+    var daysAgo = getDifferenceInDays(gameDate, today);
+    var casualDate = '';
+    if(daysAgo === 0){
+        casualDate = ' today';
+    }else if(daysAgo === 1){
+        casualDate = ' yesterday';
+    }else{
+        casualDate = daysAgo + ' days ago ';
     }
+
+    if (!date) {
+        if (event.team_event_result === 'win') {
+            responseObj.text = "The " + event.team.full_name + ' beat the ' + event.opponent.full_name +
+                ' ' + casualDate + ' in ' + event.site.city + ', ' + event.team_points_scored + ' to ' + event.opponent_points_scored;
+        } else {
+            responseObj.text = "The " + event.team.full_name + ' lost to the ' + event.opponent.full_name +
+                ' ' + casualDate + ' in ' + event.site.city + ', ' + event.opponent_points_scored + ' to ' + event.team_points_scored;
+        }
+    }
+    responseObj.gameType = event.team_event_location_type;
+
+
+    return responseObj;
 };
 
 module.exports = {
-
     getScore: function(apiaiResponse) {
-        var date;
-        var d = new Date();
+        var team = apiaiResponse.result.parameters.teamName;
         var defer = q.defer();
+        var date;
 
-        //gets and reformats date from api.ai,
-        // or builds today's date if there is not one provided by the user.
-        if (apiaiResponse.result.parameters.date !== '') {
-            date = apiaiResponse.result.parameters.date.split('-').join('');
-        } else {
-            date = d.getFullYear() + '' + (d.getMonth() + 1) + '' + (d.getDate() - 1);
-            console.log("DATE: " + date);
-        }
-
-        //options for the http request
+        console.log(apiaiResponse);
         var options = {
-            url: 'https://erikberg.com/events.json?date=' + date + '&sport=nba',
+            url: 'https://erikberg.com/nba/results/' + team.toLowerCase().split(' ').join('-') + '.json?last=1',
             headers: {
                 "User-Agent": "SportsAI/1.0 (max.rodewald@gmail.com)",
                 "Authorization": "Bearer " + config.basketballToken
             }
         };
 
-        //request to events endpoint
+        if (apiaiResponse.result.parameters.date) {
+            date = apiaiResponse.result.parameters.date.split('-').join('');
+            options.url = 'https://erikberg.com/nba/results/' + team.toLowerCase().split(' ').join('-') + '.json?last=5';
+        }
+
         request(options, function(error, res, body) {
-            var responseObj = buildMessageObject(body, apiaiResponse);
-            if (responseObj.error !== 'no event found') {
-                responseObj.text += ' yesterday.';
-                defer.resolve(responseObj);
-            } else {
-
-                //if the correct game is not found, then send another request with the next
-                //earliest date
-                date = d.getFullYear() + '' + (d.getMonth() + 1) + '' + (d.getDate() - 2);
-                options.url = 'https://erikberg.com/events.json?date=' + date + '&sport=nba';
-
-                request(options, function(error, res, body) {
-                    var responseObj = buildMessageObject(body, apiaiResponse);
-                    console.log(responseObj);
-                    if (responseObj.error !== 'no event found') {
-                        defer.resolve(responseObj);
-                        responseObj.text += ' two days ago.';
-                    } else {
-                        responseObj.text ="The " + apiaiResponse.result.parameters.teamName + " haven't played for the past few days.";
-                        defer.resolve(responseObj);
-                    }
-                });
-            }
+            defer.resolve(buildMessageObject(res.body, apiaiResponse));
         });
+
         return defer.promise;
     }
 };
