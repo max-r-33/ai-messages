@@ -9,10 +9,13 @@ var getTeamRecord = require('./BasketballControllers/getTeamRecord.js');
 var session = require('express-session');
 
 module.exports = {
+    //endpoint that handles all message requests
     handleRequest: function(req, res, next) {
         var db = app.get('db');
+
+        //TODO: Make create_message function in MessageController
         //saves user's message to database
-        db.create_message(['117390815415116', {'message':req.body.textRequest, 'sender':'user'}], function(err, msg){
+        db.create_message([req.body.userid, {'text':req.body.textRequest, 'sender':'user'}], function(err, msg){
             if(err){
                 res.status(500).send(err);
                 return;
@@ -24,12 +27,12 @@ module.exports = {
             sessionId: 'abbcccdddd'
         });
 
+        //handles apiai response
         request.on('response', function(response) {
             if (response.result.action === 'get.game.score') {
                 getGameScore.getScore(response).then(function(result) {
-                    //TODO: Use actual user ID
                     //saves score to database and sends it as the response
-                    db.create_message(['117390815415116', result], function(err, score){
+                    db.create_message([req.body.userid , result], function(err, score){
                         if(err){
                             res.status(500).send(err);
                             return;
@@ -44,6 +47,7 @@ module.exports = {
             }
 
         });
+        
         request.on('error', function(err) {
             console.log(err);
             res.send(err);

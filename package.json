@@ -5,6 +5,7 @@
   "description": "",
   "main": "main.js",
   "dependencies": {
+    "js-cookie": "^2.1.3"
   },
   "devDependencies": {
     "apiai": "^3.0.3",

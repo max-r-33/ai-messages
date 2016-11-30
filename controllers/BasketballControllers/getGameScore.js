@@ -8,6 +8,8 @@ var buildMessageObject = function(body, apiaiResponse) {
     var matchingEvent, homeOrAway, otherTeam;
     var responseObj = {};
 
+    //loops through all events and checks if any of them
+    //involve the team the user asked about
     events.forEach(function(event) {
         if (event.away_team.full_name === teamToSearch) {
             matchingEvent = event;
@@ -19,13 +21,15 @@ var buildMessageObject = function(body, apiaiResponse) {
             otherTeam = 'away';
         }
     });
+
+    //if an event was found build a response object
     if (matchingEvent) {
         //checks if the team being searched for is the home team or away team and if they won and constructs appropriate message
         if (parseInt(matchingEvent[homeOrAway + '_points_scored']) > parseInt(matchingEvent[otherTeam + '_points_scored'])) {
-            responseObj.message = "The " + matchingEvent[homeOrAway + '_team'].full_name + ' beat the ' + matchingEvent[otherTeam + '_team'].full_name +
+            responseObj.text = "The " + matchingEvent[homeOrAway + '_team'].full_name + ' beat the ' + matchingEvent[otherTeam + '_team'].full_name +
                 ' ' + matchingEvent[homeOrAway + '_points_scored'] + ' to ' + matchingEvent[otherTeam + '_points_scored'];
         } else {
-            responseObj.message = "The " + matchingEvent[homeOrAway + '_team'].full_name + ' lost to the ' + matchingEvent[otherTeam + '_team'].full_name +
+            responseObj.text = "The " + matchingEvent[homeOrAway + '_team'].full_name + ' lost to the ' + matchingEvent[otherTeam + '_team'].full_name +
                 ' ' + matchingEvent.away_points_scored + ' to ' + matchingEvent.home_points_scored;
         }
 
@@ -49,6 +53,7 @@ var buildMessageObject = function(body, apiaiResponse) {
 };
 
 module.exports = {
+
     getScore: function(apiaiResponse) {
         var date;
         var d = new Date();
@@ -76,9 +81,10 @@ module.exports = {
         request(options, function(error, res, body) {
             var responseObj = buildMessageObject(body, apiaiResponse);
             if (responseObj.error !== 'no event found') {
-                responseObj.message += ' yesterday.';
+                responseObj.text += ' yesterday.';
                 defer.resolve(responseObj);
             } else {
+
                 //if the correct game is not found, then send another request with the next
                 //earliest date
                 date = d.getFullYear() + '' + (d.getMonth() + 1) + '' + (d.getDate() - 2);
@@ -89,9 +95,9 @@ module.exports = {
                     console.log(responseObj);
                     if (responseObj.error !== 'no event found') {
                         defer.resolve(responseObj);
-                        responseObj.message += ' two days ago.';
+                        responseObj.text += ' two days ago.';
                     } else {
-                        responseObj.message ="The " + apiaiResponse.result.parameters.teamName + " haven't played for the past few days.";
+                        responseObj.text ="The " + apiaiResponse.result.parameters.teamName + " haven't played for the past few days.";
                         defer.resolve(responseObj);
                     }
                 });

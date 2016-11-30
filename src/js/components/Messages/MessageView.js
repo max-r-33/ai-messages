@@ -3,14 +3,19 @@ import TextRegion from './MessageView/TextRegion';
 import MessageContainer from './MessageView/MessageContainer';
 import Sessions from 'express-session';
 import axios from 'axios';
+import auth from '../../utils/LoginStatus';
 
 var messagesArr = [];
 var elem;
 
 export default class MessageView extends React.Component {
+
     constructor(props) {
         super(props);
+        //gets logged in user
+        //sets messages to initial vals
         this.state = {
+            user: auth.getLoggedInUser(),
             messages: [
                 {
                     text: 'hello',
@@ -19,24 +24,31 @@ export default class MessageView extends React.Component {
             ]
         };
     }
+
     componentDidMount() {
-        console.log('component did mount');
-        axios.get('http://localhost:9000/api/getAllMessages/117390815415116').then(response => {
-            messagesArr = response.data.map(function(msg, i) {
-                return {text: msg.message.message, key: i, sender: msg.message.sender};
-            });
-            if (messagesArr.length > 0) {
+        //makes get request to the messages endpoint with user's id
+        //loops through all of the user's messages and builds messages objects
+        //that get put onto messagesArr
+        axios.get(`http://localhost:9000/api/getAllMessages/${this.state.user.id}`).then(response => {
+            //checks if there are messages
+            //if there are, build objects with them.
+            if (response.data.length > 0) {
+                messagesArr = response.data.map(function(msg, i) {
+                    return {text: msg.message.text, key: i, sender: msg.message.sender};
+                });
+                //sets state with newly created messagesArr
                 this.setState({messages: messagesArr});
             }
-            //scrolls message view to the bottom
-            //so user sees newest messages first
-            elem = document.getElementById('msgCont');
-            elem.scrollTop = elem.scrollHeight;
         });
     }
+
     handleMessageSend(text, event) {
         event.preventDefault();
+        //gets current messagesArr
         messagesArr = this.state.messages;
+
+        //builds new message to send to backend and adds it to arr
+        //then updates state.
         var newMsg = {
             text: text,
             key: messagesArr[messagesArr.length - 1].key + 1,
@@ -44,16 +56,17 @@ export default class MessageView extends React.Component {
         };
         messagesArr.push(newMsg);
         this.setState({messages: messagesArr});
-        elem.scrollTop = elem.scrollHeight;
+
         //sends request to backend
-        axios.post('http://localhost:9000/api/handleRequest', {textRequest: text}).then(response => {
-            console.log(response);
+        axios.post('http://localhost:9000/api/handleRequest', {
+            textRequest: text,
+            userid: this.state.user.id
+        }).then(response => {
             messagesArr.push({
-                text: response.data.message,
+                text: response.data.text,
                 key: messagesArr[messagesArr.length - 1].key + 1
             });
             this.setState({messages: messagesArr});
-            elem.scrollTop = elem.scrollHeight;
         });
     }
     render() {

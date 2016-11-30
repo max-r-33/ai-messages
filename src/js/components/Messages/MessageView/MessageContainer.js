@@ -2,8 +2,11 @@ import React from 'react';
 import Message from './MessageContainer/Message'
 
 export default class MessageContainer extends React.Component{
+
     render(){
+
         var msgs = this.props.msgArr;
+
         var messagesToDisplay = msgs.map(function(message){
             if(message.sender === 'user'){
                 return (
@@ -15,6 +18,7 @@ export default class MessageContainer extends React.Component{
                 );
             }
         });
+
         return (
             <div id='msgCont' className='hiddenscrollbars message-container'>
                 {messagesToDisplay}

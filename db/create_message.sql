@@ -1,3 +1,3 @@
 INSERT INTO messages
-(facebookid, message)
+(userid, message)
 VALUES($1, $2);

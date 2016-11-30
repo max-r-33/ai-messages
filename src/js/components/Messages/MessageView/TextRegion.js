@@ -18,7 +18,7 @@ export default class TextRegion extends React.Component {
                 <div className='textRegion'>
                     <form onChange={event => this.handleChange(event)} autoComplete='off'>
                         <input id='textField' value={this.state.value} placeholder="Did the Lakers win?" type='text'></input>
-                        <button className='btn btn-3' onClick={(event) => {
+                        <button className='btn' onClick={(event) => {
                             this.props.sendMessage(this.state.value, event);
                             this.setState({value: ''});
                         }}>Send</button>

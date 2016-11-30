@@ -1,2 +1,2 @@
 SELECT * FROM messages
-where facebookid = $1;
+where userid = $1;
