@@ -16,37 +16,42 @@ var buildMessageObject = function(body, apiaiResponse, date) {
     var event = JSON.parse(body);
     event = event[0];
 
-    responseObj.date = event.event_start_date_time;
+    if (apiaiResponse.result.fulfillment.speech) {
+        responseObj = {
+            text: apiaiResponse.result.fulfillment.speech
+        };
+    } else {
+        responseObj.date = event.event_start_date_time;
 
-    //gets todays date and the game date and figures out the difference
-    //in number of days.
-    var d = responseObj.date.split('T')[0].split('-');
-    var gameDate = [d[1], d[2], d[0]].join('/');
-    var dObj = new Date();
-    var today = dObj.getMonth()+1 + '/' + dObj.getDate() + '/' + dObj.getFullYear();
+        //gets todays date and the game date and figures out the difference
+        //in number of days.
+        var d = responseObj.date.split('T')[0].split('-');
+        var gameDate = [d[1], d[2], d[0]].join('/');
+        var dObj = new Date();
+        var today = dObj.getMonth() + 1 + '/' + dObj.getDate() + '/' + dObj.getFullYear();
 
-    var daysAgo = getDifferenceInDays(gameDate, today);
-    var casualDate = '';
-    if(daysAgo === 0){
-        casualDate = ' today';
-    }else if(daysAgo === 1){
-        casualDate = ' yesterday';
-    }else{
-        casualDate = daysAgo + ' days ago ';
-    }
-
-    if (!date) {
-        if (event.team_event_result === 'win') {
-            responseObj.text = "The " + event.team.full_name + ' beat the ' + event.opponent.full_name +
-                ' ' + casualDate + ' in ' + event.site.city + ', ' + event.team_points_scored + ' to ' + event.opponent_points_scored;
+        var daysAgo = getDifferenceInDays(gameDate, today);
+        var casualDate = '';
+        if (daysAgo === 0) {
+            casualDate = ' today';
+        } else if (daysAgo === 1) {
+            casualDate = ' yesterday';
         } else {
-            responseObj.text = "The " + event.team.full_name + ' lost to the ' + event.opponent.full_name +
-                ' ' + casualDate + ' in ' + event.site.city + ', ' + event.opponent_points_scored + ' to ' + event.team_points_scored;
+            casualDate = daysAgo + ' days ago ';
         }
+
+        if (!date) {
+            if (event.team_event_result === 'win') {
+                responseObj.text = "The " + event.team.full_name + ' beat the ' + event.opponent.full_name +
+                    ' ' + casualDate + ' in ' + event.site.city + ', ' + event.team_points_scored + ' to ' + event.opponent_points_scored;
+            } else {
+                responseObj.text = "The " + event.team.full_name + ' lost to the ' + event.opponent.full_name +
+                    ' ' + casualDate + ' in ' + event.site.city + ', ' + event.opponent_points_scored + ' to ' + event.team_points_scored;
+            }
+        }
+        responseObj.gameType = event.team_event_location_type;
+
     }
-    responseObj.gameType = event.team_event_location_type;
-
-
     return responseObj;
 };
 
@@ -60,7 +65,7 @@ module.exports = {
         var options = {
             url: 'https://erikberg.com/nba/results/' + team.toLowerCase().split(' ').join('-') + '.json?last=1',
             headers: {
-                "User-Agent": "SportsAI/1.0 (max.rodewald@gmail.com)",
+                "User-Agent": "SportsAI/1.0 (" + config.email + ")",
                 "Authorization": "Bearer " + config.basketballToken
             }
         };

@@ -5,6 +5,7 @@ var ai = apiai(config.apiaiToken);
 var app = require('../server.js');
 var getGameScore = require('./BasketballControllers/getGameScore.js');
 var getTeamRecord = require('./BasketballControllers/getTeamRecord.js');
+var getNextGame = require('./BasketballControllers/getNextGame.js');
 
 module.exports = {
     //endpoint that handles all message requests
@@ -39,6 +40,16 @@ module.exports = {
                 });
             } else if (response.result.action === 'get.team.record') {
                 getTeamRecord.getRecord(response).then(function(result) {
+                    db.create_message([req.body.userid, result], function(err, score) {
+                        if (err) {
+                            res.status(500).send(err);
+                            return;
+                        }
+                        res.send(result);
+                    });
+                });
+            } else if (response.result.action === 'get.team.nextGame') {
+                getNextGame.getGame(response).then(function(result) {
                     db.create_message([req.body.userid, result], function(err, score) {
                         if (err) {
                             res.status(500).send(err);
