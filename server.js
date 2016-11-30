@@ -4,8 +4,6 @@ var cors = require('cors');
 var massive = require('massive');
 var bodyParser = require('body-parser');
 var config = require('./config.js');
-var session = require('express-session');
-
 
 //controllers
 var BasketballController = require('./controllers/BasketballController.js');
@@ -24,11 +22,6 @@ var db = app.get('db');
 //express setup
 app.use(cors());
 app.use(bodyParser.json());
-app.use(session({
-    secret: 'sdfsdgadgsassrg',
-    saveUninitialized: false,
-    resave: false
-}));
 
 //ENDPOINTS
 

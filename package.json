@@ -1,5 +1,5 @@
 {
-  "name": "helloworld",
+  "name": "ai-messages",
   "bin": {},
   "version": "1.1.0",
   "description": "",
@@ -13,11 +13,9 @@
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "express": "^4.14.0",
-    "express-session": "^1.14.2",
     "massive": "^2.5.0",
     "q": "^1.4.1",
     "request": "^2.79.0",
-    "session": "^0.1.0",
     "babel-core": "~6.18.2",
     "babel-loader": "~6.2.8",
     "babel-preset-latest": "~6.16.0",

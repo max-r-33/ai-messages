@@ -6,7 +6,6 @@ var ai = apiai(config.apiaiToken);
 var app = require('../server.js');
 var getGameScore = require('./BasketballControllers/getGameScore.js');
 var getTeamRecord = require('./BasketballControllers/getTeamRecord.js');
-var session = require('express-session');
 
 module.exports = {
     //endpoint that handles all message requests
@@ -47,7 +46,7 @@ module.exports = {
             }
 
         });
-        
+
         request.on('error', function(err) {
             console.log(err);
             res.send(err);

@@ -1,7 +1,6 @@
 import React from 'react';
 import TextRegion from './MessageView/TextRegion';
 import MessageContainer from './MessageView/MessageContainer';
-import Sessions from 'express-session';
 import axios from 'axios';
 import auth from '../../utils/LoginStatus';
 
