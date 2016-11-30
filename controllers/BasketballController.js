@@ -1,4 +1,3 @@
-var request = require('request');
 var q = require('q');
 var apiai = require('apiai');
 var config = require('../config.js');
@@ -12,8 +11,7 @@ module.exports = {
     handleRequest: function(req, res, next) {
         var db = app.get('db');
 
-        //TODO: Make create_message function in MessageController
-        //saves user's message to database
+        //TODO : add function in MessagesController to do this
         db.create_message([req.body.userid, {'text':req.body.textRequest, 'sender':'user'}], function(err, msg){
             if(err){
                 res.status(500).send(err);
@@ -31,17 +29,23 @@ module.exports = {
             if (response.result.action === 'get.game.score') {
                 getGameScore.getScore(response).then(function(result) {
                     //saves score to database and sends it as the response
-                    db.create_message([req.body.userid , result], function(err, score){
-                        if(err){
+                    db.create_message([req.body.userid, result], function(err, score) {
+                        if (err) {
                             res.status(500).send(err);
                             return;
                         }
                         res.send(result);
                     });
                 });
-            } else if (apiaiResponse.result.action === 'get.team.record') {
+            } else if (response.result.action === 'get.team.record') {
                 getTeamRecord.getRecord(response).then(function(result) {
-                    res.send(result);
+                    db.create_message([req.body.userid, result], function(err, score) {
+                        if (err) {
+                            res.status(500).send(err);
+                            return;
+                        }
+                        res.send(result);
+                    });
                 });
             }
 

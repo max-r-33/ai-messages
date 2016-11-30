@@ -27,6 +27,7 @@ app.use(bodyParser.json());
 
 //messaging
     app.post('/api/handleRequest',BasketballController.handleRequest);
+    app.post('/api/postMessage', MessagesController.postMessage);
     app.get('/api/getAllMessages/:id', MessagesController.getAllMessages);
 
 //user login/signupView
