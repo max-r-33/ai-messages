@@ -48,14 +48,26 @@ export default class Signup extends React.Component {
     }
     render() {
         return (
-            <div className='signupView'>
-                <h1>Signup</h1>
+            <div className='formView'>
                 <form>
-                    <input onChange={event => this.handleNameChange(event)} value={this.state.name} placeholder='Name' type='text'></input>
-                    <input onChange={event => this.handleEmailChange(event)} value={this.state.email} placeholder='Email' type='email'></input>
-                    <input onChange={event => this.handlePasswordChange(event)} value={this.state.password} placeholder='Password' type='password'></input>
-                    <input onChange={event => this.handlePasswordConfirmChange(event)} value={this.state.passwordconfirm} placeholder='Confirm Password' type='password'></input>
-                    <button onClick={event => this.handleSubmit(event)}>Signup</button>
+                    <div className='header'><h1>Sign Up</h1></div>
+                    <div className='inputContainer'>
+                        <input className='formInput' onChange={event => this.handleNameChange(event)} value={this.state.name} type='text'></input>
+                        <label>First Name</label>
+                    </div>
+                    <div className='inputContainer'>
+                        <input className='formInput' onChange={event => this.handleEmailChange(event)} value={this.state.email} type='email'></input>
+                        <label>Email</label>
+                    </div>
+                    <div className='inputContainer'>
+                        <input className='formInput' onChange={event => this.handlePasswordChange(event)} value={this.state.password} type='password'></input>
+                        <label>Password</label>
+                    </div>
+                    <div className='inputContainer'>
+                        <input className='formInput' onChange={event => this.handlePasswordConfirmChange(event)} value={this.state.passwordconfirm} type='password'></input>
+                        <label>Confirm Password</label>
+                    </div>
+                    <button className='formBtn' onClick={event => this.handleSubmit(event)}>Sign Up</button>
                 </form>
             </div>
         )

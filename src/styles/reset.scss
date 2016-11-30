@@ -1,6 +1,10 @@
 *{
 	box-sizing: border-box;
 }
+html, html a {
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
 html, body, div, span, applet, object, iframe,
 blockquote, pre,
 a, abbr, acronym, address, big, cite, code,

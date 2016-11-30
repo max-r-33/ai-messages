@@ -44,18 +44,24 @@ export default class Login extends React.Component {
                     path: '/'
                 });
                 window.location.reload();
-                window.location.href='http://localhost:8080/#/messages';
+                window.location.href = 'http://localhost:8080/#/messages';
             }
         });
     }
     render() {
         return (
-            <div className='loginView'>
-                <h1>Login</h1>
+            <div className='formView'>
                 <form>
-                    <input onChange={event => this.handleEmailChange(event)} value={this.state.email} placeholder='Email' type='email'></input>
-                    <input onChange={event => this.handlePasswordChange(event)} value={this.state.password} placeholder='Password' type='password'></input>
-                    <button onClick={event => this.handleSubmit(event)}>Submit</button>
+                    <div className='header'><h1>Login</h1></div>
+                    <div className='inputContainer'>
+                        <input className='formInput' onChange={event => this.handleEmailChange(event)} value={this.state.email} type='email'></input>
+                        <label>Email</label>
+                    </div>
+                    <div className='inputContainer'>
+                        <input className='formInput' onChange={event => this.handlePasswordChange(event)} value={this.state.password} type='password'></input>
+                        <label>Password</label>
+                    </div>
+                    <button className='formBtn' onClick={event => this.handleSubmit(event)}>Login</button>
                 </form>
             </div>
         )

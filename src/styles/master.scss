@@ -1,15 +1,14 @@
-$white: #F7FBFB;
+$white: rgb(249, 247, 246);
+$altWhite: #F7FBFB;
 $black: #353535;
 $blackHover: #090A06;
-$blue: #AEC5EB;
-$orange: rgb(40,147,245);
-$orangeHover:rgb(28,132,244);
-/*$orange: #FFA37C;
-$orangeHover: #EA9A77;*/
+$blueGrey: rgb(106,121,136);
 $grey: #D2D7DF;
+$orange: rgb(234, 162,156);
+$orangeHover: #EA9A77;
 $font: 'Helvetica Neue';
-$font-weight:800;
-/*$black: #1D1F15;*/
+$font-weight: 800;
+
 body {
     font-family: $font;
     background-color: $white;
@@ -27,23 +26,39 @@ a {
     display: inline;
 }
 
+input {
+    border: none;
+    -webkit-transition: box-shadow 0.3s;
+    transition: box-shadow 0.3s;
+    background-color: rgb(255,255,255);
+    color: $orange;
+    font-weight: 600;
+    padding: 20px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px $orange;
+}
+
 .btn {
     background-color: $white;
     border: 1px solid $black;
-    font-weight:600;
+    font-weight: 600;
     padding: 10px;
     transition: all 0.2s ease-in-out;
-    border-radius:8px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    border-radius: 8px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .btn:hover {
-    -webkit-box-shadow: inset 0px 0px 4px 4px $grey;
-    -moz-box-shadow: inset 0px 0px 4px 4px $grey;
-    box-shadow: inset 0px 0px 4px 4px $grey;
-    cursor:pointer;
+    -webkit-box-shadow: inset 0 0 4px 4px $grey;
+    -moz-box-shadow: inset 0 0 4px 4px $grey;
+    box-shadow: inset 0 0 4px 4px $grey;
+    cursor: pointer;
 }
+
 .btn:focus {
-    outline:0;
+    outline: 0;
 }

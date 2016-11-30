@@ -19,8 +19,7 @@ import messageViewStyles from '../styles/messageView.scss';
 import navStyle from '../styles/nav.scss';
 import messageStyle from '../styles/message.scss';
 import homeStyle from '../styles/homeView.scss';
-import loginViewStyle from '../styles/loginView.scss';
-import signupViewStyle from '../styles/signupView.scss';
+import formStyles from '../styles/formStyles.scss';
 
 const app = document.getElementById('app');
 
