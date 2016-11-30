@@ -1,42 +1,28 @@
 @import 'master';
 
+.textRegionContainer{
+    width:100%;
+    background-color: $white;
+}
+
 .textRegion {
-    margin-top: 10px;
-    height: 6vh;
-    position: relative;
+    position: fixed;
+    width:80%;
+    bottom:15px;
+    background-color: $white;
 
-    input {
-        width: 75%;
-        font-size: 18px;
-        font-weight: 500;
-        padding: 10px;
-        background-color: $white;
-        border: 1px solid $black;
-        border-radius: 8px;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        border-right: 0;
-        transition: all 0.2s ease-in-out;
+    .messageInput{
+        width:75%;
+        display: inline;
+        margin:0;
+        color:$black;
+        font-size: 20px;
     }
-
-    input:focus {
-        outline: none;
-        -webkit-box-shadow: inset 0 0 4px 4px $grey;
-        -moz-box-shadow: inset 0 0 4px 4px $grey;
-        box-shadow: inset 0 0 4px 4px $grey;
-    }
-
-    .btn {
-        width: 25%;
-        font-size: 18px;
-    }
-    @media(min-width:600px) {
-        input {
-            font-size: 30px;
-        }
-
-        .btn {
-            font-size: 30px;
-        }
+    .messageBtn{
+        width:25%;
+        padding:20px;
+        display: inline;
+        margin:0;
+        font-size: 20px;
     }
 }

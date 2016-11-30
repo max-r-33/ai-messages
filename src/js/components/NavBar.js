@@ -12,9 +12,6 @@ export default class NavBar extends React.Component {
         };
     }
     render() {
-        const containerStyle = {
-            marginTop: "60px"
-        }
         if(!this.state.user.id){
             //nav bar to show if the user is not logged in
             return (
