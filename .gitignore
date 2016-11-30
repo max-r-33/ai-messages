@@ -1,14 +1,3 @@
-#node modules
 node_modules
-
-#gitignore
-.gitignore
-
-#dist
-dist
-
-#config
 config.js
-
-# OSX files
-.DS_Store
+.DS_STORE
