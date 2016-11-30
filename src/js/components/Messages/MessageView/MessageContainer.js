@@ -2,7 +2,10 @@ import React from 'react';
 import Message from './MessageContainer/Message'
 
 export default class MessageContainer extends React.Component{
-
+    componentDidUpdate(){
+        var node = document.getElementById('msgCont');
+        node.scrollTop = node.scrollHeight;
+    }
     render(){
 
         var msgs = this.props.msgArr;

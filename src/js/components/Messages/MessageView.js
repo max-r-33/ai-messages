@@ -5,7 +5,7 @@ import axios from 'axios';
 import auth from '../../utils/LoginStatus';
 
 var messagesArr = [];
-var elem;
+var node;
 
 export default class MessageView extends React.Component {
 
@@ -39,6 +39,7 @@ export default class MessageView extends React.Component {
                 this.setState({messages: messagesArr});
             }
         });
+        
     }
 
     handleMessageSend(text, event) {
