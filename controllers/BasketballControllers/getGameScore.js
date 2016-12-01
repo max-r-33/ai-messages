@@ -61,7 +61,6 @@ module.exports = {
         var defer = q.defer();
         var date;
 
-        console.log(apiaiResponse);
         var options = {
             url: 'https://erikberg.com/nba/results/' + team.toLowerCase().split(' ').join('-') + '.json?last=1',
             headers: {
