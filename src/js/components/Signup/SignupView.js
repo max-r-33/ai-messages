@@ -37,7 +37,11 @@ export default class Signup extends React.Component {
                 email: this.state.email,
                 password: this.state.password
             }).then(response => {
-                window.location.href = 'http://localhost:8080/#/login';
+                if(response.data.severity === 'ERROR'){
+                    alert('An account with that email already exists!');
+                }else{
+                    window.location.href = 'http://localhost:8080/#/login';
+                }
             });
         } else if (this.state.password !== this.state.passwordConfirm) {
             alert('Passwords dont match');

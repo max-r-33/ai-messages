@@ -77,7 +77,6 @@ module.exports = {
         request(options, function(error, res, body) {
             var event = JSON.parse(body);
             event = event[0];
-            
             if (event.error) {
                 defer.resolve({
                     text: "You've made too many requests. Please wait a moment and try again!"
