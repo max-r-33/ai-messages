@@ -7,18 +7,20 @@
     position: fixed;
     top: 0;
     width: 100vw;
-    text-align: center;
-    .right {
-        display: none;
-        float: right;
-        vertical-align: middle;
-        font-weight: $font-weight;
-        margin-top: 20px;
 
+    .right {
+        float: right;
+        font-weight: $font-weight;
+        margin-top: 23px;
+
+        .home{
+            display: none;
+        }
         li {
             letter-spacing: 2px;
-            font-size: 25px;
+            font-size: 15px;
             padding-right: 25px;
+            text-transform: lowercase;
         }
     }
 
@@ -52,15 +54,20 @@
         width: 100%;
         background: $orange;
     }
-    @media(min-width:800px) {
+    @media(min-width:630px) {
         .logo {
             font-size: 40px;
             float: left;
             line-height: 50px;
         }
-
         .right {
-            display: inline;
+            margin-top:14px;
+            .home{
+                display:inline-block;
+            }
+            li{
+                font-size:30px;
+            }
         }
 
         .nav-container {

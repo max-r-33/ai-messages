@@ -33,7 +33,15 @@ module.exports = {
             }
         };
         request(options, function(err, res, body) {
-            defer.resolve(buildMessageObject(res.body, apiaiResponse));
+            var event = JSON.parse(body);
+            event = event[0];
+            if (event.error) {
+                defer.resolve({
+                    text: "You've made too many requests. Please wait a moment and try again!"
+                });
+            }else{
+                defer.resolve(buildMessageObject(res.body, apiaiResponse));
+            }
         });
         return defer.promise;
     }

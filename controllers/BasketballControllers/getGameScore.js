@@ -5,7 +5,7 @@ var config = require('../../config');
 var getDifferenceInDays = function(end, start) {
     var date1 = new Date(start);
     var date2 = new Date(end);
-    console.log(date1 + ' minus ' + date2);
+
     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
     return diffDays;
@@ -75,7 +75,15 @@ module.exports = {
         }
 
         request(options, function(error, res, body) {
-            defer.resolve(buildMessageObject(res.body, apiaiResponse));
+            var event = JSON.parse(body);
+            event = event[0];
+            if (event.error) {
+                defer.resolve({
+                    text: "You've made too many requests. Please wait a moment and try again!"
+                });
+            }else{
+                defer.resolve(buildMessageObject(res.body, apiaiResponse));
+            }
         });
 
         return defer.promise;
