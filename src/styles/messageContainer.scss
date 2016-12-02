@@ -1,19 +1,33 @@
 @import 'master';
 
 .message-container {
-    margin-top:85px;
-    margin-bottom:0px;
+    margin-top: 85px;
+    margin-bottom: 0;
     height: 83vh;
     overflow: scroll;
 }
-.messageSpacer{
-    width:100%;
-    height:8%;
+
+.messageSpacer {
+    width: 100%;
+    height: 8%;
     display: block;
 }
-.sportMessageSpacer{
-    width:100%;
-    height:17%;
+
+.sportMessageSpacer {
+    width: 100%;
+    height: 17%;
+    display: block;
+}
+
+.weatherMessageSpacer {
+    width: 100%;
+    height: 28%;
+    display: block;
+}
+
+.weatherForecastMessageSpacer {
+    width: 100%;
+    height: 35%;
     display: block;
 }
 

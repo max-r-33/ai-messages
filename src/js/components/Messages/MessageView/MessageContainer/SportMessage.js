@@ -15,10 +15,10 @@ export default class Message extends React.Component {
     }
     render() {
         return (
-            <div className='message sportMessage'>
+            <div className='message customMessage'>
                 <div className={`spacing ${this.props.senderClass}`}>
                     <p>{this.props.messageText}</p><br />
-                    <div className='scoreArea'>
+                    <div className='infoArea score'>
                         <h1>{this.state.scores[0]} - {this.state.scores[1]}</h1>
                     </div>
                 </div>

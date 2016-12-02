@@ -21,7 +21,7 @@ import navStyle from '../styles/nav.scss';
 import messageStyle from '../styles/message.scss';
 import homeStyle from '../styles/homeView.scss';
 import formStyle from '../styles/formStyles.scss';
-import sportMessageStyle from '../styles/sportMessage.scss';
+import customMessageStyle from '../styles/customMessage.scss';
 
 const app = document.getElementById('app');
 

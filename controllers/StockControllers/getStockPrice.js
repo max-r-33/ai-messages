@@ -6,7 +6,12 @@ module.exports = {
     getPrice: function(apiaiResponse) {
         var defer = q.defer();
         var responseObj, stockInfo = {};
-
+        console.log(apiaiResponse);
+        if(apiaiResponse.result.fulfillment.speech){
+            defer.resolve({text: apiaiResponse.result.fulfillment.speech});
+            return defer.promise;
+        }
+        
         var options = {
             url: 'http://dev.markitondemand.com/Api/v2/Lookup/json?input=' + encodeURIComponent(apiaiResponse.result.parameters.companyName)
         };

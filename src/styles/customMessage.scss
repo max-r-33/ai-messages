@@ -1,0 +1,75 @@
+@import 'master';
+
+.customMessage{
+    width:100%;
+    .infoArea{
+        text-align: center;
+        font-size:20px;
+        .temperature{
+            margin-left:10px;
+        }
+        .cityName{
+            margin-left:30px;
+            margin-right:30px;
+            font-size:30px;
+            margin-bottom:10px;
+            display:block;
+            font-weight:500;
+        }
+        .conditions{
+            font-size:23px;
+            display: block;
+            margin-right:12px;
+            margin-top:30px;
+            font-weight:500;
+        }
+        .description{
+            font-size:15px;
+            display: block;
+            margin-bottom:13px;
+        }
+        .tempArea{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .labels{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+                .temperature{
+                    margin-left:10px;
+                }
+
+                p{
+                    margin-top: 7px;
+                    margin-bottom: 7px;
+                }
+            }
+        }
+    }
+    .score{
+        margin-top:15px;
+    }
+}
+
+@media(min-width:600px){
+    .customMessage{
+        .infoArea{
+            font-size:28px;
+
+            .cityName{
+                font-size:33px;
+                margin-left:50px;
+                margin-right:50px;
+            }
+            .labels{
+                p{
+                    margin-top:10px;
+                    margin-bottom:10px;
+                }
+            }
+        }
+    }
+}

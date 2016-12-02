@@ -42,7 +42,14 @@ module.exports = {
                 text: 'The high for tomorrow in ' + city + ' ' + country + ' is ' + high + '° and the low is ' + low +
                     '°. Conditions are supposed to be ' + conditions + '.'
             };
-
+            responseObj.type = 'weatherForecast';
+            responseObj.data = {
+                description:'Tomorrow',
+                temperature : high + ':' + low,
+                conditions: conditions,
+                city: city,
+                country: country
+            };
             console.log(responseObj.text);
             defer.resolve(responseObj);
         });
