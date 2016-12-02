@@ -9,6 +9,7 @@ var getNextGame = require('./BasketballControllers/getNextGame.js');
 var getPlayerStat = require('./BasketballControllers/getPlayerStat.js');
 var getWeather = require('./WeatherControllers/getWeather.js');
 var getFutureWeather = require('./WeatherControllers/getFutureWeather.js');
+var getStockPrice = require('./StockControllers/getStockPrice.js');
 
 module.exports = {
     //endpoint that handles all message requests
@@ -34,7 +35,6 @@ module.exports = {
 
         //handles apiai response
         request.on('response', function(response) {
-            console.log(response);
             if (response.result.score === 0) {
                 msg = {
                     text: "I'm not sure what you mean. Try phrasing your question a different way"
@@ -102,7 +102,7 @@ module.exports = {
                     });
                 } else if (response.result.action === 'get.current.weather') {
                     getWeather.getWeather(response).then(function(result){
-                        db.create_message([req.body.userid, result], function(err, score) {
+                        db.create_message([req.body.userid, result], function(err, weather) {
                             if (err) {
                                 res.status(500).send(err);
                                 return;
@@ -112,7 +112,18 @@ module.exports = {
                     });
                 } else if (response.result.action === 'get.future.weather') {
                     getFutureWeather.getFutureWeather(response).then(function(result){
-                        db.create_message([req.body.userid, result], function(err, score) {
+                        db.create_message([req.body.userid, result], function(err, weather) {
+                            if (err) {
+                                res.status(500).send(err);
+                                return;
+                            }
+                            res.send(result);
+                        });
+                    });
+                } else if (response.result.action === 'get.stockPrice') {
+                    getStockPrice.getPrice(response).then(function(result){
+                        db.create_message([req.body.userid, result], function(err, price) {
+                            console.log(result);
                             if (err) {
                                 res.status(500).send(err);
                                 return;
