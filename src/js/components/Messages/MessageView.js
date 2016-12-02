@@ -33,10 +33,11 @@ export default class MessageView extends React.Component {
             //if there are, build objects with them.
             if (response.data.length > 0) {
                 messagesArr = response.data.map(function(msg, i) {
-                    return {text: msg.message.text, key: i, sender: msg.message.sender};
+                    return {text: msg.message.text, key: i, sender: msg.message.sender, data: msg.message.data, type: msg.message.type};
                 });
                 //sets state with newly created messagesArr
                 this.setState({messages: messagesArr});
+                console.log(messagesArr);
             }
         });
 
@@ -64,6 +65,8 @@ export default class MessageView extends React.Component {
                 userid: this.state.user.id
             }).then(response => {
                 messagesArr.push({
+                    data: response.data.data,
+                    type: response.data.type,
                     text: response.data.text,
                     key: messagesArr[messagesArr.length - 1].key + 1
                 });

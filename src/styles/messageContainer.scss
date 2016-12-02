@@ -6,6 +6,16 @@
     height: 83vh;
     overflow: scroll;
 }
+.messageSpacer{
+    width:100%;
+    height:8%;
+    display: block;
+}
+.sportMessageSpacer{
+    width:100%;
+    height:17%;
+    display: block;
+}
 
 .hiddenscrollbars::-webkit-scrollbar {
     display: none;

@@ -15,7 +15,7 @@ var buildMessageObject = function(body, apiaiResponse, date) {
     var responseObj = {};
     var event = JSON.parse(body);
     event = event[0];
-
+    console.log(apiaiResponse);
     if (apiaiResponse.result.fulfillment.speech) {
         responseObj = {
             text: apiaiResponse.result.fulfillment.speech
@@ -43,14 +43,18 @@ var buildMessageObject = function(body, apiaiResponse, date) {
         if (!date) {
             if (event.team_event_result === 'win') {
                 responseObj.text = "The " + event.team.full_name + ' beat the ' + event.opponent.full_name +
-                    ' ' + casualDate + ' in ' + event.site.city + ', ' + event.team_points_scored + ' to ' + event.opponent_points_scored;
+                    ' ' + casualDate + ' in ' + event.site.city + '.';
             } else {
                 responseObj.text = "The " + event.team.full_name + ' lost to the ' + event.opponent.full_name +
-                    ' ' + casualDate + ' in ' + event.site.city + ', ' + event.opponent_points_scored + ' to ' + event.team_points_scored;
+                    ' ' + casualDate + ' in ' + event.site.city + '.';
             }
         }
+        responseObj.type = 'sport';
         responseObj.gameType = event.team_event_location_type;
-
+        responseObj.data = {
+            pointsScored : event.team_points_scored,
+            opponentPointsScored : event.opponent_points_scored
+        };
     }
     return responseObj;
 };

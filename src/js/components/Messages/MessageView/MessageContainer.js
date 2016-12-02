@@ -1,5 +1,6 @@
 import React from 'react';
-import Message from './MessageContainer/Message'
+import Message from './MessageContainer/Message';
+import SportMessage from './MessageContainer/SportMessage';
 
 export default class MessageContainer extends React.Component{
     componentDidUpdate(){
@@ -10,14 +11,28 @@ export default class MessageContainer extends React.Component{
         var msgs = this.props.msgArr;
 
         var messagesToDisplay = msgs.map(function(message){
+            console.log(message);
             if(message.sender === 'user'){
                 return (
-                    <Message senderClass='user' key={message.key} messageText={message.text} />
+                    <div key={message.key} className='messageSpacer'>
+                        <Message senderClass='user'  messageText={message.text} />
+                    </div>
                 );
             }else{
-                return (
-                    <Message senderClass='bot' key={message.key} messageText={message.text} />
-                );
+                if(message.type === 'sport'){
+                    console.log(message.data);
+                    return (
+                        <div key={message.key} className='sportMessageSpacer'>
+                            <SportMessage senderClass='bot' scores={message.data} messageText={message.text} />
+                        </div>
+                    );
+                }else{
+                    return (
+                        <div key={message.key} className='messageSpacer'>
+                            <Message senderClass='bot' messageText={message.text} />
+                        </div>
+                    );
+                }
             }
         });
 
