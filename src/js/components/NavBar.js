@@ -37,8 +37,8 @@ export default class NavBar extends React.Component {
                         <ul>
                             <li className='logo'><Link to='/'>{this.state.user.name}</Link></li>
                             <div className='right'>
-                                <li className='home sliding-u-l-r'><Link to='/'>Home</Link></li>
                                 <li className='sliding-u-l-r'><Link to='messages'>Messages</Link></li>
+                                <li className='hideOnMobile sliding-u-l-r'><Link to='settings'>Settings</Link></li>
                                 <li className='sliding-u-l-r'><Link to='logout'>Log Out</Link></li>
                             </div>
                         </ul>

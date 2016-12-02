@@ -8,18 +8,19 @@ import NavBar from './components/NavBar';
 import LoginView from './components/Login/LoginView';
 import SignupView from './components/Signup/SignupView';
 import LogOutView from './components/Logout/LogOutView';
+import SettingsView from './components/Settings/SettingsView';
 
 import auth from './utils/LoginStatus';
 
 import reset from '../styles/reset.scss';
 import master from '../styles/master.scss';
-import messageContainerStyles from '../styles/messageContainer.scss';
-import textRegionStyles from '../styles/textRegion.scss';
-import messageViewStyles from '../styles/messageView.scss';
+import messageContainerStyle from '../styles/messageContainer.scss';
+import textRegionStyle from '../styles/textRegion.scss';
+import messageViewStyle from '../styles/messageView.scss';
 import navStyle from '../styles/nav.scss';
 import messageStyle from '../styles/message.scss';
 import homeStyle from '../styles/homeView.scss';
-import formStyles from '../styles/formStyles.scss';
+import formStyle from '../styles/formStyles.scss';
 
 const app = document.getElementById('app');
 
@@ -53,5 +54,6 @@ ReactDOM.render(
         <Route path='signup' component={SignupView} onEnter={requireNotLoggedIn}></Route>
         <Route path='logout' component={LogOutView}></Route>
         <Route path='messages' component={MessageView} onEnter={requireAuth}></Route>
+        <Route path='settings' component={SettingsView} onEnter={requireAuth}></Route>
     </Route>
 </Router>, app);

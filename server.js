@@ -10,6 +10,7 @@ var BasketballController = require('./controllers/BasketballController.js');
 var MessagesController = require('./controllers/MessagesController.js');
 var LoginController = require('./controllers/UserControllers/LoginController.js');
 var SignupController = require('./controllers/UserControllers/SignupController.js');
+var AccountController = require('./controllers/AccountController.js');
 
 //db setup
 var massiveInstance = massive.connectSync({
@@ -30,9 +31,11 @@ app.use(bodyParser.json());
     app.post('/api/postMessage', MessagesController.postMessage);
     app.get('/api/getAllMessages/:id', MessagesController.getAllMessages);
 
-//user login/signupView
+//user controls
     app.post('/api/signup', SignupController.signup);
     app.post('/api/login', LoginController.login);
+    app.put('/api/changeName', AccountController.changeName);
+    app.delete('/api/deleteAccount', AccountController.deleteAccount);
 
 app.listen(config.port, function() {
     console.log('listening on ' + config.port);

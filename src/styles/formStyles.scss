@@ -60,6 +60,12 @@ label {
 .formBtn:focus{
     outline:none;
 }
+.formBtnDanger{
+    background-color:#BC4F6A;
+}
+.formBtnDanger:hover{
+    background-color: #ff6b90;
+}
 
 @media(min-width:900px) {
     .formView {

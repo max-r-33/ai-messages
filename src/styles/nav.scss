@@ -13,7 +13,7 @@
         font-weight: $font-weight;
         margin-top: 23px;
 
-        .home{
+        .hideOnMobile{
             display: none;
         }
         li {
@@ -62,7 +62,7 @@
         }
         .right {
             margin-top:14px;
-            .home{
+            .hideOnMobile{
                 display:inline-block;
             }
             li{

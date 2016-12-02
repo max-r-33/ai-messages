@@ -7,7 +7,6 @@ export default class MessageContainer extends React.Component{
         node.scrollTop = node.scrollHeight;
     }
     render(){
-
         var msgs = this.props.msgArr;
 
         var messagesToDisplay = msgs.map(function(message){

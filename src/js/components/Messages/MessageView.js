@@ -39,35 +39,37 @@ export default class MessageView extends React.Component {
                 this.setState({messages: messagesArr});
             }
         });
-        
+
     }
 
     handleMessageSend(text, event) {
         event.preventDefault();
         //gets current messagesArr
-        messagesArr = this.state.messages;
+        if(text.length > 0){
+            messagesArr = this.state.messages;
 
-        //builds new message to send to backend and adds it to arr
-        //then updates state.
-        var newMsg = {
-            text: text,
-            key: messagesArr[messagesArr.length - 1].key + 1,
-            sender: 'user'
-        };
-        messagesArr.push(newMsg);
-        this.setState({messages: messagesArr});
-
-        //sends request to backend
-        axios.post('http://localhost:9000/api/handleRequest', {
-            textRequest: text,
-            userid: this.state.user.id
-        }).then(response => {
-            messagesArr.push({
-                text: response.data.text,
-                key: messagesArr[messagesArr.length - 1].key + 1
-            });
+            //builds new message to send to backend and adds it to arr
+            //then updates state.
+            var newMsg = {
+                text: text,
+                key: messagesArr[messagesArr.length - 1].key + 1,
+                sender: 'user'
+            };
+            messagesArr.push(newMsg);
             this.setState({messages: messagesArr});
-        });
+
+            //sends request to backend
+            axios.post('http://localhost:9000/api/handleRequest', {
+                textRequest: text,
+                userid: this.state.user.id
+            }).then(response => {
+                messagesArr.push({
+                    text: response.data.text,
+                    key: messagesArr[messagesArr.length - 1].key + 1
+                });
+                this.setState({messages: messagesArr});
+            });
+        }
     }
     render() {
         return (
