@@ -9,6 +9,7 @@ var getNextGame = require('./BasketballControllers/getNextGame.js');
 var getPlayerStat = require('./BasketballControllers/getPlayerStat.js');
 var getWeather = require('./WeatherControllers/getWeather.js');
 var getFutureWeather = require('./WeatherControllers/getFutureWeather.js');
+
 module.exports = {
     //endpoint that handles all message requests
     handleRequest: function(req, res, next) {
