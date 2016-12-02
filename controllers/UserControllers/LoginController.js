@@ -1,11 +1,11 @@
 var app = require('../../server.js');
+var db = app.get('db');
 
 module.exports = {
 
     //goes to the database,
     //checks if there are an matching users
     login: function(req, res, next) {
-        var db = app.get('db');
         db.login_user([req.body.email, req.body.password], function(err, user) {
             if (user.length > 0) {
                 res.send(user).status(200);

@@ -3,6 +3,8 @@ var apiai = require('apiai');
 var config = require('../config.js');
 var ai = apiai(config.apiaiToken);
 var app = require('../server.js');
+var db = app.get('db');
+
 var getGameScore = require('./BasketballControllers/getGameScore.js');
 var getTeamRecord = require('./BasketballControllers/getTeamRecord.js');
 var getNextGame = require('./BasketballControllers/getNextGame.js');
@@ -11,10 +13,10 @@ var getWeather = require('./WeatherControllers/getWeather.js');
 var getFutureWeather = require('./WeatherControllers/getFutureWeather.js');
 var getStockPrice = require('./StockControllers/getStockPrice.js');
 
+
 module.exports = {
     //endpoint that handles all message requests
     handleRequest: function(req, res, next) {
-        var db = app.get('db');
         var msg = {};
 
         //TODO : add function in MessagesController to do this

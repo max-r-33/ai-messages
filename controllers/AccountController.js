@@ -1,11 +1,11 @@
 var app = require('../server.js');
+var db = app.get('db');
 
 module.exports = {
 
     //goes to server
     //gets all messages with given userid
     changeName: function(req, res, next){
-        var db = app.get('db');
         db.update_name([req.body.email, req.body.newName], function(err, user){
             console.log(req.body.email);
             console.log(req.body.newName);
@@ -14,7 +14,6 @@ module.exports = {
     },
 
     deleteAccount: function(req, res, next){
-        var db = app.get('db');
         console.log(req.body);
         db.delete_messages([req.body.id], function(err, user){
         });

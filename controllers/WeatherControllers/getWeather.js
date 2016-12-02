@@ -28,10 +28,10 @@ module.exports = {
 
             country = '';
             if(data.sys.country !== 'US'){
-                country = data.sys.country;
+                country = ' ' + data.sys.country;
             }
             responseObj = {
-                text : 'It is currently ' + temp + '° in ' + city + ' ' + country + '. Conditions are ' + conditions + '.'
+                text : 'It is currently ' + temp + '° in ' + city + country + '. Conditions are ' + conditions + '.'
             };
 
             console.log(responseObj.text);
