@@ -29,7 +29,7 @@ module.exports = {
 
         //apiai request
         var request = ai.textRequest(req.body.textRequest, {
-            sessionId: 'abbcfdlefsd'
+            sessionId: 'abbcfdlefsd' + req.body.userid
         });
 
         //handles apiai response

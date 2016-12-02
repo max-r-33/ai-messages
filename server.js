@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var config = require('./config.js');
 
 //controllers
-var BasketballController = require('./controllers/BasketballController.js');
+var RequestController = require('./controllers/RequestController.js');
 var MessagesController = require('./controllers/MessagesController.js');
 var LoginController = require('./controllers/UserControllers/LoginController.js');
 var SignupController = require('./controllers/UserControllers/SignupController.js');
@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 //ENDPOINTS
 
 //messaging
-    app.post('/api/handleRequest',BasketballController.handleRequest);
+    app.post('/api/handleRequest',RequestController.handleRequest);
     app.post('/api/postMessage', MessagesController.postMessage);
     app.get('/api/getAllMessages/:id', MessagesController.getAllMessages);
 
