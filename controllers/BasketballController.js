@@ -7,7 +7,8 @@ var getGameScore = require('./BasketballControllers/getGameScore.js');
 var getTeamRecord = require('./BasketballControllers/getTeamRecord.js');
 var getNextGame = require('./BasketballControllers/getNextGame.js');
 var getPlayerStat = require('./BasketballControllers/getPlayerStat.js');
-
+var getWeather = require('./WeatherControllers/getWeather.js');
+var getFutureWeather = require('./WeatherControllers/getFutureWeather.js');
 module.exports = {
     //endpoint that handles all message requests
     handleRequest: function(req, res, next) {
@@ -27,7 +28,7 @@ module.exports = {
 
         //apiai request
         var request = ai.textRequest(req.body.textRequest, {
-            sessionId: 'abbcfdefsd'
+            sessionId: 'abbcfdlefsd'
         });
 
         //handles apiai response
@@ -90,6 +91,26 @@ module.exports = {
                     });
                 } else if (response.result.action.split('.')[1] === 'individual') {
                     getPlayerStat.getStat(response).then(function(result) {
+                        db.create_message([req.body.userid, result], function(err, score) {
+                            if (err) {
+                                res.status(500).send(err);
+                                return;
+                            }
+                            res.send(result);
+                        });
+                    });
+                } else if (response.result.action === 'get.current.weather') {
+                    getWeather.getWeather(response).then(function(result){
+                        db.create_message([req.body.userid, result], function(err, score) {
+                            if (err) {
+                                res.status(500).send(err);
+                                return;
+                            }
+                            res.send(result);
+                        });
+                    });
+                } else if (response.result.action === 'get.future.weather') {
+                    getFutureWeather.getFutureWeather(response).then(function(result){
                         db.create_message([req.body.userid, result], function(err, score) {
                             if (err) {
                                 res.status(500).send(err);
