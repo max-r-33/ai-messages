@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import bcrypt from 'bcryptjs';
 
 export default class Signup extends React.Component {
     constructor(props) {
@@ -31,17 +32,24 @@ export default class Signup extends React.Component {
 
         //checks if all fields are filled in and passwords match
         if (this.state.email && this.state.password && this.state.password === this.state.passwordConfirm) {
-            //creates user
-            axios.post('http://localhost:9000/api/signup', {
-                name: this.state.name,
-                email: this.state.email,
-                password: this.state.password
-            }).then(response => {
-                if(response.data.severity === 'ERROR'){
-                    alert('An account with that email already exists!');
-                }else{
-                    window.location.href = 'http://localhost:8080/#/login';
-                }
+            var pword = this.state.password;
+            var em = this.state.email;
+            var nm = this.state.name;
+
+            //hashes password
+            bcrypt.hash(pword, 10, function(err, hash) {
+                //creates user
+                axios.post('http://localhost:9000/api/signup', {
+                    name: nm,
+                    email: em,
+                    password: hash
+                }).then(response => {
+                    if (response.data.severity === 'ERROR') {
+                        alert('An account with that email already exists!');
+                    } else {
+                        window.location.href = 'http://localhost:8080/#/login';
+                    }
+                });
             });
         } else if (this.state.password !== this.state.passwordConfirm) {
             alert('Passwords dont match');
@@ -54,7 +62,9 @@ export default class Signup extends React.Component {
         return (
             <div className='formView'>
                 <form>
-                    <div className='header'><h1>Sign Up</h1></div>
+                    <div className='header'>
+                        <h1>Sign Up</h1>
+                    </div>
                     <div className='inputContainer'>
                         <input className='formInput' onChange={event => this.handleNameChange(event)} value={this.state.name} type='text'></input>
                         <label>First Name</label>

@@ -34,7 +34,7 @@ var AccountController = require('./controllers/AccountController.js');
 
 //user controls
     app.post('/api/signup', SignupController.signup);
-    app.post('/api/login', LoginController.login);
+    app.get('/api/login', LoginController.login);
     app.put('/api/changeName', AccountController.changeName);
     app.delete('/api/deleteAccount', AccountController.deleteAccount);
 

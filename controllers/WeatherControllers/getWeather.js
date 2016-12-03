@@ -4,18 +4,19 @@ var config = require('../../config');
 
 module.exports = {
     getWeather: function(apiaiResponse) {
-
+        console.log(apiaiResponse);
         var defer = q.defer();
         var city = apiaiResponse.result.parameters.geoCity;
         var cond, temp, high, low, country;
         var responseObj = {};
         var options = {
-            url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&APPID=' + config.weatherToken + '&units=imperial'
+            url: 'http://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(city) + '&APPID=' + config.weatherToken + '&units=imperial'
         };
-
+        
         request(options, function(err, res, body) {
             var data = JSON.parse(res.body);
-
+            // if(data.weather){
+            console.log(data);
             city = data.name;
             cond = data.weather[0].main;
             temp = Math.round(data.main.temp);
@@ -33,8 +34,8 @@ module.exports = {
             responseObj.type = 'weather';
 
             responseObj.data = {
-                description:'Current',
-                temperature : temp,
+                description: 'Current',
+                temperature: temp,
                 conditions: cond,
                 city: city,
                 country: country

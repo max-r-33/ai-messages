@@ -2,6 +2,7 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import bcrypt from 'bcryptjs';
 
 export default class Login extends React.Component {
 
@@ -26,25 +27,30 @@ export default class Login extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         //posts to db which checks if there is a match
-        axios.post('http://localhost:9000/api/login', {
-            email: this.state.email,
-            password: this.state.password
-        }).then(response => {
+        axios.get('http://localhost:9000/api/login?email=' + this.state.email).then(response => {
             //based on the result, set cookie, or alert that
             //their account wasn't found
+            console.log(response);
             if (response.data.error) {
                 alert('no match');
             } else {
-                Cookies.set('user', {
-                    name: response.data[0].name,
-                    id: response.data[0].id,
-                    email: response.data[0].email
-                }, {
-                    expires: 1,
-                    path: '/'
+                //compares password with encrypted password
+                bcrypt.compare(this.state.password, response.data[0].password, function(err, res){
+                    if(res){
+                        Cookies.set('user', {
+                            name: response.data[0].name,
+                            id: response.data[0].id,
+                            email: response.data[0].email
+                        }, {
+                            expires: 1,
+                            path: '/'
+                        });
+                        window.location.reload();
+                        window.location.href = 'http://localhost:8080/#/messages';
+                    }else{
+                        alert('error');
+                    }
                 });
-                window.location.reload();
-                window.location.href = 'http://localhost:8080/#/messages';
             }
         });
     }
