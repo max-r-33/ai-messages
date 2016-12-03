@@ -3,12 +3,11 @@ var q = require('q');
 var config = require('../../config');
 
 var buildMessageObject = function(body, apiaiResponse) {
-    console.log(apiaiResponse);
+    //console.log(apiaiResponse);
     var responseObj = {};
     var event = JSON.parse(body);
     event = event[0];
-    console.log(event);
-
+    //console.log(event);
 
     if (apiaiResponse.result.fulfillment.speech) {
         responseObj = {
@@ -19,10 +18,7 @@ var buildMessageObject = function(body, apiaiResponse) {
         var d = event.event_start_date_time.split('T')[0].split('-');
         var gameDate = d.join('/');
         var game = new Date(gameDate);
-        console.log(game.getDay());
-
         var today = new Date();
-        console.log(today.getDay());
         var casualDate;
 
         if (today.getDay() === game.getDay()) {
@@ -32,9 +28,13 @@ var buildMessageObject = function(body, apiaiResponse) {
         } else {
             casualDate = ' in ' + (game.getDay() - today.getDay()) + ' days';
         }
+
+        //gets EST time
+        var dateTime = event.event_start_date_time.split('T')[1].split('-')[0];
+        var time = parseInt(dateTime.split(':')[0])-12 + ':' + dateTime.split(':')[1];
         responseObj = {
             text: 'The ' + event.team.last_name + ' play the ' + event.opponent.last_name + ' in ' + event.site.city +
-                casualDate + '.'
+                casualDate + ' at ' + time + ' EST.'
         };
     }
 

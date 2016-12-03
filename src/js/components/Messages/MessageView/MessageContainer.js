@@ -2,6 +2,7 @@ import React from 'react';
 import Message from './MessageContainer/Message';
 import SportMessage from './MessageContainer/SportMessage';
 import WeatherMessage from './MessageContainer/WeatherMessage';
+import StockMessage from './MessageContainer/StockMessage';
 
 export default class MessageContainer extends React.Component{
 
@@ -28,17 +29,22 @@ export default class MessageContainer extends React.Component{
                         </div>
                     );
                 }else if(message.type === 'weather'){
-                    console.log(message.data)
                     return (
                         <div key={message.key} className='weatherMessageSpacer'>
                             <WeatherMessage weather={message.data} senderClass='bot' messageText={message.text} />
                         </div>
                     );
                 }else if(message.type === 'weatherForecast'){
-                    console.log(message.data)
                     return (
                         <div key={message.key} className='weatherForecastMessageSpacer'>
                             <WeatherMessage weather={message.data} senderClass='bot' messageText={message.text} />
+                        </div>
+                    );
+                }else if(message.type === 'stock'){
+                    console.log(message.data)
+                    return (
+                        <div key={message.key} className='stockMessageSpacer'>
+                            <StockMessage stockInfo={message.data} senderClass='bot' messageText={message.text} />
                         </div>
                     );
                 }else{

@@ -15,7 +15,7 @@
 
 .sportMessageSpacer {
     width: 100%;
-    height: 17%;
+    height: 19%;
     display: block;
 }
 
@@ -31,6 +31,17 @@
     display: block;
 }
 
+.stockMessageSpacer {
+    width: 100%;
+    height: 25%;
+    display: block;
+}
+
 .hiddenscrollbars::-webkit-scrollbar {
     display: none;
+}
+@media(min-width:600px) {
+    .stockMessageSpacer {
+        height: 38%;
+    }
 }

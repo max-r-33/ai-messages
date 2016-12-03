@@ -37,7 +37,6 @@ export default class MessageView extends React.Component {
                 });
                 //sets state with newly created messagesArr
                 this.setState({messages: messagesArr});
-                console.log(messagesArr);
             }
         });
 

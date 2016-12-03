@@ -11,7 +11,7 @@ module.exports = {
             defer.resolve({text: apiaiResponse.result.fulfillment.speech});
             return defer.promise;
         }
-        
+
         var options = {
             url: 'http://dev.markitondemand.com/Api/v2/Lookup/json?input=' + encodeURIComponent(apiaiResponse.result.parameters.companyName)
         };
@@ -46,7 +46,6 @@ module.exports = {
                     stockInfo.percentChange = valid[0].cp;
                     stockInfo.change = valid[0].c;
                     stockInfo.afterHoursLastPrice = valid[0].el;
-
                     if (parseFloat(stockInfo.change) > 0) {
                         responseObj = {
                             text: 'The price of ' + stockInfo.companyName + ' stock is $' + stockInfo.price + ". Today, it's up " + stockInfo.percentChange +
@@ -58,6 +57,8 @@ module.exports = {
                                 '% (' + stockInfo.change + ').'
                         };
                     }
+                    responseObj.type = 'stock';
+                    responseObj.data = stockInfo;
                     defer.resolve(responseObj);
                 });
 

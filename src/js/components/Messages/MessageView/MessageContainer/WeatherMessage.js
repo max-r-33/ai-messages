@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Message extends React.Component {
+export default class WeatherMessage extends React.Component {
     //displays message
     //styles css based on the sender of the message
     constructor(props){
@@ -11,9 +11,7 @@ export default class Message extends React.Component {
                 tempData = this.props.weather[key];
             }
         }
-        console.log(tempData);
         tempData = (tempData+"").split(':');
-        console.log(tempData);
         this.state = {
             high: tempData[0],
             low: tempData[1]

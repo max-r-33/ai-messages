@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Message extends React.Component {
+export default class SportMessage extends React.Component {
     //displays message
     //styles css based on the sender of the message
     constructor(props){
