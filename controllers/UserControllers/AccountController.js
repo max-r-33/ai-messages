@@ -1,4 +1,4 @@
-var app = require('../server.js');
+var app = require('../../server.js');
 var db = app.get('db');
 
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
         });
         db.delete_account([req.body.id], function(err, user){
         });
-        res.send(200);
+        res.sendStatus(200);
     }
 
 };

@@ -12,7 +12,9 @@ export default class Signup extends React.Component {
             passwordConfirm: ''
         };
     }
-
+    componentDidMount(){
+        document.title = 'Sign Up';
+    }
     //event handlers
     handleEmailChange(event) {
         this.setState({email: event.target.value});

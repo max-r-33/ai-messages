@@ -6,6 +6,7 @@
     .infoArea {
         text-align: center;
         font-size: 20px;
+
         //WEATHER
         .temperature {
             margin-left: 10px;
@@ -86,7 +87,32 @@
             color: $orange;
         }
     }
+    
+    //SPORTS
+    .statGrid{
+        margin-top:20px;
+        .statGridHeader{
+            width:100%;
+            font-size:20px;
+            margin-bottom:20px;
+            font-weight:500;
+            text-align:center;
+            display: block;
+            text-transform: capitalize;
+        }
+        .statRow{
+            margin-top:10px;
+            margin-bottom:10px;
+            display: block;
 
+            .value{
+                float:right;
+            }
+            .rank{
+                margin-right:20px;
+            }
+        }
+    }
     .score {
         margin-top: 15px;
     }

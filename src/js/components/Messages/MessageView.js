@@ -25,6 +25,7 @@ export default class MessageView extends React.Component {
     }
 
     componentDidMount() {
+        document.title = 'Messages';
         //makes get request to the messages endpoint with user's id
         //loops through all of the user's messages and builds messages objects
         //that get put onto messagesArr

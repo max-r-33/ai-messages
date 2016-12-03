@@ -14,6 +14,9 @@ export default class SettingsView extends React.Component {
         };
         console.log(this.state.id);
     }
+    componentDidMount(){
+        document.title = 'Settings';
+    }
     handleNameChange(event) {
         this.setState({name: event.target.value});
     }

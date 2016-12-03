@@ -22,7 +22,7 @@ var RequestController = require('./controllers/RequestController.js');
 var MessagesController = require('./controllers/MessagesController.js');
 var LoginController = require('./controllers/UserControllers/LoginController.js');
 var SignupController = require('./controllers/UserControllers/SignupController.js');
-var AccountController = require('./controllers/AccountController.js');
+var AccountController = require('./controllers/UserControllers/AccountController.js');
 
 
 //ENDPOINTS

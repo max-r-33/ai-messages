@@ -1,6 +1,7 @@
 import React from 'react';
 import Message from './MessageContainer/Message';
 import SportMessage from './MessageContainer/SportMessage';
+import SportStatisticMessage from './MessageContainer/SportStatisticMessage';
 import WeatherMessage from './MessageContainer/WeatherMessage';
 import StockMessage from './MessageContainer/StockMessage';
 
@@ -45,6 +46,12 @@ export default class MessageContainer extends React.Component{
                     return (
                         <div key={message.key} className='stockMessageSpacer'>
                             <StockMessage stockInfo={message.data} senderClass='bot' messageText={message.text} />
+                        </div>
+                    );
+                }else if(message.type === 'sportStatistic'){
+                    return (
+                        <div key={message.key} className='sportStatMessageSpacer'>
+                            <SportStatisticMessage stats={message.data} senderClass='bot' messageText={message.text} />
                         </div>
                     );
                 }else{

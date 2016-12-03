@@ -22,6 +22,7 @@ module.exports = {
             //checks to see if any data was returned.
             //if a valid stock symbol was found, make another request
             // to get its price
+            console.log(data);
             if (data[0]) {
                 stockInfo.symbol = data[0].Symbol;
                 stockInfo.companyName = data[0].Name;
