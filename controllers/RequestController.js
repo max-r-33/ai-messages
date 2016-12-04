@@ -10,6 +10,7 @@ var getTeamRecord = require('./BasketballControllers/getTeamRecord.js');
 var getNextGame = require('./BasketballControllers/getNextGame.js');
 var getPlayerStat = require('./BasketballControllers/getPlayerStat.js');
 var getStatLeader = require('./BasketballControllers/getStatisticLeader.js');
+var getStandings = require('./BasketballControllers/getConferenceStandings.js');
 var getWeather = require('./WeatherControllers/getWeather.js');
 var getFutureWeather = require('./WeatherControllers/getFutureWeather.js');
 var getStockPrice = require('./StockControllers/getStockPrice.js');
@@ -134,6 +135,16 @@ module.exports = {
                     });
                 } else if(response.result.action === 'get.statistic.leader') {
                     getStatLeader.getLeader(response).then(function(result){
+                        db.create_message([req.body.userid, result], function(err, price) {
+                            if (err) {
+                                res.status(500).send(err);
+                                return;
+                            }
+                            res.send(result);
+                        });
+                    });
+                } else if(response.result.action === 'get.standings') {
+                    getStandings.getStandings(response).then(function(result){
                         db.create_message([req.body.userid, result], function(err, price) {
                             if (err) {
                                 res.status(500).send(err);
