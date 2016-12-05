@@ -2,10 +2,28 @@
 
 .customMessage {
     width: 100%;
-
+    .messageText{
+        padding-bottom: 50px;
+        line-height: 30px;
+    }
     .infoArea {
         text-align: center;
         font-size: 20px;
+
+        .gameContainer{
+            width:100%;
+            margin-top:15px;
+            margin-bottom:25px;
+
+            .teamContainer{
+                width:100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                font-size:20px;
+                margin-top:3px;
+            }
+        }
 
         //WEATHER
         .temperature {
@@ -174,6 +192,9 @@
                 flex-direction: row;
                 justify-content: space-around;
                 font-size: 25px;
+            }
+            .team{
+                margin-right:80px;
             }
         }
         .infoGrid{

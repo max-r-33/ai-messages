@@ -11,6 +11,7 @@ var getNextGame = require('./BasketballControllers/getNextGame.js');
 var getPlayerStat = require('./BasketballControllers/getPlayerStat.js');
 var getStatLeader = require('./BasketballControllers/getStatisticLeader.js');
 var getStandings = require('./BasketballControllers/getConferenceStandings.js');
+var getSchedule = require('./BasketballControllers/getSchedule.js');
 var getWeather = require('./WeatherControllers/getWeather.js');
 var getFutureWeather = require('./WeatherControllers/getFutureWeather.js');
 var getStockPrice = require('./StockControllers/getStockPrice.js');
@@ -135,7 +136,7 @@ module.exports = {
                     });
                 } else if(response.result.action === 'get.statistic.leader') {
                     getStatLeader.getLeader(response).then(function(result){
-                        db.create_message([req.body.userid, result], function(err, price) {
+                        db.create_message([req.body.userid, result], function(err, stat) {
                             if (err) {
                                 res.status(500).send(err);
                                 return;
@@ -145,7 +146,17 @@ module.exports = {
                     });
                 } else if(response.result.action === 'get.standings') {
                     getStandings.getStandings(response).then(function(result){
-                        db.create_message([req.body.userid, result], function(err, price) {
+                        db.create_message([req.body.userid, result], function(err, standing) {
+                            if (err) {
+                                res.status(500).send(err);
+                                return;
+                            }
+                            res.send(result);
+                        });
+                    });
+                } else if(response.result.action === 'get.schedule') {
+                    getSchedule.getSchedule(response).then(function(result){
+                        db.create_message([req.body.userid, result], function(err, sched) {
                             if (err) {
                                 res.status(500).send(err);
                                 return;

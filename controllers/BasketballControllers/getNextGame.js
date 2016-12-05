@@ -34,7 +34,7 @@ var buildMessageObject = function(body, apiaiResponse) {
         var time = parseInt(dateTime.split(':')[0])-12 + ':' + dateTime.split(':')[1];
         responseObj = {
             text: 'The ' + event.team.last_name + ' play the ' + event.opponent.last_name + ' in ' + event.site.city +
-                casualDate + ' at ' + time + ' EST.'
+                casualDate + ' at ' + time + ' ET.'
         };
     }
 
