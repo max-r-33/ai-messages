@@ -5,26 +5,32 @@ export default class ScheduleMessage extends React.Component {
     //styles css based on the sender of the message
     constructor(props) {
         super(props);
-        var scheduleGrid = [];
-        var scheduleObj = this.props.schedule;
-        var scheduleArr = Object.keys(scheduleObj).map(function(key) {
-            return scheduleObj[key];
-        });
+
+        var scheduleGrid = [],
+            showMore,
+            scheduleObj = this.props.schedule,
+            scheduleArr = Object.keys(scheduleObj).map(function(key) {
+                return scheduleObj[key];
+            });
+
+        if (scheduleArr.length > 5) {
+            showMore = <a className='info showMore' href={`http://www.nba.com/games/${scheduleArr[0].date}/`} target='blank'>See {scheduleArr.length - 5} More Games</a>
+            scheduleArr = scheduleArr.slice(0, 5);
+        }
         scheduleArr.forEach(function(game) {
             if (game.event_status !== 'scheduled') {
                 scheduleGrid.push(
                     <div className='gameContainer' key={game.homeTeam}>
+                        <a className='info final' href={`http://www.nba.com/games/${game.date}/${game.awayTeamAbbr}${game.homeTeamAbbr}/`} target='blank'>
+                            final
+                        </a>
                         <div className='teamContainer'>
-                            <a className='team' href={`http://www.nba.com/games/${game.date}/${game.homeTeamAbbr}${game.awayTeamAbbr}/`} target='blank'>
-                                {game.awayTeam}
-                            </a>
-                            <p>{game.awayTeamPts}</p>
+                            <span className={`${game.awayClass}`}>{game.awayTeam}</span>
+                            <p className={`${game.awayClass}`}>{game.awayTeamPts}</p>
                         </div>
                         <div className='teamContainer'>
-                            <a className='team' href={`http://www.nba.com/games/${game.date}/${game.homeTeamAbbr}${game.awayTeamAbbr}/`} target='blank'>
-                                {game.homeTeam}
-                            </a>
-                            <p>{game.homeTeamPts}</p>
+                            <span className={`${game.homeClass}`}>{game.homeTeam}</span>
+                            <p className={`${game.homeClass}`}>{game.homeTeamPts}</p>
                         </div>
                     </div>
                 )
@@ -32,15 +38,14 @@ export default class ScheduleMessage extends React.Component {
                 scheduleGrid.push(
                     <div className='gameContainer' key={game.homeTeam}>
                         <div className='teamContainer'>
-                            <a className='team' href={`http://www.nba.com/games/${game.date}/${game.homeTeamAbbr}${game.awayTeamAbbr}/`} target='blank'>
-                                {game.awayTeam}
-                            </a>
+                            {game.awayTeam}
                             <p>{game.time}
                                 ET</p>
                         </div>
                         <div className='teamContainer'>
-                            <a href={`http://www.nba.com/games/${game.date}/${game.homeTeamAbbr}${game.awayTeamAbbr}/`} target='blank'>
-                                {game.homeTeam}
+                            {game.homeTeam}
+                            <a className='info' href={`http://www.nba.com/games/${game.date}/${game.awayTeamAbbr}${game.homeTeamAbbr}/`} target='blank'>
+                                info
                             </a>
                         </div>
                     </div>
@@ -48,17 +53,21 @@ export default class ScheduleMessage extends React.Component {
             }
         });
         this.state = {
-            schedule: scheduleGrid
+            schedule: scheduleGrid,
+            showMore
         }
     }
     render() {
         return (
             <div className='message customMessage'>
                 <div className={`spacing ${this.props.senderClass}`}>
-                    <p className='messageText'>{this.props.messageText}</p>
+                    <p className='messageText'>
+                        {this.props.messageText}
+                    </p>
                     <div className='infoArea score'>
                         {this.state.schedule}
                     </div>
+                    <div className='showMoreContainer'>{this.state.showMore}</div>
                 </div>
             </div>
         )

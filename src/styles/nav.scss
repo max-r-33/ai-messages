@@ -7,18 +7,18 @@
     position: fixed;
     top: 0;
     width: 100vw;
+    font-variant: small-caps;
 
     .right {
         float: right;
         font-weight: $font-weight;
-        margin-top: 23px;
-
+        margin-top: 20px;
         .hideOnMobile{
             display: none;
         }
         li {
             letter-spacing: 2px;
-            font-size: 15px;
+            font-size: 19px;
             padding-right: 25px;
             text-transform: lowercase;
         }
@@ -54,7 +54,7 @@
         width: 100%;
         background: $orange;
     }
-    
+
     @media(min-width:700px) {
         .logo {
             font-size: 40px;

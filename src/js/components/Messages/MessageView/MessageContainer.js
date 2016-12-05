@@ -62,7 +62,13 @@ export default class MessageContainer extends React.Component {
                             <SportStandingMessage standings={message.data} senderClass='bot'/>
                         </div>
                     );
-                } else if (message.type === 'daySchedule') {
+                } else if (message.type === 'daySchedule' && message.data[0].event_status === 'completed') {
+                    return (
+                        <div key={message.key} className='sportScheduleMessageSpacerCompleted'>
+                            <SportScheduleMessage messageText={message.text} schedule={message.data} senderClass='bot'/>
+                        </div>
+                    );
+                }else if (message.type === 'daySchedule' && message.data[0].event_status === 'scheduled') {
                     return (
                         <div key={message.key} className='sportScheduleMessageSpacer'>
                             <SportScheduleMessage messageText={message.text} schedule={message.data} senderClass='bot'/>
