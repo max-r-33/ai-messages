@@ -1,4 +1,5 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
 
 function getDevTool() {
     if (process.env.NODE_ENV !== 'production') {
@@ -35,6 +36,12 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin('dist/styles/main.css', {
             allChunks: true
-        })
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin()
     ]
 };

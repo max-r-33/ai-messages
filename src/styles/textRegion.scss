@@ -1,28 +1,19 @@
 @import 'master';
 
-.textRegionContainer{
-    width:100%;
-    background-color: $white;
-}
-
 .textRegion {
-    position: fixed;
-    width:80%;
-    bottom:15px;
-    background-color: $white;
-
-    .messageInput{
-        width:75%;
+    .messageInput {
+        width: 75%;
         display: inline;
-        margin:0;
-        color:$black;
+        margin: 0;
+        color: $black;
         font-size: 20px;
     }
-    .messageBtn{
-        width:25%;
-        padding:20px;
+
+    .messageBtn {
+        width: 25%;
+        padding: 20px;
         display: inline;
-        margin:0;
+        margin: 0;
         font-size: 20px;
     }
 }

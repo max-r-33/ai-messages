@@ -1,9 +1,8 @@
 @import 'master';
 
 .message-container {
-    margin-top: 85px;
     margin-bottom: 0;
-    height: 83vh;
+    height: 88vh;
     overflow: scroll;
 }
 
@@ -67,5 +66,9 @@
 @media(min-width:600px) {
     .stockMessageSpacer {
         height: 38%;
+    }
+
+    .message-container {
+        height: 90vh;
     }
 }
