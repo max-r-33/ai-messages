@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
+import config from '../../../../config.js';
 
 export default class Signup extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ export default class Signup extends React.Component {
             //hashes password
             bcrypt.hash(pword, 10, function(err, hash) {
                 //creates user
-                axios.post('http://localhost:9000/api/signup', {
+                axios.post(config.baseDomain + '/api/signup', {
                     name: nm,
                     email: em,
                     password: hash

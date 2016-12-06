@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import auth from '../../utils/LoginStatus.js';
 import Cookies from 'js-cookie';
+import config from '../../../../config.js';
 
 export default class SettingsView extends React.Component {
     constructor(props) {
@@ -26,7 +27,7 @@ export default class SettingsView extends React.Component {
         if (x) {
             console.log('deleted')
             axios({
-                url: 'http://localhost:9000/api/deleteAccount',
+                url: config.baseDomain + '/api/deleteAccount',
                 method: 'DELETE',
                 data: {
                     email: this.state.email,
@@ -46,7 +47,7 @@ export default class SettingsView extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         //posts to db which checks if there is a match
-        axios.put('http://localhost:9000/api/changeName', {
+        axios.put(config.baseDomain + '/api/changeName', {
             email: this.state.email,
             newName: this.state.name
         }).then(response => {

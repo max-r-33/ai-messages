@@ -3,6 +3,7 @@ import TextRegion from './MessageView/TextRegion';
 import MessageContainer from './MessageView/MessageContainer';
 import axios from 'axios';
 import auth from '../../utils/LoginStatus';
+import config from '../../../../config.js';
 
 var messagesArr = [];
 var node;
@@ -29,7 +30,7 @@ export default class MessageView extends React.Component {
         //makes get request to the messages endpoint with user's id
         //loops through all of the user's messages and builds messages objects
         //that get put onto messagesArr
-        axios.get(`http://localhost:9000/api/getAllMessages/${this.state.user.id}`).then(response => {
+        axios.get(`${config.baseDomain}/api/getAllMessages/${this.state.user.id}`).then(response => {
             //checks if there are messages
             //if there are, build objects with them.
             if (response.data.length > 0) {
@@ -60,7 +61,7 @@ export default class MessageView extends React.Component {
             this.setState({messages: messagesArr});
 
             //sends request to backend
-            axios.post('http://localhost:9000/api/handleRequest', {
+            axios.post(config.baseDomain + '/api/handleRequest', {
                 textRequest: text,
                 userid: this.state.user.id
             }).then(response => {

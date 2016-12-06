@@ -2,6 +2,7 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import config from '../../../../config.js';
 import bcrypt from 'bcryptjs';
 
 export default class Login extends React.Component {
@@ -30,7 +31,7 @@ export default class Login extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         //posts to db which checks if there is a match
-        axios.get('http://localhost:9000/api/login?email=' + this.state.email).then(response => {
+        axios.get(config.baseDomain + '/api/login?email=' + this.state.email).then(response => {
             //based on the result, set cookie, or alert that
             //their account wasn't found
             console.log(response);
