@@ -16,7 +16,6 @@ module.exports = {
         request(options, function(err, res, body) {
             var data = JSON.parse(res.body);
             if(data.weather){
-                console.log(data);
                 city = data.name;
                 cond = data.weather[0].main;
                 temp = Math.round(data.main.temp);
@@ -24,6 +23,7 @@ module.exports = {
                 low = Math.round(data.main.temp_min);
                 country = '';
 
+                //shows country on response card if it isn't in the us
                 if (data.sys.country !== 'US') {
                     country = ' ' + data.sys.country;
                 }
@@ -31,8 +31,8 @@ module.exports = {
                 responseObj = {
                     text: 'It is currently ' + temp + '° in ' + city + country + '. Conditions are ' + cond + '.'
                 };
-                responseObj.type = 'weather';
 
+                responseObj.type = 'weather';
                 responseObj.data = {
                     description: 'Current',
                     temperature: temp,
