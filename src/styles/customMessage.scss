@@ -225,7 +225,7 @@
         // SportScheduleMessage,
         // StockMessage, and WeatherMessage
         .infoArea {
-            font-size: 28px;
+            font-size: 18px;
 
             .cityName {
                 font-size: 25px;
@@ -288,5 +288,35 @@
                 }
             }
         }
+    }
+}
+
+@media(min-width:1500px){
+    //STOCKS
+    .symbol {
+        display: block;
+        margin-left: 45px;
+        margin-right: 45px;
+    }
+
+    .company {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        display: block;
+        font-weight: 500;
+    }
+
+    .price {
+        font-size: 35px;
+        margin-top: 25px;
+    }
+
+    .red {
+        color: #BC4F6A;
+    }
+
+    .green {
+        color: $green;
     }
 }

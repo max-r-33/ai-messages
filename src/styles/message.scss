@@ -2,8 +2,8 @@
 
 .message {
     border: 1px solid $white;
-    margin-bottom: 20px;
     font-family:'Helvetica Neue';
+    font-size:13px;
 
     .spacing {
         padding: 15px;
@@ -16,7 +16,6 @@
         border-bottom-left-radius: 0;
         background-color: $black;
         color: $white;
-        margin-bottom:20px;
         transition: background-color 0.3s ease-in-out;
     }
 
@@ -31,12 +30,17 @@
         border-bottom-right-radius: 0;
         background-color: $green;
         color: $white;
-        margin-bottom:20px;
         transition: background-color 0.3s ease-in-out;
     }
 
     .user:hover {
         background-color: $greenHover;
         cursor:default;
+    }
+}
+
+@media(min-width:1500px){
+    .message{
+        font-size:16px;
     }
 }
