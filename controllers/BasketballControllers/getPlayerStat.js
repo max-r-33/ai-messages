@@ -70,24 +70,18 @@ var buildMessageObject = function(boxscore, team, opponent, fName, lName, statTy
 
 module.exports = {
     getStat: function(apiaiResponse) {
-        console.log('--------');
-        console.log(apiaiResponse.result.contexts[0].parameters);
-        console.log('--------');
+        var defer = q.defer(),
+            statistic = apiaiResponse.result.action.split('.')[2],
+            fName = apiaiResponse.result.parameters.givenName,
+            lName = apiaiResponse.result.parameters.lastName,
+            team, eventID, locationType; //home or away
 
-        var defer = q.defer();
-        var statistic = apiaiResponse.result.action.split('.')[2];
-        var fName = apiaiResponse.result.parameters.givenName;
-        var lName = apiaiResponse.result.parameters.lastName;
-        var team;
-
+        //gets team name from contexts or parameters
         if (apiaiResponse.result.contexts[0].parameters.teamName) {
             team = apiaiResponse.result.contexts[0].parameters.teamName;
         } else if (apiaiResponse.result.contexts[0].parameters.name) {
             team = apiaiResponse.result.contexts[0].parameters.name;
         }
-
-        var eventID;
-        var locationType; //home or away
 
         var options = {
             url: 'https://erikberg.com/nba/results/' + team.toLowerCase().split(' ').join('-') + '.json?last=1',
@@ -99,12 +93,7 @@ module.exports = {
 
         //gets event id based on team name
         request(options, function(err, res, body) {
-            console.log(body);
-            var event = JSON.parse(body);
-            event = event[0];
-            console.log('---');
-            console.log(event);
-            console.log('---');
+            var event = JSON.parse(body)[0];
 
             //error handling
             if (event.error) {

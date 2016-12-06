@@ -4,7 +4,7 @@ export default class Info extends React.Component{
     render(){
         return(
             <div>
-                <h2>Info</h2>
+                <h2>Hoops QA</h2>
             </div>
         );
     }

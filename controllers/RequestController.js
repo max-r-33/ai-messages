@@ -39,6 +39,7 @@ module.exports = {
 
         //handles apiai response
         request.on('response', function(response) {
+            //if apiai has no idea what to do with the query
             if (response.result.score === 0) {
                 msg = {
                     text: "I'm not sure what you mean. Try phrasing your question a different way"
@@ -168,7 +169,8 @@ module.exports = {
             }
 
         });
-
+        
+        //apiai gives back an error
         request.on('error', function(err) {
             console.log(err);
             res.send(err);

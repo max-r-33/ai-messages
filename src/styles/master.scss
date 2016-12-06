@@ -12,7 +12,7 @@ $font: 'Helvetica Neue';
 $font-weight: 800;
 
 body {
-    font-family: $font;
+    font-family: $font, 'Roboto', sans-serif;
     background-color: $white;
     color: $black;
 }

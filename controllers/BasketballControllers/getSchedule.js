@@ -38,8 +38,8 @@ module.exports = {
                         awayClass = 'winner';
 
                     if (game.home_points_scored > game.away_points_scored) {
-                            homeClass = 'winner',
-                            awayClass = 'loser'
+                        homeClass = 'winner';
+                        awayClass = 'loser';
                     }
                     responseObj.data.push({
                         time: time,

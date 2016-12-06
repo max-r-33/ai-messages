@@ -5,17 +5,18 @@ var config = require('../../config');
 module.exports = {
     getFutureWeather: function(apiaiResponse) {
         var defer = q.defer();
-        console.log(apiaiResponse);
-        var conditions, temp, high, low, city, country;
+        var data, conditions, temp, high, low, city, country;
         var responseObj = {};
 
-        if(apiaiResponse.result.parameters.geoCity){
-            city =  apiaiResponse.result.parameters.geoCity;
-        }else if( apiaiResponse.result.parameters.teamName){
-            city =  apiaiResponse.result.parameters.teamName;
-        }else{
-            responseObj.text = "City name not found. Try a different city.";
-            defer.resolve(responseObj);
+        //checks if city name was found
+        if (apiaiResponse.result.parameters.geoCity) {
+            city = apiaiResponse.result.parameters.geoCity;
+        } else if (apiaiResponse.result.parameters.teamName) {
+            city = apiaiResponse.result.parameters.teamName;
+        } else {
+            defer.resolve({
+                text: 'City name not found. Try a different city.'
+            });
             return defer.promise;
         }
 
@@ -25,18 +26,17 @@ module.exports = {
 
         request(options, function(err, res, body) {
             console.log(JSON.parse(res.body));
-
-            var data = JSON.parse(res.body);
+            data = JSON.parse(res.body);
             country = '';
             city = data.city.name;
             high = Math.ceil(data.list[0].temp.max);
-            low  = Math.ceil(data.list[0].temp.min);
+            low = Math.ceil(data.list[0].temp.min);
             conditions = data.list[0].weather[0].main;
-            if(data.city.country !== 'US'){
+
+            //shows country on response card if it isn't in the us
+            if (data.city.country !== 'US') {
                 country = data.city.country;
             }
-
-            console.log('city name' + city);
 
             responseObj = {
                 text: 'The high for tomorrow in ' + city + ' ' + country + ' is ' + high + '° and the low is ' + low +
@@ -44,8 +44,8 @@ module.exports = {
             };
             responseObj.type = 'weatherForecast';
             responseObj.data = {
-                description:'Tomorrow',
-                temperature : high + ':' + low,
+                description: 'Tomorrow',
+                temperature: high + ':' + low,
                 conditions: conditions,
                 city: city,
                 country: country
@@ -53,7 +53,6 @@ module.exports = {
             console.log(responseObj.text);
             defer.resolve(responseObj);
         });
-
 
         return defer.promise;
     }
