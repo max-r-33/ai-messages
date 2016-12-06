@@ -53,12 +53,26 @@ label {
 }
 
 .formBtn:active{
-    background-color: $orange;
+    background-color: $green;
     color:$black;
     outline:none;
 }
 .formBtn:focus{
     outline:none;
+}
+.formBtnLight {
+    background-color: $green;
+    color: $black;
+    margin-top:5vh;
+}
+
+.formBtnLight:hover {
+    background-color: $greenHover;
+}
+
+.formBtnLight:active{
+    background-color: $green;
+    color:$black;
 }
 .formBtnDanger{
     background-color:#BC4F6A;

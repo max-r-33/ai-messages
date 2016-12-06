@@ -23,6 +23,7 @@ export default class MessageView extends React.Component {
                 }
             ]
         };
+        console.log(this.state.messages);
     }
 
     componentDidMount() {
@@ -35,19 +36,20 @@ export default class MessageView extends React.Component {
             //if there are, build objects with them.
             if (response.data.length > 0) {
                 messagesArr = response.data.map(function(msg, i) {
-                    return {text: msg.message.text, key: i, sender: msg.message.sender, data: msg.message.data, type: msg.message.type};
+                    return {text: msg.message.text, key: i+2, sender: msg.message.sender, data: msg.message.data, type: msg.message.type};
                 });
                 //sets state with newly created messagesArr
+                messagesArr.unshift(this.state.messages[0]);
                 this.setState({messages: messagesArr});
             }
+            console.log(this.state.messages);
         });
-
     }
 
     handleMessageSend(text, event) {
         event.preventDefault();
         //gets current messagesArr
-        if(text.length > 0){
+        if (text.length > 0) {
             messagesArr = this.state.messages;
 
             //builds new message to send to backend and adds it to arr
@@ -77,9 +79,13 @@ export default class MessageView extends React.Component {
     }
     render() {
         return (
-            <div className='messageView'>
-                <MessageContainer msgArr={this.state.messages}/>
-                <TextRegion sendMessage={this.handleMessageSend.bind(this)}/>
+            <div>
+                <div className='messageView'>
+                    <MessageContainer msgArr={this.state.messages}/>
+                </div>
+                <div className='textRegionContainer'>
+                    <TextRegion sendMessage={this.handleMessageSend.bind(this)}/>
+                </div>
             </div>
         );
     }

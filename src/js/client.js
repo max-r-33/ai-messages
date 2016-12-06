@@ -22,6 +22,7 @@ import messageStyle from '../styles/message.scss';
 import homeStyle from '../styles/homeView.scss';
 import formStyle from '../styles/formStyles.scss';
 import customMessageStyle from '../styles/customMessage.scss';
+import infoStyle from '../styles/info.scss';
 
 const app = document.getElementById('app');
 

@@ -19,7 +19,7 @@ export default class SportMessage extends React.Component {
                 <div className={`spacing ${this.props.senderClass}`}>
                     <p>{this.props.messageText}</p><br />
                     <div className='infoArea score'>
-                        <h1>{this.state.scores[0]} - {this.state.scores[1]}</h1>
+                        <h2>{this.state.scores[0]} - {this.state.scores[1]}</h2>
                     </div>
                 </div>
             </div>

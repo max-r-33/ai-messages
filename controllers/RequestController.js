@@ -34,7 +34,7 @@ module.exports = {
 
         //apiai request
         var request = ai.textRequest(req.body.textRequest, {
-            sessionId: 'abbcfdlefsd' + req.body.userid
+            sessionId: 'abbcfdlesfswsd' + req.body.userid
         });
 
         //handles apiai response
@@ -169,7 +169,7 @@ module.exports = {
             }
 
         });
-        
+
         //apiai gives back an error
         request.on('error', function(err) {
             console.log(err);

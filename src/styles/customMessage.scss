@@ -8,7 +8,7 @@
     .messageText {
         width: 100%;
         font-weight: 500;
-        font-size: 20px;
+        font-size: 16px;
         text-align: center;
         margin-left: 40px;
         margin-right: 40px;
@@ -16,7 +16,7 @@
 
     .showMore {
         font-variant: normal !important;
-        font-size: 18px;
+        font-size: 15px;
     }
 
     .showMoreContainer {
@@ -38,18 +38,18 @@
 
     .infoArea {
         text-align: center;
-        font-size: 20px;
+        font-size: 15px;
 
         .gameContainer {
             width: 100%;
-            margin-top: 25px;
-            margin-bottom: 25px;
+            margin-top: 10px;
+            margin-bottom: 13px;
             text-align: left;
 
             .final {
                 text-transform: uppercase;
                 color: $grey;
-                font-size: 15px;
+                font-size: 13px;
             }
 
             .teamContainer {
@@ -57,8 +57,8 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
-                font-size: 18px;
-                margin-top: 5px;
+                font-size: 15px;
+                margin-top: 2px;
 
                 .winner {
                     font-weight: 600;
@@ -77,7 +77,7 @@
         .cityName {
             margin-left: 30px;
             margin-right: 30px;
-            font-size: 30px;
+            font-size: 20px;
             margin-bottom: 10px;
             display: block;
             font-weight: 500;
@@ -87,14 +87,15 @@
             font-size: 23px;
             display: block;
             margin-right: 12px;
-            margin-top: 30px;
+            margin-top: 20px;
             font-weight: 500;
         }
 
         .description {
-            font-size: 15px;
+            font-size: 14px;
             display: block;
-            margin-bottom: 13px;
+            margin-top:10px;
+            margin-bottom: 10px;
         }
 
         .tempArea {
@@ -146,7 +147,7 @@
         }
 
         .green {
-            color: $orange;
+            color: $green;
         }
     }
     //Container for SportStandingMessage
@@ -215,6 +216,7 @@
 
     .score {
         margin-top: 15px;
+        font-size:24px;
     }
 }
 @media(min-width:600px) {
@@ -226,7 +228,7 @@
             font-size: 28px;
 
             .cityName {
-                font-size: 33px;
+                font-size: 25px;
                 margin-left: 70px;
                 margin-right: 70px;
             }

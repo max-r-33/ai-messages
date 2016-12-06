@@ -1,0 +1,62 @@
+@import 'master';
+
+.info {
+    color: $white;
+    text-align: center;
+    -webkit-animation: fadein 2.5s;
+    animation: fadein 2.5s;
+
+    .infoArea {
+        padding-top: 160px;
+        text-align: center;
+
+        .heading {
+            font-size: 120px;
+            display: block;
+            margin-bottom: 10vh;
+        }
+
+        .subHeading {
+            font-size: 25px;
+            width: 80vw;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    .arrow{
+        display: none;
+        margin-top:160px;
+        color:$white;
+        font-size:50px;
+    }
+    .arrow:hover{
+        cursor: pointer;
+        color:$altWhite;
+    }
+    @media(min-width:650px) {
+        .infoArea {
+            padding-top: 200px;
+
+            .heading {
+                font-size: 200px;
+            }
+
+            .subHeading {
+                font-size: 33px;
+                width: 60vw;
+            }
+        }
+        .arrow{
+            display: block;
+        }
+    }
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
