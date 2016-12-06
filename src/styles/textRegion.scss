@@ -18,28 +18,42 @@
         margin: 0;
         font-size: 15px;
     }
+
+    .speechBtn{
+        display: none;
+        transition: all .5s ease-in-out;
+    }
 }
 
 @media(min-width:1000px){
-    .messageInput {
-        font-size: 20px;
-        padding:20px;
-    }
-
-    .messageBtn {
-        padding: 20px;
-        font-size: 20px;
+    .textRegion{
+        .messageInput {
+            font-size: 20px;
+            width:75%;
+            padding:20px;
+        }
+        .speechBtn{
+            display: inline;
+            width:12.5%;
+        }
+        .messageBtn {
+            width:12.5%;
+            padding: 20px;
+            font-size: 20px;
+        }
     }
 }
 
-@media(min-width:1200px){
-    .messageInput {
-        font-size: 22px;
-        padding:22px;
-    }
+@media(min-width:1500px){
+    .textRegion{
+        .messageInput {
+            font-size: 22px;
+            padding:22px;
+        }
 
-    .messageBtn {
-        padding: 22px;
-        font-size: 22px;
+        .messageBtn {
+            padding: 22px;
+            font-size: 22px;
+        }
     }
 }
