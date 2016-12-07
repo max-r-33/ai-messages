@@ -2,16 +2,16 @@
 
 .inputContainer {
     height: 50px;
-    margin-bottom: 75px;
+    margin-bottom: 80px;
 }
 
 .header {
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .formView {
-    margin-top: 100px;
+    margin-top: 70px;
     width: 80vw;
     margin-left: 10vw;
     margin-right: 10vw;
@@ -19,9 +19,9 @@
 
 .formInput {
     display: block;
-    font-size: 30px;
+    font-size: 20px;
     margin-bottom: 8px;
-    margin-top:40px;
+    margin-top:50px;
     width: 100%;
 }
 
@@ -36,7 +36,7 @@ label {
 
 .formBtn {
     width: 100%;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 700;
     padding: 15px;
     margin-top: 20px;
@@ -81,7 +81,21 @@ label {
     background-color: #ff6b90;
 }
 
+
 @media(min-width:900px) {
+    .formView {
+        width: 80vw;
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+
+    .header {
+        font-size: 45px;
+        margin-bottom: 60px;
+    }
+}
+
+@media(min-width:1500px) {
     .formView {
         width: 60vw;
         margin-left: 20vw;
@@ -90,6 +104,13 @@ label {
 
     .header {
         font-size: 60px;
-        margin-bottom: 80px;
+        margin-bottom: 70px;
+    }
+
+    .formInput{
+        font-size:40px;
+    }
+    .formBtn{
+        font-size:40px;
     }
 }

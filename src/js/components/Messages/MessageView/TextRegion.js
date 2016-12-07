@@ -33,7 +33,7 @@ export default class TextRegion extends React.Component {
             recognition.onresult = function(e) {
                 var recognizedText = e.results[0][0].transcript;
                 t.setState({value: e.results[0][0].transcript});
-                // t.props.sendMessage(t.state.value, e);
+                t.props.sendMessage(t.state.value, e);
                 t.setState({micStyle: {
                     color:'rgb(249, 247, 246)'
                 }});

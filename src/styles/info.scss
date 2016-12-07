@@ -6,10 +6,12 @@
     background-color: $black;
 
     .homeCard {
+        height: 100vh;
         -webkit-animation: fadein 2.5s;
         animation: fadein 2.5s;
         padding-top: 160px;
         text-align: center;
+
         .heading {
             font-size: 120px;
             display: block;
@@ -24,33 +26,29 @@
         }
 
         .arrow {
-            margin-top: 160px;
-            color: $white;
-            font-size: 50px;
-        }
-
-        .arrow:hover {
-            cursor: pointer;
-            color: $altWhite;
+            display: none;
         }
     }
 
     .examples {
-        display:block;
+        height: 100vh;
+        display: block;
         padding-top: 70px;
-        display:block;
-        .examplesContainerGrid{
+        display: block;
+
+        .examplesContainerGrid {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
+
             .examplesContainerColumn {
                 display: flex;
                 flex-direction: column;
                 perspective: 150px;
 
                 .exampleContainer {
-                    cursor:default;
-                    height:220px;
+                    cursor: default;
+                    height: 220px;
                     min-width: 320px;
                     margin-left: auto;
                     margin-right: auto;
@@ -60,7 +58,7 @@
                     margin-top: 10vh;
                     padding-bottom: 10px;
                     position: relative;
-                    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+                    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
                     transition: all 0.3s ease-in-out;
 
                     .exampleContainerHeader {
@@ -85,7 +83,7 @@
                     left: 10px;
                     right: 10px;
                     border-radius: 100px / 10px;
-                    transition: all .3s ease-in-out;
+                    transition: all 0.3s ease-in-out;
                 }
 
                 .exampleContainer:after {
@@ -96,16 +94,16 @@
 
                 .exampleContainer:hover:after,
                 .exampleContainer:hover:before {
-                        transform: scale(1.004);
-                        top:0;
-                        box-shadow: 0 0 90px rgba(0,0,0, .6);
+                    transform: scale(1.004);
+                    top: 0;
+                    box-shadow: 0 0 90px rgba(0,0,0, .6);
                 }
             }
         }
     }
     @media(min-width:800px) {
-        .examples{
-            .examplesContainerGrid{
+        .examples {
+            .examplesContainerGrid {
                 flex-direction: row;
             }
         }
@@ -117,11 +115,22 @@
             font-size: 30px;
         }
 
-        .arrow {
-            display: block;
+        .homeCard {
+            .arrow {
+                display: block;
+                color: $white;
+                font-size: 50px;
+                margin-left: 50vw;
+                position: absolute;
+                bottom: 0;
+            }
+
+            .arrow:hover {
+                cursor: pointer;
+                color: $altWhite;
+            }
         }
     }
-
     @media(min-width:1500px) {
         .homeCard {
             padding-top: 200px;
@@ -134,10 +143,6 @@
                 font-size: 33px;
                 width: 60vw;
             }
-        }
-
-        .arrow {
-            display: block;
         }
     }
 }
