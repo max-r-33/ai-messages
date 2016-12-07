@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router';
-import Message from '../Messages/MessageView/MessageContainer/Message.js';
 
 export default class Info extends React.Component {
     scroll() {
@@ -10,7 +9,7 @@ export default class Info extends React.Component {
         return (
             <div>
                 <div className='infoBox'>
-                    <div className='homeCard'>
+                    <div className='homeCard fadeIn'>
                         <h1 className='heading'>Hello.</h1>
                         <div className='subHeading'>
                             <p>Finding basketball statistics has never been this easy.</p>
@@ -23,7 +22,7 @@ export default class Info extends React.Component {
                 </div>
                 <div className='infoBox'>
                     <div className='examples'>
-                        <h1>Here are a few topics you can ask about</h1>
+                        <h1 className='heading'>Here are a few topics you can ask about</h1>
                         <div className='examplesContainerGrid'>
                             <div className='examplesContainerColumn'>
                                 <div data-aos="fade-zoom-in" data-aos-offset='0' data-aos-once='true' className='exampleContainer'>
@@ -90,9 +89,11 @@ export default class Info extends React.Component {
                 </div>
                 <div className='infoBox'>
                     <div className='homeCard'>
-                        <h1>Interested?</h1>
-                        <div className='formBtn formBtnLight'>
-                            <Link to='signup'>Sign Up</Link>
+                        <div className='footerCard'>
+                            <h1 className='bottomHeading anchor'>Interested?</h1>
+                            <div className='formBtn formBtnLight' data-aos-offset='200' data-aos-anchor='.anchor' data-aos='fade-up' data-aos-once='true'>
+                                <Link to='signup'>Sign Up</Link>
+                            </div>
                         </div>
                     </div>
                 </div>

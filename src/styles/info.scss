@@ -5,10 +5,18 @@
     text-align: center;
     background-color: $black;
 
-    .homeCard {
-        height: 100vh;
+    .fadeIn{
         -webkit-animation: fadein 2.5s;
         animation: fadein 2.5s;
+    }
+    .formBtn {
+        width: 70vw;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 30px;
+    }
+    .homeCard {
+        height: 100vh;
         padding-top: 160px;
         text-align: center;
 
@@ -16,6 +24,10 @@
             font-size: 120px;
             display: block;
             margin-bottom: 10vh;
+        }
+
+        .bottomHeading{
+            font-size:60px;
         }
 
         .subHeading {
@@ -31,7 +43,7 @@
     }
 
     .examples {
-        height: 100vh;
+        height: 200vh;
         display: block;
         padding-top: 70px;
         display: block;
@@ -77,13 +89,14 @@
     }
     @media(min-width:800px) {
         .examples {
+            height:100vh;
             .examplesContainerGrid {
                 flex-direction: row;
             }
         }
 
         .formBtn {
-            width: 50vw;
+            width: 40vw;
             margin-left: auto;
             margin-right: auto;
             font-size: 30px;
@@ -92,16 +105,26 @@
         .homeCard {
             .arrow {
                 display: block;
-                color: $white;
                 font-size: 50px;
                 margin-left: 50vw;
                 position: absolute;
-                bottom: 0;
+                bottom: 10px;
+                color: rgba(249, 247, 246,.5);
+                transition: all .4s ease-in-out;
             }
 
             .arrow:hover {
                 cursor: pointer;
-                color: $altWhite;
+                color: rgba(249, 247, 246,1);
+            }
+        }
+        .footerCard{
+            position:relative;
+            top:100px;
+            background-color: $black;
+            .bottomHeading{
+                font-size:100px;
+                margin-bottom:30px;
             }
         }
     }

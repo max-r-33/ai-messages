@@ -6,13 +6,12 @@
     font-size:13px;
 
     .spacing {
-        padding: 15px;
+        padding: 12px;
         border-radius: 15px;
     }
 
     .bot {
         float: left;
-        border-top-left-radius: 20px;
         border-bottom-left-radius: 0;
         background-color: $black;
         color: $white;
@@ -26,7 +25,6 @@
 
     .user {
         float: right;
-        border-top-right-radius: 20px;
         border-bottom-right-radius: 0;
         background-color: $green;
         color: $white;
@@ -42,5 +40,8 @@
 @media(min-width:1500px){
     .message{
         font-size:16px;
+        .spacing{
+            padding:15px;
+        }
     }
 }

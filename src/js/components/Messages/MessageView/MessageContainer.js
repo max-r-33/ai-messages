@@ -44,7 +44,6 @@ export default class MessageContainer extends React.Component {
                         </div>
                     );
                 } else if (message.type === 'stock') {
-                    console.log(message.data)
                     return (
                         <div key={message.key} className='stockMessageSpacer'>
                             <StockMessage stockInfo={message.data} senderClass='bot' messageText={message.text}/>
@@ -85,7 +84,7 @@ export default class MessageContainer extends React.Component {
         });
 
         return (
-            <div id='msgCont' className='hiddenscrollbars message-container'>
+            <div data-aos='fade-in' data-aos-delay='200' data-aos-easing='ease-in' id='msgCont' className='hiddenscrollbars message-container'>
                 {messagesToDisplay}
             </div>
         );
