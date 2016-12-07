@@ -5,16 +5,18 @@
     text-align: center;
     background-color: $black;
 
-    .fadeIn{
+    .fadeIn {
         -webkit-animation: fadein 2.5s;
         animation: fadein 2.5s;
     }
+
     .formBtn {
         width: 70vw;
         margin-left: auto;
         margin-right: auto;
         font-size: 30px;
     }
+
     .homeCard {
         height: 100vh;
         padding-top: 160px;
@@ -26,8 +28,8 @@
             margin-bottom: 10vh;
         }
 
-        .bottomHeading{
-            font-size:60px;
+        .bottomHeading {
+            font-size: 60px;
         }
 
         .subHeading {
@@ -59,6 +61,7 @@
                 perspective: 150px;
 
                 .exampleContainer {
+                    text-align: left;
                     cursor: default;
                     height: 220px;
                     min-width: 320px;
@@ -67,29 +70,55 @@
                     background-color: $white;
                     color: $black;
                     width: 30vw;
-                    z-index:-1;
+                    z-index: -1;
                     margin-top: 10vh;
                     padding-bottom: 10px;
                     position: relative;
-                    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-                    transition: all 0.3s ease-in-out;
+                    display: inline-block;
+                    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+                    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 
                     .exampleContainerHeader {
+                        text-align: center;
                         display: block;
+                        font-size: 25px;
                         padding: 20px 20px 10px;
                     }
 
                     .exampleText {
                         display: block;
-                        padding: 13px;
+                        padding: 15px;
+                        line-height: 19px;
                     }
+                }
+
+                .exampleContainer::after {
+                    content: '';
+                    position: absolute;
+                    z-index: -1;
+                    width: 100%;
+                    height: 100%;
+                    top:0;
+                    left:0;
+                    opacity: 0;
+                    box-shadow: 0 5px 25px rgba(0,0,0,0.8);
+                    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+                }
+
+                .exampleContainer:hover {
+                    transform: scale(1.04, 1.04);
+                }
+
+                .exampleContainer:hover::after {
+                    opacity: 1;
                 }
             }
         }
     }
     @media(min-width:800px) {
         .examples {
-            height:100vh;
+            height: 100vh;
+
             .examplesContainerGrid {
                 flex-direction: row;
             }
@@ -110,7 +139,7 @@
                 position: absolute;
                 bottom: 10px;
                 color: rgba(249, 247, 246,.5);
-                transition: all .4s ease-in-out;
+                transition: all 0.4s ease-in-out;
             }
 
             .arrow:hover {
@@ -118,13 +147,15 @@
                 color: rgba(249, 247, 246,1);
             }
         }
-        .footerCard{
-            position:relative;
-            top:100px;
+
+        .footerCard {
+            position: relative;
+            top: 100px;
             background-color: $black;
-            .bottomHeading{
-                font-size:100px;
-                margin-bottom:30px;
+
+            .bottomHeading {
+                font-size: 100px;
+                margin-bottom: 30px;
             }
         }
     }

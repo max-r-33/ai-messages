@@ -13,7 +13,7 @@ export default class Info extends React.Component {
                         <h1 className='heading'>Hello.</h1>
                         <div className='subHeading'>
                             <p>Finding basketball statistics has never been this easy.</p>
-                            <div className='formBtn formBtnLight'>
+                            <div data-aos='fade-up' data-aos-delay='1050' className='formBtn formBtnLight'>
                                 <Link to='signup'>Sign Up</Link>
                             </div>
                         </div>
@@ -39,7 +39,7 @@ export default class Info extends React.Component {
                                         Whats the dubs record?
                                     </p>
                                 </div>
-                                <div data-aos="fade-zoom-in" data-aos-offset='150' data-aos-once='true' className='exampleContainer'>
+                                <div data-aos="fade-zoom-in" data-aos-offset='200' data-aos-once='true' className='exampleContainer'>
                                     <h3 className='exampleContainerHeader'>
                                         Statistics
                                     </h3>
@@ -50,17 +50,17 @@ export default class Info extends React.Component {
                                         Who leads the league in mpg?
                                     </p>
                                     <p className='exampleText'>
-                                        Who is leading the league in assists to turnover ratio?
+                                        Who is leading the league in steals
                                     </p>
                                 </div>
                             </div>
                             <div className='examplesContainerColumn'>
-                                <div data-aos="fade-zoom-in" data-aos-offset='100' data-aos-once='true' className='exampleContainer'>
+                                <div data-aos="fade-zoom-in" data-aos-offset='150' data-aos-once='true' className='exampleContainer'>
                                     <h3 className='exampleContainerHeader'>
                                         League
                                     </h3>
                                     <p className='exampleText'>
-                                        Show me standings for the eastern conference?
+                                        Show me standings for the eastern conference
                                     </p>
                                     <p className='exampleText'>
                                         What games are on tomorrow?
@@ -69,7 +69,7 @@ export default class Info extends React.Component {
                                         Whos playing tonight?
                                     </p>
                                 </div>
-                                <div data-aos="fade-zoom-in" data-aos-offset='200' data-aos-once='true' className='exampleContainer'>
+                                <div data-aos="fade-zoom-in" data-aos-offset='250' data-aos-once='true' className='exampleContainer'>
                                     <h3 className='exampleContainerHeader'>
                                         Miscallaneous
                                     </h3>
@@ -80,7 +80,7 @@ export default class Info extends React.Component {
                                         Whats the price of apple stock?
                                     </p>
                                     <p className='exampleText'>
-                                        Hows the weather going to be tomorrow in Sydney?
+                                        Whats the weather tomorrow in Sydney?
                                     </p>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@ export default class Info extends React.Component {
                     <div className='homeCard'>
                         <div className='footerCard'>
                             <h1 className='bottomHeading anchor'>Interested?</h1>
-                            <div className='formBtn formBtnLight' data-aos-offset='200' data-aos-anchor='.anchor' data-aos='fade-up' data-aos-once='true'>
+                            <div className='formBtn formBtnLight' data-aos-offset='250' data-aos-anchor='.anchor' data-aos-anchor-placement='center-bottom' data-aos='fade-up' data-aos-once='true'>
                                 <Link to='signup'>Sign Up</Link>
                             </div>
                         </div>
