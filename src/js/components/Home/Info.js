@@ -23,10 +23,10 @@ export default class Info extends React.Component {
                 </div>
                 <div className='infoBox'>
                     <div className='examples'>
-                        <h1>Here are just a few of things you can ask</h1>
+                        <h1>Here are a few topics you can ask about</h1>
                         <div className='examplesContainerGrid'>
                             <div className='examplesContainerColumn'>
-                                <div className='exampleContainer'>
+                                <div data-aos="fade-zoom-in" data-aos-offset='0' data-aos-once='true' className='exampleContainer'>
                                     <h3 className='exampleContainerHeader'>
                                         Teams
                                     </h3>
@@ -40,7 +40,7 @@ export default class Info extends React.Component {
                                         Whats the dubs record?
                                     </p>
                                 </div>
-                                <div className='exampleContainer'>
+                                <div data-aos="fade-zoom-in" data-aos-offset='150' data-aos-once='true' className='exampleContainer'>
                                     <h3 className='exampleContainerHeader'>
                                         Statistics
                                     </h3>
@@ -56,7 +56,7 @@ export default class Info extends React.Component {
                                 </div>
                             </div>
                             <div className='examplesContainerColumn'>
-                                <div className='exampleContainer'>
+                                <div data-aos="fade-zoom-in" data-aos-offset='100' data-aos-once='true' className='exampleContainer'>
                                     <h3 className='exampleContainerHeader'>
                                         League
                                     </h3>
@@ -70,7 +70,7 @@ export default class Info extends React.Component {
                                         Whos playing tonight?
                                     </p>
                                 </div>
-                                <div className='exampleContainer'>
+                                <div data-aos="fade-zoom-in" data-aos-offset='200' data-aos-once='true' className='exampleContainer'>
                                     <h3 className='exampleContainerHeader'>
                                         Miscallaneous
                                     </h3>

@@ -55,10 +55,11 @@
                     background-color: $white;
                     color: $black;
                     width: 30vw;
+                    z-index:-1;
                     margin-top: 10vh;
                     padding-bottom: 10px;
                     position: relative;
-                    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+                    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
                     transition: all 0.3s ease-in-out;
 
                     .exampleContainerHeader {
@@ -70,33 +71,6 @@
                         display: block;
                         padding: 13px;
                     }
-                }
-
-                .exampleContainer:after,
-                .exampleContainer:before {
-                    content: "";
-                    position: absolute;
-                    z-index: -1;
-                    box-shadow: 0 0 90px rgba(0,0,0,.3);
-                    top: 50%;
-                    bottom: 0;
-                    left: 10px;
-                    right: 10px;
-                    border-radius: 100px / 10px;
-                    transition: all 0.3s ease-in-out;
-                }
-
-                .exampleContainer:after {
-                    right: 10px;
-                    left: auto;
-                    transform: skew(8deg) rotate(3deg);
-                }
-
-                .exampleContainer:hover:after,
-                .exampleContainer:hover:before {
-                    transform: scale(1.004);
-                    top: 0;
-                    box-shadow: 0 0 90px rgba(0,0,0, .6);
                 }
             }
         }
