@@ -4,10 +4,8 @@ $black: #353535;
 $blackHover: #282828;
 $blueGrey: rgb(106,121,136);
 $grey: #D2D7DF;
-/*$orange: rgb(234, 162,156);*/
 $green: #79B473;
 $greenHover: #70A56A;
-/*$orangeHover: #EA9A77;*/
 $font: 'Helvetica Neue';
 $font-weight: 800;
 
@@ -17,8 +15,7 @@ body {
     color: $black;
 }
 
-li,
-ul {
+li, ul {
     display: inline;
 }
 

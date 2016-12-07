@@ -1,15 +1,15 @@
 @import 'master';
 
-.info {
+.infoBox {
     color: $white;
     text-align: center;
-    -webkit-animation: fadein 2.5s;
-    animation: fadein 2.5s;
+    background-color: $black;
 
-    .infoArea {
+    .homeCard {
+        -webkit-animation: fadein 2.5s;
+        animation: fadein 2.5s;
         padding-top: 160px;
         text-align: center;
-
         .heading {
             font-size: 120px;
             display: block;
@@ -22,19 +22,108 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        .arrow {
+            margin-top: 160px;
+            color: $white;
+            font-size: 50px;
+        }
+
+        .arrow:hover {
+            cursor: pointer;
+            color: $altWhite;
+        }
     }
-    .arrow{
-        display: none;
-        margin-top:160px;
-        color:$white;
-        font-size:50px;
+
+    .examples {
+        display:block;
+        padding-top: 70px;
+        display:block;
+        .examplesContainerGrid{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            .examplesContainerColumn {
+                display: flex;
+                flex-direction: column;
+                perspective: 150px;
+
+                .exampleContainer {
+                    cursor:default;
+                    height:220px;
+                    min-width: 320px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    background-color: $white;
+                    color: $black;
+                    width: 30vw;
+                    margin-top: 10vh;
+                    padding-bottom: 10px;
+                    position: relative;
+                    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+                    transition: all 0.3s ease-in-out;
+
+                    .exampleContainerHeader {
+                        display: block;
+                        padding: 20px 20px 10px;
+                    }
+
+                    .exampleText {
+                        display: block;
+                        padding: 13px;
+                    }
+                }
+
+                .exampleContainer:after,
+                .exampleContainer:before {
+                    content: "";
+                    position: absolute;
+                    z-index: -1;
+                    box-shadow: 0 0 90px rgba(0,0,0,.3);
+                    top: 50%;
+                    bottom: 0;
+                    left: 10px;
+                    right: 10px;
+                    border-radius: 100px / 10px;
+                    transition: all .3s ease-in-out;
+                }
+
+                .exampleContainer:after {
+                    right: 10px;
+                    left: auto;
+                    transform: skew(8deg) rotate(3deg);
+                }
+
+                .exampleContainer:hover:after,
+                .exampleContainer:hover:before {
+                        transform: scale(1.004);
+                        top:0;
+                        box-shadow: 0 0 90px rgba(0,0,0, .6);
+                }
+            }
+        }
     }
-    .arrow:hover{
-        cursor: pointer;
-        color:$altWhite;
+    @media(min-width:800px) {
+        .examples{
+            .examplesContainerGrid{
+                flex-direction: row;
+            }
+        }
+
+        .formBtn {
+            width: 50vw;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 30px;
+        }
+
+        .arrow {
+            display: block;
+        }
     }
-    @media(min-width:650px) {
-        .infoArea {
+
+    @media(min-width:1500px) {
+        .homeCard {
             padding-top: 200px;
 
             .heading {
@@ -46,17 +135,27 @@
                 width: 60vw;
             }
         }
-        .arrow{
+
+        .arrow {
             display: block;
         }
     }
 }
-
 @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 @-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
