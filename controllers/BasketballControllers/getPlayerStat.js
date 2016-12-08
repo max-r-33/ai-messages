@@ -3,15 +3,11 @@ var q = require('q');
 var config = require('../../config');
 
 var buildMessageObject = function(boxscore, team, opponent, fName, lName, statType, homeOrAway) {
-    var event = JSON.parse(boxscore);
-    var responseObj = {};
-    var teamData;
-    var player;
-    var statCount;
-    var playerFName, playerLName;
+    var event = JSON.parse(boxscore),
+        responseObj = {},
+        teamData, player, statCount, playerFName, playerLName;
 
     console.log('getting ' + statType + ' for ' + fName + ' ' + lName + ' on the ' + team + ' at ' + homeOrAway);
-    //console.log(event);
 
     //handles error of too many requests
     if (event.error) {
@@ -96,7 +92,7 @@ module.exports = {
             var event = JSON.parse(body)[0];
 
             //error handling
-            if (event.error) {
+            if (!event ||event.error) {
                 defer.resolve({
                     text: "You've made too many requests. Please wait a moment and try again!"
                 });

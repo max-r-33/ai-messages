@@ -22,7 +22,6 @@ module.exports = {
                     text: "You've made too many requests. Please wait a moment and try again!"
                 });
             } else {
-
                 var d = event.event[0].start_date_time.split('T')[0].split('-'),
                     gameDate = [d[1], d[2]].join('/'),
                     responseObj = {

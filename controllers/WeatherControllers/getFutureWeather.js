@@ -4,9 +4,9 @@ var config = require('../../config');
 
 module.exports = {
     getFutureWeather: function(apiaiResponse) {
-        var defer = q.defer();
-        var data, conditions, temp, high, low, city, country;
-        var responseObj = {};
+        var defer = q.defer(),
+            data, conditions, temp, high, low, city, country,
+            responseObj = {};
 
         //checks if city name was found
         if (apiaiResponse.result.parameters.geoCity) {
@@ -25,7 +25,6 @@ module.exports = {
         };
 
         request(options, function(err, res, body) {
-            console.log(JSON.parse(res.body));
             data = JSON.parse(res.body);
             country = '';
             city = data.city.name;
@@ -50,7 +49,6 @@ module.exports = {
                 city: city,
                 country: country
             };
-            console.log(responseObj.text);
             defer.resolve(responseObj);
         });
 

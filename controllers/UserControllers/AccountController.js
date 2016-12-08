@@ -10,7 +10,7 @@ module.exports = {
             console.log(req.body.email);
             console.log(req.body.newName);
         });
-        res.send(200);
+        res.sendStatus(200);
     },
 
     deleteAccount: function(req, res, next){

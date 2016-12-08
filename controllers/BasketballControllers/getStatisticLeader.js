@@ -4,22 +4,21 @@ var config = require('../../config');
 
 module.exports = {
     getLeader: function(apiaiResponse) {
-        console.log(apiaiResponse);
         var defer = q.defer();
         if (apiaiResponse.result.fulfillment.speech) {
             defer.resolve({
                 text: apiaiResponse.result.fulfillment.speech
             });
         } else {
-            var stat = apiaiResponse.result.parameters.statistic;
-            var responseObj = {};
-            var options = {
-                url: 'https://erikberg.com/nba/leaders/' + stat + '.json',
-                headers: {
-                    "User-Agent": "SportsAI/1.0 (" + config.email + ")",
-                    "Authorization": "Bearer " + config.basketballToken
-                }
-            };
+            var stat = apiaiResponse.result.parameters.statistic,
+                responseObj = {};
+                options = {
+                    url: 'https://erikberg.com/nba/leaders/' + stat + '.json',
+                    headers: {
+                        "User-Agent": "SportsAI/1.0 (" + config.email + ")",
+                        "Authorization": "Bearer " + config.basketballToken
+                    }
+                };
 
             request(options, function(err, res, body) {
                 var data = JSON.parse(res.body);
@@ -39,7 +38,6 @@ module.exports = {
                     });
                 });
                 defer.resolve(responseObj);
-                console.log(responseObj);
             });
         }
         return defer.promise;

@@ -116,7 +116,7 @@ export default class Info extends React.Component {
             if (message.type === 'daySchedule') {
                 console.log(message);
                 return (
-                    <div data-aos='slide-right' data-aos-once='true' data-aos-duration="600" data-aos-offset='200' key={message.key} className='sportScheduleMessageSpacer'>
+                    <div data-aos='slide-right' data-aos-once='true' data-aos-duration="600" data-aos-offset='200' key={i+100} className='sportScheduleMessageSpacer'>
                         <SportScheduleMessage messageText={message.text} schedule={message.data} senderClass='bot'/>
                     </div>
                 );

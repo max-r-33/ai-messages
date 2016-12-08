@@ -4,14 +4,13 @@ var config = require('../../config');
 
 module.exports = {
     getWeather: function(apiaiResponse) {
-        console.log(apiaiResponse);
-        var defer = q.defer();
-        var city = apiaiResponse.result.parameters.geoCity;
-        var cond, temp, high, low, country;
-        var responseObj = {};
-        var options = {
-            url: 'http://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(city) + '&APPID=' + config.weatherToken + '&units=imperial'
-        };
+        var defer = q.defer(),
+            city = apiaiResponse.result.parameters.geoCity,
+            cond, temp, high, low, country,
+            responseObj = {},
+            options = {
+                url: 'http://api.openweathermap.org/data/2.5/weather?q=' + encodeURIComponent(city) + '&APPID=' + config.weatherToken + '&units=imperial'
+            };
 
         request(options, function(err, res, body) {
             var data = JSON.parse(res.body);
@@ -45,7 +44,6 @@ module.exports = {
                 defer.resolve({text: 'That city could not be found. Try being more specific or searching a nearby city.'});
             }
         });
-
 
         return defer.promise;
     }

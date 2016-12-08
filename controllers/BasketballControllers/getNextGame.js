@@ -14,6 +14,7 @@ var buildMessageObject = function(body, apiaiResponse) {
     var today = new Date();
     var casualDate;
 
+    //gets casual date
     if (today.getDay() === game.getDay()) {
         casualDate = ' today';
     } else if (today.getDay() === game.getDay() - 1) {
@@ -29,7 +30,6 @@ var buildMessageObject = function(body, apiaiResponse) {
         text: 'The ' + event.team.last_name + ' play the ' + event.opponent.last_name + ' in ' + event.site.city +
             casualDate + ' at ' + time + ' ET.'
     };
-
 
     return responseObj;
 };

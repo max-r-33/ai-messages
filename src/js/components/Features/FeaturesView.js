@@ -39,7 +39,7 @@ export default class FeaturesView extends React.Component {
                         <ul>
                             <h3>Context</h3>
                             <li>The messsenger understands context in certain situations.</li>
-                            <li>If you ask about the Suns in one question, you can refer them in other questions as
+                            <li>For example, if you ask about the Suns in one question, you can refer them in other questions as
                                 'them' or 'their' and the messenger will understand what team you are referring to.
                                 Questions below that are marked with (context) will work like this.</li>
                         </ul>

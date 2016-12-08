@@ -4,13 +4,16 @@ var config = require('../../config');
 
 module.exports = {
     getStandings: function(apiaiResponse) {
-        console.log(apiaiResponse);
         var defer = q.defer();
+
+        //if apiai has a response, use that because it means some
+        //required info wasn't provided
         if (apiaiResponse.result.fulfillment.speech) {
             defer.resolve({
                 text: apiaiResponse.result.fulfillment.speech
             });
         } else {
+
             var conference = apiaiResponse.result.parameters.conference,
                 responseObj = {},
                 options = {
@@ -31,7 +34,7 @@ module.exports = {
                 } else {
                     responseObj.type = 'sportStandings';
                     responseObj.data = [];
-                    
+
                     //returns data from teams in specified conference
                     var standings = data.standing.filter(function(team) {
                         return team.conference === conference;

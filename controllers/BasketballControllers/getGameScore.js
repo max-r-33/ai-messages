@@ -3,30 +3,32 @@ var q = require('q');
 var config = require('../../config');
 
 var getDifferenceInDays = function(end, start) {
-    var date1 = new Date(start),
-        date2 = new Date(end),
-        timeDiff = Math.abs(date2.getTime() - date1.getTime()),
+    var startDate = new Date(start),
+        endDate = new Date(end),
+        timeDiff = Math.abs(endDate.getTime() - startDate.getTime()),
         diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
     return diffDays;
 };
 
 var buildMessageObject = function(body, apiaiResponse, date) {
-    var responseObj = {};
-    var event = JSON.parse(body)[0];
-    console.log(apiaiResponse);
+    var responseObj = {},
+        event = JSON.parse(body)[0];
 
     responseObj.date = event.event_start_date_time;
 
-    //gets todays date and the game date and figures out the difference
+    //gets todays date and the game date
+    //from the provided date and figures out the difference
     //in number of days.
-    var d = responseObj.date.split('T')[0].split('-');
-    var gameDate = [d[1], d[2], d[0]].join('/');
-    var dObj = new Date();
-    var today = dObj.getMonth() + 1 + '/' + dObj.getDate() + '/' + dObj.getFullYear();
+    var d = responseObj.date.split('T')[0].split('-'),
+        gameDate = [d[1], d[2], d[0]].join('/'),
+        dObj = new Date(),
+        today = dObj.getMonth() + 1 + '/' + dObj.getDate() + '/' + dObj.getFullYear(),
+        daysAgo = getDifferenceInDays(gameDate, today),
+        casualDate = '';
 
-    var daysAgo = getDifferenceInDays(gameDate, today);
-    var casualDate = '';
+    // finds casual date from number
+    // provided by the days function
     if (daysAgo === 0) {
         casualDate = ' today';
     } else if (daysAgo === 1) {
@@ -35,14 +37,13 @@ var buildMessageObject = function(body, apiaiResponse, date) {
         casualDate = daysAgo + ' days ago ';
     }
 
-    if (!date) {
-        if (event.team_event_result === 'win') {
-            responseObj.text = "The " + event.team.full_name + ' beat the ' + event.opponent.full_name +
-                ' ' + casualDate + ' in ' + event.site.city + '.';
-        } else {
-            responseObj.text = "The " + event.team.full_name + ' lost to the ' + event.opponent.full_name +
-                ' ' + casualDate + ' in ' + event.site.city + '.';
-        }
+
+    if (event.team_event_result === 'win') {
+        responseObj.text = "The " + event.team.full_name + ' beat the ' + event.opponent.full_name +
+            ' ' + casualDate + ' in ' + event.site.city + '.';
+    } else {
+        responseObj.text = "The " + event.team.full_name + ' lost to the ' + event.opponent.full_name +
+            ' ' + casualDate + ' in ' + event.site.city + '.';
     }
     responseObj.type = 'sport';
     responseObj.gameType = event.team_event_location_type;
@@ -58,6 +59,8 @@ module.exports = {
     getScore: function(apiaiResponse) {
         var defer = q.defer();
 
+        //if apiai has a response, use that because it means some
+        //required info wasn't provided
         if (apiaiResponse.result.fulfillment.speech) {
             defer.resolve({
                 text: apiaiResponse.result.fulfillment.speech
