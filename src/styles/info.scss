@@ -78,13 +78,13 @@
                     border-radius: 2px;
                     text-align: left;
                     cursor: default;
-                    height: 220px;
+                    height: 250px;
                     min-width: 320px;
                     margin-left: auto;
                     margin-right: auto;
-                    background-color: $white;
-                    color: $black;
-                    width: 30vw;
+                    background-color: $black;
+                    color: $white;
+                    width: 35vw;
                     z-index: -1;
                     margin-top: 6vh;
                     padding-bottom: 10px;
@@ -104,6 +104,15 @@
                         display: block;
                         padding: 15px;
                         line-height: 19px;
+                        border:1px solid $green;
+                        border-radius: 10px;
+                        width:80%;
+                        color:$black;
+                        margin-left: auto;
+                        margin-right: auto;
+                        background-color: $green;
+                        margin-top:8px;
+                        border-bottom-left-radius: 0px;
                     }
                 }
 

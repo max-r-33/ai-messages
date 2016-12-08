@@ -58,7 +58,7 @@ export default class Info extends React.Component {
                                         League
                                     </h3>
                                     <p className='exampleText'>
-                                        Show me standings for the eastern conference
+                                        Show meeastern conference standings
                                     </p>
                                     <p className='exampleText'>
                                         What games are on tomorrow?
