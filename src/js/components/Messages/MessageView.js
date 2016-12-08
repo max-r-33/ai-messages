@@ -4,6 +4,7 @@ import MessageContainer from './MessageView/MessageContainer';
 import axios from 'axios';
 import auth from '../../utils/LoginStatus';
 import config from '../../../../config.js';
+import {Link} from 'react-router';
 
 var messagesArr = [];
 var node;

@@ -6,8 +6,8 @@
 }
 .infoBox {
     color: $white;
-    text-align: center;
     background-color: $black;
+    text-align: center;
 
     .formBtn {
         width: 70vw;
@@ -44,7 +44,7 @@
     }
 
     .examples {
-        height: 240vh;
+        height: 1500px;
         display: block;
         padding-top: 30px;
         display: block;
@@ -52,6 +52,7 @@
         margin-left: auto;
         margin-right: auto;
         .messageArea{
+            text-align: left;
             padding-top:45px;
         }
         .featuresLink {
@@ -72,14 +73,11 @@
             color: rgba(249, 246, 246, 1);
             border-color: rgba(249, 246, 246, 1);
         }
-    }
-    @media(min-width:800px) {
-        .examples {
-            height: 240vh;
-        }
         .bot{
             background-color: $blackHover;
         }
+    }
+    @media(min-width:800px) {
 
         .formBtn {
             width: 40vw;

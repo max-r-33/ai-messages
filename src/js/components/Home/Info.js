@@ -2,8 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import Message from '../Messages/MessageView/MessageContainer/Message';
 import SportStatisticMessage from '../Messages/MessageView/MessageContainer/SportStatisticMessage';
-import WeatherMessage from '../Messages/MessageView/MessageContainer/WeatherMessage';
-import StockMessage from '../Messages/MessageView/MessageContainer/StockMessage';
+import SportScheduleMessage from '../Messages/MessageView/MessageContainer/SportScheduleMessage';
 
 export default class Info extends React.Component {
     constructor(props) {
@@ -14,8 +13,7 @@ export default class Info extends React.Component {
             'When do the Cavs play again?',
             "What's the Dubs record?",
             'Who leads the league in mpg?',
-            "What's the weather tomorrow in LA?",
-            "What's the price of apple stock?"
+            "Show me the scores of yesterday's games"
         ];
         var autoMessages = [
             {
@@ -37,7 +35,7 @@ export default class Info extends React.Component {
                         team: 'New Orleans Pelicans',
                         value: 38.05
                     }, {
-                        name: '"Kyle Lowry"',
+                        name: 'Kyle Lowry',
                         rank: 2,
                         stat: "minutes per game",
                         team: 'Toronto Raptors',
@@ -64,68 +62,87 @@ export default class Info extends React.Component {
                 ],
                 type: 'sportStatistic'
             }, {
-                data: {
-                    city: "Los Angeles",
-                    conditions: "Clear",
-                    country: "",
-                    description: "Tomorrow",
-                    temperature: "74:39"
-                },
-                type: 'weatherForecast'
-            }, {
-                data: {
-                    change: "+1.14",
-                    companyName: "Apple Inc",
-                    exchange: "NASDAQ",
-                    lastUpdated: "1:22PM EST",
-                    percentChange: "1.03",
-                    price: "112.17",
-                    symbol: "AAPL"
-                },
-                type:'stock'
+                data: [
+                    {
+                        awayClass: "winner",
+                        awayTeam: "Magic",
+                        awayTeamAbbr: "ORL",
+                        awayTeamPts: 98,
+                        date: "20161204",
+                        event_status: "completed",
+                        homeClass: "loser",
+                        homeTeam: "Pistons",
+                        homeTeamAbbr: "DET",
+                        homeTeamPts: 92,
+                        time: "6:00"
+                    }, {
+                        awayClass: "loser",
+                        awayTeam: "Pelicans",
+                        awayTeamAbbr: "NO",
+                        awayTeamPts: 92,
+                        date: "20161204",
+                        event_status: "completed",
+                        homeClass: "winner",
+                        homeTeam: "Thunder",
+                        homeTeamAbbr: "OKC",
+                        homeTeamPts: 101,
+                        time: "7:00"
+                    }, {
+                        awayClass: "winner",
+                        awayTeam: "Pacers",
+                        awayTeamAbbr: "IND",
+                        awayTeamPts: 111,
+                        date: "20161204",
+                        event_status: "completed",
+                        homeClass: "loser",
+                        homeTeam: "Clippers",
+                        homeTeamAbbr: "LAC",
+                        homeTeamPts: 102,
+                        time: "9:30"
+                    }
+                ],
+                text: 'Games on 12/04',
+                type: 'daySchedule'
             }
         ];
-        userMessages = userMessages.map(function(message, i ) {
+        userMessages = userMessages.map(function(message, i) {
             return (
-                <div data-aos='slide-left' aos-anchor-placement='bottom-center' data-aos-duration="600" key={i} className='messageSpacer'>
+                <div data-aos='slide-left' data-aos-once='true' data-aos-duration="600" data-aos-offset='100' key={i} className='messageSpacer'>
                     <Message senderClass='user' messageText={message}/>
                 </div>
             );
         });
-        autoMessages = autoMessages.map(function(message, i){
-            if(message.type === 'sportStatistic'){
+        autoMessages = autoMessages.map(function(message, i) {
+            if (message.type === 'daySchedule') {
+                console.log(message);
                 return (
-                    <div data-aos='slide-right' aos-anchor-placement='bottom-center' data-aos-duration="600"  key={i+100} className='sportStatMessageSpacer'>
+                    <div data-aos='slide-right' data-aos-once='true' data-aos-duration="600" data-aos-offset='200' key={message.key} className='sportScheduleMessageSpacer'>
+                        <SportScheduleMessage messageText={message.text} schedule={message.data} senderClass='bot'/>
+                    </div>
+                );
+            } else if (message.type === 'sportStatistic') {
+                return (
+                    <div data-aos='slide-right' data-aos-once='true' data-aos-duration="600" data-aos-offset='200' key={i + 100} className='sportStatMessageSpacer'>
                         <SportStatisticMessage stats={message.data} senderClass='bot' messageText={message.text}/>
                     </div>
                 );
-            }else if(message.type === 'weatherForecast'){
+            } else {
                 return (
-                    <div data-aos='slide-right' aos-anchor-placement='bottom-center' data-aos-duration="600"  key={i+100} className='weatherForecastMessageSpacer'>
-                        <WeatherMessage weather={message.data} senderClass='bot' messageText={message.text}/>
-                    </div>
-                );
-            }else if(message.type === 'stock'){
-                return (
-                    <div data-aos='slide-right' aos-anchor-placement='bottom-center' data-aos-duration="600" key={i+100} className='stockMessageSpacer'>
-                        <StockMessage stockInfo={message.data} senderClass='bot' messageText={message.text}/>
-                    </div>
-                );
-            }else{
-                return (
-                    <div data-aos='slide-right' aos-anchor-placement='bottom-center' data-aos-duration="600"  key={i+100} className='messageSpacer'>
-                        <Message senderClass='bot' messageText = {message.text} />
+                    <div data-aos='slide-right' data-aos-once='true' data-aos-duration="600" data-aos-offset='100' key={i + 100} className='messageSpacer'>
+                        <Message senderClass='bot' messageText={message.text}/>
                     </div>
                 )
             }
         });
         var messages = [];
-         userMessages.forEach(function(message, i){
+        userMessages.forEach(function(message, i) {
             messages.push(message);
             messages.push(autoMessages[i])
         });
 
-        this.state = {messages}
+        this.state = {
+            messages
+        }
     }
     render() {
         return (
@@ -157,7 +174,7 @@ export default class Info extends React.Component {
                     <div className='homeCard'>
                         <div className='footerCard'>
                             <h1 className='bottomHeading anchor'>Interested?</h1 >
-                            <div className='formBtn formBtnLight' data-aos-offset='270' data-aos-anchor='.anchor' data-aos-anchor-placement='bottom-bottom' data-aos='fade-up' data-aos-once='true'>
+                            <div className='formBtn formBtnLight' data-aos-offset='400' data-aos-anchor='.anchor' data-aos-anchor-placement='bottom-bottom' data-aos='fade-up' data-aos-once='true'>
                                 <Link to='signup'>Sign Up</Link>
                             </div>
                         </div>

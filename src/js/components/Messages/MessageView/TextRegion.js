@@ -4,26 +4,19 @@ import browser from 'detect-browser';
 export default class TextRegion extends React.Component {
     constructor(props) {
         super(props);
-        let buttonStyle, searchStyle;
+        var dictationButton, searchStyle;
+
         if(browser.name === 'chrome'){
-            buttonStyle = {
-                display: 'inline'
-            }
+            dictationButton = <button onClick={e => this.startDictation(e)} className='messageBtn formBtn speechBtn'><i  id='fa' className='fa fa-microphone'></i></button>;
         }else{
             searchStyle = {
                 width: "25%"
-            };
-            buttonStyle = {
-                display: 'none'
-            };
+            }
         }
         this.state = {
             value: '',
-            buttonStyle: buttonStyle,
+            dictationButton,
             searchStyle: searchStyle,
-            micStyle: {
-                color: 'rgb(249, 247, 246)',
-            }
         };
     }
 
@@ -31,31 +24,27 @@ export default class TextRegion extends React.Component {
         this.setState({value: event.target.value});
     }
 
-    startDictation() {
-
+    startDictation(event) {
+        event.preventDefault();
         if (window.hasOwnProperty('webkitSpeechRecognition')) {
-            var t = this;
 
+            var t = this;
             console.log('start dictation');
             var recognition = new webkitSpeechRecognition();
-
             recognition.continuous = false;
             recognition.interimResults = false;
             recognition.lang = "en-US";
             recognition.start();
-
-            t.setState({micStyle: {
-                color:'#BC4F6A'
-            }});
+            document.getElementById('fa').style.color = '#BC4F6A';
 
             recognition.onresult = function(e) {
                 var recognizedText = e.results[0][0].transcript;
                 t.props.sendMessage(recognizedText, e);
-                t.setState({
-                    micStyle: {
-                        color:'rgb(249, 247, 246)'
-                }});
                 recognition.stop();
+                setTimeout(function () {
+                    console.log('ok');
+                    document.getElementById('fa').style.color = 'rgb(249, 247, 246)';
+                }, 3000);
                 console.log(recognizedText);
                 console.log('stop dictation');
             }
@@ -75,9 +64,7 @@ export default class TextRegion extends React.Component {
                         this.props.sendMessage(this.state.value, event);
                         this.setState({value: ''});
                     }}>Send</button>
-                <button style={this.state.buttonStyle} onClick={e => this.startDictation(e)} className='messageBtn formBtn speechBtn'>
-                        <i style={this.state.micStyle} className='fa fa-microphone'></i>
-                    </button>
+                        {this.state.dictationButton}
                 </form>
             </div>
         );
