@@ -78,12 +78,12 @@
                     border-radius: 2px;
                     text-align: left;
                     cursor: default;
-                    height: 250px;
+                    height: 270px;
                     min-width: 320px;
                     margin-left: auto;
                     margin-right: auto;
-                    background-color: $black;
-                    color: $white;
+                    background-color: $white;
+                    color: $black;
                     width: 35vw;
                     z-index: -1;
                     margin-top: 6vh;
@@ -111,7 +111,7 @@
                         margin-left: auto;
                         margin-right: auto;
                         background-color: $green;
-                        margin-top:8px;
+                        margin-top:12px;
                         border-bottom-left-radius: 0px;
                     }
                 }

@@ -48,7 +48,7 @@ export default class Info extends React.Component {
                                         Who leads the league in mpg?
                                     </p>
                                     <p className='exampleText'>
-                                        Who is leading the league in steals?
+                                        Who's leading the league in steals?
                                     </p>
                                 </div>
                             </div>
