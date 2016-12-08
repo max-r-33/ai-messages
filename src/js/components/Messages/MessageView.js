@@ -18,7 +18,7 @@ export default class MessageView extends React.Component {
             user: auth.getLoggedInUser(),
             messages: [
                 {
-                    text: 'hello',
+                    text: 'Hello! If you need help, head over to the features page to see what questions can be answered.',
                     key: 1
                 }
             ]

@@ -9,7 +9,7 @@ import LoginView from './components/Login/LoginView';
 import SignupView from './components/Signup/SignupView';
 import LogOutView from './components/Logout/LogOutView';
 import SettingsView from './components/Settings/SettingsView';
-
+import FeaturesView from './components/Features/FeaturesView';
 import auth from './utils/LoginStatus';
 
 import reset from '../styles/reset.scss';
@@ -23,6 +23,7 @@ import homeStyle from '../styles/homeView.scss';
 import formStyle from '../styles/formStyles.scss';
 import customMessageStyle from '../styles/customMessage.scss';
 import infoStyle from '../styles/info.scss';
+import featuresStyle from '../styles/featuresView.scss';
 
 const app = document.getElementById('app');
 
@@ -34,7 +35,7 @@ function requireAuth(nextState, replace) {
             state: {
                 nextPathname: nextState.location.pathname
             }
-        })
+        });
 }
 
 //checks if a user is logged in and redirects them to the messages page
@@ -49,9 +50,10 @@ function requireNotLoggedIn(nextState, replace) {
 }
 
 ReactDOM.render(
-    <Router history={hashHistory}>
+    <Router onUpdate={() => window.scrollTo(0, 0)} history={hashHistory}>
     <Route path='/' component={NavBar}>
         <IndexRoute component={HomeView}></IndexRoute>
+        <Route path='features' component={FeaturesView}></Route>
         <Route path='login' component={LoginView} onEnter={requireNotLoggedIn}></Route>
         <Route path='signup' component={SignupView} onEnter={requireNotLoggedIn}></Route>
         <Route path='logout' component={LogOutView}></Route>

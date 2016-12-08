@@ -2,9 +2,6 @@ import React from 'react';
 import {Link} from 'react-router';
 
 export default class Info extends React.Component {
-    scroll() {
-        document.querySelector('.examples').scrollIntoView({behavior: 'smooth'});
-    }
     render() {
         return (
             <div>
@@ -17,12 +14,13 @@ export default class Info extends React.Component {
                                 <Link to='signup'>Sign Up</Link>
                             </div>
                         </div>
-                        <div onClick={this.scroll} className='arrow'>↓</div>
+                        <div className='arrow'>↓</div>
                     </div>
                 </div>
                 <div className='infoBox'>
                     <div className='examples'>
-                        <h1 className='heading'>Here are a few topics you can ask about</h1>
+                        <h1 id='headingAnchor' className='heading'>Here are a few topics you can ask about</h1>
+                        <div className='featuresLink'><Link to='features'>Check out the rest here</Link></div>
                         <div className='examplesContainerGrid'>
                             <div className='examplesContainerColumn'>
                                 <div data-aos="fade-zoom-in" data-aos-offset='0' data-aos-once='true' className='exampleContainer'>
@@ -30,16 +28,16 @@ export default class Info extends React.Component {
                                         Teams
                                     </h3>
                                     <p className='exampleText'>
-                                        Did the lakers win?
+                                        Did the Lakers win?
                                     </p>
                                     <p className='exampleText'>
-                                        When do the cavs play again?
+                                        When do the Cavs play again?
                                     </p>
                                     <p className='exampleText'>
-                                        Whats the dubs record?
+                                        What's the Dubs record?
                                     </p>
                                 </div>
-                                <div data-aos="fade-zoom-in" data-aos-offset='200' data-aos-once='true' className='exampleContainer'>
+                                <div data-aos="fade-zoom-in" data-aos-offset='150' data-aos-once='true' className='exampleContainer'>
                                     <h3 className='exampleContainerHeader'>
                                         Statistics
                                     </h3>
@@ -50,12 +48,12 @@ export default class Info extends React.Component {
                                         Who leads the league in mpg?
                                     </p>
                                     <p className='exampleText'>
-                                        Who is leading the league in steals
+                                        Who is leading the league in steals?
                                     </p>
                                 </div>
                             </div>
                             <div className='examplesContainerColumn'>
-                                <div data-aos="fade-zoom-in" data-aos-offset='150' data-aos-once='true' className='exampleContainer'>
+                                <div data-aos="fade-zoom-in" data-aos-offset='100' data-aos-once='true' className='exampleContainer'>
                                     <h3 className='exampleContainerHeader'>
                                         League
                                     </h3>
@@ -66,32 +64,33 @@ export default class Info extends React.Component {
                                         What games are on tomorrow?
                                     </p>
                                     <p className='exampleText'>
-                                        Whos playing tonight?
+                                        Who's playing tonight?
                                     </p>
                                 </div>
-                                <div data-aos="fade-zoom-in" data-aos-offset='250' data-aos-once='true' className='exampleContainer'>
+                                <div data-aos="fade-zoom-in" data-aos-offset='200' data-aos-once='true' className='exampleContainer'>
                                     <h3 className='exampleContainerHeader'>
                                         Miscallaneous
                                     </h3>
                                     <p className='exampleText'>
-                                        Whats the weather in LA?
+                                        What's the weather in LA?
                                     </p>
                                     <p className='exampleText'>
-                                        Whats the price of apple stock?
+                                        What's the price of apple stock?
                                     </p>
                                     <p className='exampleText'>
-                                        Whats the weather tomorrow in Sydney?
+                                        What's the weather tomorrow in Sydney?
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </div><br />
+
                     </div>
                 </div>
                 <div className='infoBox'>
                     <div className='homeCard'>
                         <div className='footerCard'>
                             <h1 className='bottomHeading anchor'>Interested?</h1>
-                            <div className='formBtn formBtnLight' data-aos-offset='250' data-aos-anchor='.anchor' data-aos-anchor-placement='center-bottom' data-aos='fade-up' data-aos-once='true'>
+                            <div className='formBtn formBtnLight' data-aos-offset='270' data-aos-anchor='.anchor' data-aos-anchor-placement='bottom-bottom' data-aos='fade-up' data-aos-once='true'>
                                 <Link to='signup'>Sign Up</Link>
                             </div>
                         </div>

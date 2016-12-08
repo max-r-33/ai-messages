@@ -18,8 +18,9 @@ export default class NavBar extends React.Component {
                 <div>
                     <div className='nav-container'>
                         <ul>
-                            <li className='logo'><Link to='/'>Name</Link></li>
+                            <li className='logo'><Link to='/'></Link></li>
                             <div className='right'>
+                                <li className='hideOnMobile sliding-u-l-r'><Link to='features'>Features</Link></li>
                                 <li className='home sliding-u-l-r'><Link to='/'>Home</Link></li>
                                 <li className='sliding-u-l-r'><Link to='login'>Log In</Link></li>
                                 <li className='sliding-u-l-r'><Link to='signup'>Sign Up</Link></li>
@@ -37,6 +38,7 @@ export default class NavBar extends React.Component {
                         <ul>
                             <li className='logo'><Link to='/'>{this.state.user.name}</Link></li>
                             <div className='right'>
+                                <li className='hideOnMobile sliding-u-l-r'><Link to='features'>Features</Link></li>
                                 <li className='sliding-u-l-r'><Link to='messages'>Messages</Link></li>
                                 <li className='hideOnMobile sliding-u-l-r'><Link to='settings'>Settings</Link></li>
                                 <li className='sliding-u-l-r'><Link to='logout'>Log Out</Link></li>

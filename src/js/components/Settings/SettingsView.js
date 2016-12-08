@@ -57,7 +57,7 @@ export default class SettingsView extends React.Component {
     }
     render() {
         return (
-            <div data-aos='fade-in' data-aos-easing='ease-in' className='formView'>
+            <div className='formView'>
                 <form>
                     <div className='header'>
                         <h1>Settings</h1><br/>

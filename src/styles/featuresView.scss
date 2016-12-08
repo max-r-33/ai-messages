@@ -1,0 +1,98 @@
+@import 'master';
+@import 'info';
+
+.featuresView{
+    height:2500;
+    width:100vw;
+    background-color: $black;
+    color:$white;
+    padding-top:80px;
+    text-align: center;
+
+    h1{
+        display: block;
+        margin-bottom:20px;
+        font-weight:700;
+        font-size:70px;
+    }
+    h2{
+        font-weight: 600;
+        font-size:50px;
+        margin-top:50px;
+    }
+    h3{
+        line-height:60px;
+        font-weight:700;
+        font-size:23px;
+    }
+    ul{
+        box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+        background-color:$white;
+        color:$black;
+        padding:10px;
+        padding-left:25px;
+        padding-bottom:20px;
+        padding-top:0;
+        text-align: left;
+        margin-top:20px;
+        margin-bottom:20px;
+        li{
+            display:block;
+            line-height:30px;
+            font-weight: 500;
+            margin-left:25px;
+        }
+
+        .statsGrid{
+            margin-top:15px;
+        }
+        .subList{
+            font-weight:400;
+            font-size:14px;
+            float:left;
+            margin-left:80px;
+            width:320px;
+            text-transform: capitalize;
+            .abbreviation{
+                float:right;
+                font-weight: 500;
+            }
+        }
+
+    }
+    .featuresContainer{
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .basketball{
+            display: flex;
+            flex-direction: column;
+            width:80vw;
+            margin-left:10vw;
+
+            .statPositioner{
+                padding-left:85px;
+                font-weight:400;
+            }
+        }
+        .other{
+            display: flex;
+            flex-direction: column;
+            width:80vw;
+            margin-left:10vw;
+        }
+    }
+}
+
+// @media(min-width:1120px){
+//     .featuresView{
+//         height:2500px;
+//         .featuresContainer{
+//             flex-direction: column;
+//             .basketball, .other{
+//                 width:45vw;
+//                 margin:auto;
+//             }
+//         }
+//     }
+// }
