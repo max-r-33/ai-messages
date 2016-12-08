@@ -44,23 +44,26 @@
         display: block;
         padding-top: 30px;
         display: block;
-        .featuresLink{
-            display:block;
-            color:rgba(249, 247, 246, .6);
-            transition:all .5s ease-in-out;
-            margin-top:25px;
-            padding:10px;
-            border-radius:3px;
-            width:170px;
+
+        .featuresLink {
+            display: block;
+            color: rgba(249, 247, 246, .6);
+            transition: all 0.5s ease-in-out;
+            margin-top: 25px;
+            padding: 10px;
+            border-radius: 3px;
+            width: 170px;
             margin-left: auto;
             margin-right: auto;
-            font-size:14px;
-            border:1px solid rgba(249, 247, 246, .6);
+            font-size: 14px;
+            border: 1px solid rgba(249, 247, 246, .6);
         }
-        .featuresLink:hover{
-            color:rgba(249, 246, 246, 1);
-            border-color:rgba(249, 246, 246, 1);
+
+        .featuresLink:hover {
+            color: rgba(249, 246, 246, 1);
+            border-color: rgba(249, 246, 246, 1);
         }
+
         .examplesContainerGrid {
             display: flex;
             flex-direction: column;
@@ -72,7 +75,7 @@
                 perspective: 150px;
 
                 .exampleContainer {
-                    border-radius:2px;
+                    border-radius: 2px;
                     text-align: left;
                     cursor: default;
                     height: 220px;
@@ -110,8 +113,8 @@
                     z-index: -1;
                     width: 100%;
                     height: 100%;
-                    top:0;
-                    left:0;
+                    top: 0;
+                    left: 0;
                     opacity: 0;
                     box-shadow: 0 5px 25px rgba(0,0,0,0.8);
                     transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -152,7 +155,7 @@
                 bottom: 10px;
                 color: rgba(249, 247, 246,.5);
                 transition: all 0.4s ease-in-out;
-                cursor:default;
+                cursor: default;
             }
         }
 

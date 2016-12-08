@@ -36,16 +36,19 @@
         text-align: left;
         margin-top:20px;
         margin-bottom:20px;
+
         li{
             display:block;
-            line-height:30px;
-            font-weight: 500;
             margin-left:25px;
+            margin-right:20px;
+            margin-top:10px;
+            line-height: 20px;
         }
 
         .statsGrid{
             margin-top:15px;
         }
+
         .subList{
             font-weight:400;
             font-size:14px;
@@ -80,19 +83,7 @@
             flex-direction: column;
             width:80vw;
             margin-left:10vw;
+            margin-top:15px;
         }
     }
 }
-
-// @media(min-width:1120px){
-//     .featuresView{
-//         height:2500px;
-//         .featuresContainer{
-//             flex-direction: column;
-//             .basketball, .other{
-//                 width:45vw;
-//                 margin:auto;
-//             }
-//         }
-//     }
-// }
