@@ -23,7 +23,7 @@ export default class SettingsView extends React.Component {
     }
     handleDelete(event) {
         event.preventDefault();
-        var x = confirm('Are you sure you want to delete your account? Deleting your accound deletes all of your messages.');
+        var x = confirm('Are you sure you want to delete your account? Deleting your account deletes all of your messages.');
         if (x) {
             console.log('deleted')
             axios({

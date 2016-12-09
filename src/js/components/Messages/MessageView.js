@@ -42,7 +42,6 @@ export default class MessageView extends React.Component {
                 messagesArr.unshift(this.state.messages[0]);
                 this.setState({messages: messagesArr});
             }
-            console.log(this.state.messages);
         });
     }
 

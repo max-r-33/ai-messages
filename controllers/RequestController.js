@@ -26,10 +26,7 @@ module.exports = {
             'text': req.body.textRequest,
             'sender': 'user'
         }], function(err, msg) {
-            if (err) {
-                res.status(500).send(err);
-                return;
-            }
+            if (err) { return next(err); }
         });
 
         //apiai request
@@ -45,10 +42,7 @@ module.exports = {
                     text: "I'm not sure what you mean. Try phrasing your question a different way"
                 };
                 db.create_message([req.body.userid, msg], function(err) {
-                    if (err) {
-                        res.status(500).send(err);
-                        return;
-                    }
+                    if (err) { return next(err); }
                     res.send(msg);
                 });
             } else {
@@ -57,10 +51,7 @@ module.exports = {
                         text: response.result.fulfillment.speech
                     };
                     db.create_message([req.body.userid, msg], function(err) {
-                        if (err) {
-                            res.status(500).send(err);
-                            return;
-                        }
+                        if (err) { return next(err); }
                         res.send(msg);
                     });
 
@@ -68,100 +59,70 @@ module.exports = {
                     getGameScore.getScore(response).then(function(result) {
                         //saves score to database and sends it as the response
                         db.create_message([req.body.userid, result], function(err) {
-                            if (err) {
-                                res.status(500).send(err);
-                                return;
-                            }
+                            if (err) { return next(err); }
                             res.send(result);
                         });
                     });
                 } else if (response.result.action === 'get.team.record') {
                     getTeamRecord.getRecord(response).then(function(result) {
                         db.create_message([req.body.userid, result], function(err) {
-                            if (err) {
-                                res.status(500).send(err);
-                                return;
-                            }
+                            if (err) { return next(err); }
                             res.send(result);
                         });
                     });
                 } else if (response.result.action === 'get.team.nextGame') {
                     getNextGame.getGame(response).then(function(result) {
                         db.create_message([req.body.userid, result], function(err) {
-                            if (err) {
-                                res.status(500).send(err);
-                                return;
-                            }
+                            if (err) { return next(err); }
                             res.send(result);
                         });
                     });
                 } else if (response.result.action.split('.')[1] === 'individual') {
                     getPlayerStat.getStat(response).then(function(result) {
                         db.create_message([req.body.userid, result], function(err) {
-                            if (err) {
-                                res.status(500).send(err);
-                                return;
-                            }
+                            if (err) { return next(err); }
                             res.send(result);
                         });
                     });
                 } else if (response.result.action === 'get.current.weather') {
                     getWeather.getWeather(response).then(function(result) {
                         db.create_message([req.body.userid, result], function(err) {
-                            if (err) {
-                                res.status(500).send(err);
-                                return;
-                            }
+                            if (err) { return next(err); }
                             res.send(result);
                         });
                     });
                 } else if (response.result.action === 'get.future.weather') {
                     getFutureWeather.getFutureWeather(response).then(function(result) {
                         db.create_message([req.body.userid, result], function(err) {
-                            if (err) {
-                                res.status(500).send(err);
-                                return;
-                            }
+                            if (err) { return next(err) };
                             res.send(result);
                         });
                     });
                 } else if (response.result.action === 'get.stockPrice') {
                     getStockPrice.getPrice(response).then(function(result) {
                         db.create_message([req.body.userid, result], function(err) {
-                            if (err) {
-                                res.status(500).send(err);
-                                return;
-                            }
+                            if (err) { return next(err); }
                             res.send(result);
                         });
                     });
                 } else if (response.result.action === 'get.statistic.leader') {
                     getStatLeader.getLeader(response).then(function(result) {
                         db.create_message([req.body.userid, result], function(err) {
-                            if (err) {
-                                res.status(500).send(err);
-                                return;
-                            }
+                            if (err) { return next(err); }
                             res.send(result);
                         });
                     });
                 } else if (response.result.action === 'get.standings') {
                     getStandings.getStandings(response).then(function(result) {
                         db.create_message([req.body.userid, result], function(err) {
-                            if (err) {
-                                res.status(500).send(err);
-                                return;
-                            }
+                            if (err) { next(err); }
                             res.send(result);
                         });
                     });
                 } else if (response.result.action === 'get.schedule') {
                     getSchedule.getSchedule(response).then(function(result) {
                         db.create_message([req.body.userid, result], function(err) {
-                            if (err) {
-                                res.status(500).send(err);
-                                return;
-                            }
+                            if (err) { return next(err); }
                             res.send(result);
                         });
                     });

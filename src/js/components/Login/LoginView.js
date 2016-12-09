@@ -34,7 +34,7 @@ export default class Login extends React.Component {
         axios.get(config.baseDomain + '/api/login?email=' + this.state.email).then(response => {
             //based on the result, set cookie, or alert that
             //their account wasn't found
-            console.log(response);
+
             if (response.data.error) {
                 alert('no match');
             } else {
@@ -52,7 +52,7 @@ export default class Login extends React.Component {
                         window.location.reload();
                         window.location.href = 'http://localhost:8080/#/messages';
                     }else{
-                        alert('error');
+                        alert('No user found with that email and password combination. Try again.');
                     }
                 });
             }

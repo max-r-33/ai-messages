@@ -7,8 +7,9 @@ module.exports = {
     //gets all messages with given userid
     changeName: function(req, res, next){
         db.update_name([req.body.email, req.body.newName], function(err, user){
-            console.log(req.body.email);
-            console.log(req.body.newName);
+            if(err){
+                res.send(error).status(404);
+            }
         });
         res.sendStatus(200);
     },
