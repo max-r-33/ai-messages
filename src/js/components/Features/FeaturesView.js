@@ -39,8 +39,8 @@ export default class FeaturesView extends React.Component {
                         <ul>
                             <h3>Context</h3>
                             <li>The messsenger understands context in certain situations.</li>
-                            <li>For example, if you ask about the Suns in one question, you can refer them in other questions as
-                                'them' or 'their' and the messenger will understand what team you are referring to.
+                            <li>For example, if you ask about a specific team in one question, you can refer them in other questions as
+                                'them' or 'their' or any other pronoun and the messenger will understand what team you are referring to.
                                 Questions below that are marked with (context) will work like this.</li>
                         </ul>
                     </div>
@@ -51,7 +51,8 @@ export default class FeaturesView extends React.Component {
                             <li>Did the lakers win their last game? (context)</li>
                             <li>When do the lakers play again? (context)</li>
                             <li>What’s the lakers record? (context)</li>
-                            <li>How many points did Russell Westbrook have in his last game?</li>
+                            <li>Ask about any of these stats for a specific player:</li>
+                            <li className='statPositioner'>points</li>
                             <li className='statPositioner'>assists</li>
                             <li className='statPositioner'>rebounds</li>
                             <li className='statPositioner'>minutes</li>
@@ -88,7 +89,7 @@ export default class FeaturesView extends React.Component {
                         </ul>
                         <ul>
                             <h3>Stocks</h3>
-                            <li>What's the price of apple stock?</li>
+                            <li>What's the price of Apple stock?</li>
                             <li>What's Micron stock at right now?</li>
                         </ul>
 

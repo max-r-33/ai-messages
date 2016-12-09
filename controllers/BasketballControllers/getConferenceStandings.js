@@ -27,7 +27,7 @@ module.exports = {
             //request to basketball api to get standings
             request(options, function(err, res, body) {
                 var data = JSON.parse(res.body);
-                if (data.error) {
+                if (!data || data.error) {
                     defer.resolve({
                         text: "You've made too many requests. Please wait a moment and try again!"
                     });

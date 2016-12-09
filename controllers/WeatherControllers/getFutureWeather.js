@@ -4,6 +4,7 @@ var config = require('../../config');
 
 module.exports = {
     getFutureWeather: function(apiaiResponse) {
+        //variable declarations
         var defer = q.defer(),
             data, conditions, temp, high, low, city, country,
             responseObj = {};
@@ -24,8 +25,10 @@ module.exports = {
             url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + city + '&APPID=' + config.weatherToken + '&units=imperial'
         };
 
+        //request to weather service
         request(options, function(err, res, body) {
             data = JSON.parse(res.body);
+            //getting relevant data from the response
             country = '';
             city = data.city.name;
             high = Math.ceil(data.list[0].temp.max);

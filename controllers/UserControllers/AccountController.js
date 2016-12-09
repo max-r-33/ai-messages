@@ -13,6 +13,8 @@ module.exports = {
         res.sendStatus(200);
     },
 
+    //deletes users messages by id,
+    // then deletes their account
     deleteAccount: function(req, res, next){
         console.log(req.body);
         db.delete_messages([req.body.id], function(err, user){

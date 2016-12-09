@@ -23,7 +23,6 @@
             letter-spacing: 2px;
             font-size: 19px;
             padding-right: 25px;
-            text-transform: lowercase;
         }
     }
 
@@ -35,7 +34,8 @@
         border-bottom: 3px solid $white;
         transition: all 0.3s ease-in-out;
     }
-    @media(min-width:900px) {
+
+    @media(min-width:700px) {
         .logo {
             font-size: 30px;
             float: left;

@@ -22,22 +22,29 @@ module.exports = {
 
             request(options, function(err, res, body) {
                 var data = JSON.parse(res.body);
-                if (data.length > 5) {
-                    data = data.slice(0, 5);
-                }
-                responseObj.type = 'sportStatistic';
-                responseObj.text = data[0].display_name + ' leads the league in ' + stat.split('_').join(' ') + ' with ' + data[0].value;
-                responseObj.data = [];
-                data.forEach(function(player) {
-                    responseObj.data.push({
-                        name: player.display_name,
-                        rank: player.rank,
-                        value: player.value,
-                        team: player.team.full_name,
-                        stat: stat.split('_').join(' ')
+                if(!data || data.error){
+                    defer.resolve({
+                        text: "You've made too many requests. Please wait a moment and try again!"
                     });
-                });
-                defer.resolve(responseObj);
+                }else{
+                    if (data.length > 5) {
+                        data = data.slice(0, 5);
+                    }
+                    responseObj.type = 'sportStatistic';
+                    responseObj.text = data[0].display_name + ' leads the league in ' + stat.split('_').join(' ') + ' with ' + data[0].value;
+                    responseObj.data = [];
+                    data.forEach(function(player) {
+                        responseObj.data.push({
+                            name: player.display_name,
+                            rank: player.rank,
+                            value: player.value,
+                            team: player.team.full_name,
+                            stat: stat.split('_').join(' ')
+                        });
+                    });
+                    defer.resolve(responseObj);
+                }
+
             });
         }
         return defer.promise;

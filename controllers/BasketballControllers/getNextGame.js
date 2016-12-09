@@ -55,7 +55,7 @@ module.exports = {
 
             request(options, function(err, res, body) {
                 var event = JSON.parse(body)[0];
-                if (event.error) {
+                if (!event || event.error) {
                     defer.resolve({
                         text: "You've made too many requests. Please wait a moment and try again!"
                     });

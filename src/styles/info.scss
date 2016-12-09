@@ -4,16 +4,26 @@
     margin:auto;
     overflow-x: hidden;
 }
+
 .infoBox {
     color: $white;
     background-color: $black;
     text-align: center;
+
+    .homeButton{
+        display:block;
+        height:100%;
+        width:100%;
+        padding:10px;
+    }
 
     .formBtn {
         width: 70vw;
         margin-left: auto;
         margin-right: auto;
         font-size: 30px;
+        padding:0px;
+        display: block;
     }
 
     .homeCard {

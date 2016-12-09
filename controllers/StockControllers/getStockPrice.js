@@ -6,9 +6,11 @@ module.exports = {
     getPrice: function(apiaiResponse) {
         var defer = q.defer();
         var responseObj, stockInfo = {};
-        console.log(apiaiResponse);
-        if(apiaiResponse.result.fulfillment.speech){
-            defer.resolve({text: apiaiResponse.result.fulfillment.speech});
+
+        if (apiaiResponse.result.fulfillment.speech) {
+            defer.resolve({
+                text: apiaiResponse.result.fulfillment.speech
+            });
             return defer.promise;
         }
 
@@ -41,26 +43,31 @@ module.exports = {
                     //making valid json from the response
                     var result = res.body.split("//");
                     var valid = JSON.parse(result[1]);
-
-                    stockInfo.price = valid[0].l;
-                    stockInfo.lastUpdated = valid[0].ltt;
-                    stockInfo.percentChange = valid[0].cp;
-                    stockInfo.change = valid[0].c;
-                    stockInfo.afterHoursLastPrice = valid[0].el;
-                    if (parseFloat(stockInfo.change) > 0) {
-                        responseObj = {
-                            text: 'The price of ' + stockInfo.companyName + ' stock is $' + stockInfo.price + ". Today, it's up " + stockInfo.percentChange +
-                                '% (' + stockInfo.change + ').'
-                        };
+                    if (!valid || !result) {
+                        defer.resolve({
+                            text: 'There was an error looking up a price for that stock. Try again in a moment.'
+                        });
                     } else {
-                        responseObj = {
-                            text: 'The price of ' + stockInfo.companyName + ' stock is $' + stockInfo.price + ". Today, it's down " + stockInfo.percentChange +
-                                '% (' + stockInfo.change + ').'
-                        };
+                        stockInfo.price = valid[0].l;
+                        stockInfo.lastUpdated = valid[0].ltt;
+                        stockInfo.percentChange = valid[0].cp;
+                        stockInfo.change = valid[0].c;
+                        stockInfo.afterHoursLastPrice = valid[0].el;
+                        if (parseFloat(stockInfo.change) > 0) {
+                            responseObj = {
+                                text: 'The price of ' + stockInfo.companyName + ' stock is $' + stockInfo.price + ". Today, it's up " + stockInfo.percentChange +
+                                    '% (' + stockInfo.change + ').'
+                            };
+                        } else {
+                            responseObj = {
+                                text: 'The price of ' + stockInfo.companyName + ' stock is $' + stockInfo.price + ". Today, it's down " + stockInfo.percentChange +
+                                    '% (' + stockInfo.change + ').'
+                            };
+                        }
+                        responseObj.type = 'stock';
+                        responseObj.data = stockInfo;
+                        defer.resolve(responseObj);
                     }
-                    responseObj.type = 'stock';
-                    responseObj.data = stockInfo;
-                    defer.resolve(responseObj);
                 });
 
             } else {

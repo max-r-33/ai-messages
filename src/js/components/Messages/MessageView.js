@@ -24,7 +24,6 @@ export default class MessageView extends React.Component {
                 }
             ]
         };
-        console.log(this.state.messages);
     }
 
     componentDidMount() {
@@ -63,7 +62,7 @@ export default class MessageView extends React.Component {
             messagesArr.push(newMsg);
             this.setState({messages: messagesArr});
 
-            //sends request to backend
+            //sends request to backend to handle the user's message
             axios.post(config.baseDomain + '/api/handleRequest', {
                 textRequest: text,
                 userid: this.state.user.id

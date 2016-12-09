@@ -92,7 +92,7 @@ module.exports = {
             var event = JSON.parse(body)[0];
 
             //error handling
-            if (!event ||event.error) {
+            if (!event || event.error) {
                 defer.resolve({
                     text: "You've made too many requests. Please wait a moment and try again!"
                 });

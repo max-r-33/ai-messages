@@ -5,6 +5,8 @@
     height: 84vh;
     overflow: scroll;
     padding-top:20px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .messageSpacer {

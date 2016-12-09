@@ -1,8 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router';
 import Message from '../Messages/MessageView/MessageContainer/Message';
+import SportMessage from '../Messages/MessageView/MessageContainer/SportMessage';
 import SportStatisticMessage from '../Messages/MessageView/MessageContainer/SportStatisticMessage';
 import SportScheduleMessage from '../Messages/MessageView/MessageContainer/SportScheduleMessage';
+import auth from '../../utils/LoginStatus';
 
 export default class Info extends React.Component {
     constructor(props) {
@@ -11,20 +13,24 @@ export default class Info extends React.Component {
             'Did the Spurs win?',
             'How many points did Kawhi Leonard have?',
             'When do the Cavs play again?',
-            "What's the Dubs record?",
+            "What's the Okc's record?",
             'Who leads the league in mpg?',
             "Show me the scores of yesterday's games"
         ];
         var autoMessages = [
             {
-                text: 'The San Antonio Spurs beat the Minnesota Timberwolves 2 days ago in Minneapolis. 105-91',
+                text: 'The San Antonio Spurs beat the Minnesota Timberwolves 2 days ago in Minneapolis.',
+                data: {
+                    opponentPointsScored: 95,
+                    pointsScored: 91
+                },
                 type: 'sport'
             }, {
                 text: 'Kawhi Leonard had 31 points against the Timberwolves.'
             }, {
                 text: 'The Cavaliers play the Heat in Cleveland tomorrow at 7:30 ET.'
             }, {
-                text: 'The Golden State Warriors are 19-3.'
+                text: 'The Oklahoma City Thunder are 14-8.'
             }, {
                 text: 'Anthony Davis leads the league in minutes per game with 38.05',
                 data: [
@@ -107,7 +113,7 @@ export default class Info extends React.Component {
         ];
         userMessages = userMessages.map(function(message, i) {
             return (
-                <div data-aos='slide-left' data-aos-once='true' data-aos-duration="600" data-aos-offset='100' key={i} className='messageSpacer'>
+                <div data-aos='slide-left' data-aos-once='true' data-aos-duration="600" data-aos-offset='100' data-aos-delay='200' key={i} className='messageSpacer'>
                     <Message senderClass='user' messageText={message}/>
                 </div>
             );
@@ -116,7 +122,7 @@ export default class Info extends React.Component {
             if (message.type === 'daySchedule') {
                 console.log(message);
                 return (
-                    <div data-aos='slide-right' data-aos-once='true' data-aos-duration="600" data-aos-offset='200' key={i+100} className='sportScheduleMessageSpacer'>
+                    <div data-aos='slide-right' data-aos-once='true' data-aos-duration="600" data-aos-offset='200' key={i + 100} className='sportScheduleMessageSpacer'>
                         <SportScheduleMessage messageText={message.text} schedule={message.data} senderClass='bot'/>
                     </div>
                 );
@@ -124,6 +130,12 @@ export default class Info extends React.Component {
                 return (
                     <div data-aos='slide-right' data-aos-once='true' data-aos-duration="600" data-aos-offset='200' key={i + 100} className='sportStatMessageSpacer'>
                         <SportStatisticMessage stats={message.data} senderClass='bot' messageText={message.text}/>
+                    </div>
+                );
+            } else if (message.type === 'sport') {
+                return (
+                    <div data-aos='slide-right' data-aos-once='true' data-aos-duration="600" data-aos-offset='200' key={i + 100} className='sportMessageSpacer'>
+                        <SportMessage senderClass='bot' scores={message.data} messageText={message.text}/>
                     </div>
                 );
             } else {
@@ -134,14 +146,22 @@ export default class Info extends React.Component {
                 )
             }
         });
-        var messages = [];
+        var button,
+            messages = [];
         userMessages.forEach(function(message, i) {
             messages.push(message);
             messages.push(autoMessages[i])
         });
 
+        if (!auth.getLoggedInUser().error) {
+            button = <Link className='homeButton' to='signup'>View Your Messages</Link>
+        } else {
+            button = <Link className='homeButton' to='signup'>Sign Up</Link>
+        }
+
         this.state = {
-            messages
+            messages,
+            button
         }
     }
     render() {
@@ -153,7 +173,7 @@ export default class Info extends React.Component {
                         <div className='subHeading'>
                             <p>Finding basketball statistics has never been this easy.</p>
                             <div data-aos='fade-up' data-aos-delay='1050' className='formBtn formBtnLight'>
-                                <Link to='signup'>Sign Up</Link>
+                                {this.state.button}
                             </div>
                         </div>
                         <div className='arrow'>↓</div>
@@ -174,8 +194,8 @@ export default class Info extends React.Component {
                     <div className='homeCard'>
                         <div className='footerCard'>
                             <h1 className='bottomHeading anchor'>Interested?</h1 >
-                            <div className='formBtn formBtnLight' data-aos-offset='400' data-aos-anchor='.anchor' data-aos-anchor-placement='bottom-bottom' data-aos='fade-up' data-aos-once='true'>
-                                <Link to='signup'>Sign Up</Link>
+                            <div className='formBtn formBtnLight' data-aos-offset='300' data-aos-anchor='.anchor' data-aos-anchor-placement='bottom-bottom' data-aos='fade-up' data-aos-once='true'>
+                                {this.state.button}
                             </div>
                         </div>
                     </div>

@@ -29,7 +29,6 @@ var AccountController = require('./controllers/UserControllers/AccountController
 
 //messaging
     app.post('/api/handleRequest',RequestController.handleRequest);
-    app.post('/api/postMessage', MessagesController.postMessage);
     app.get('/api/getAllMessages/:id', MessagesController.getAllMessages);
 
 //user controls
