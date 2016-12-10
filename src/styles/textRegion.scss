@@ -23,22 +23,25 @@
         transition: all .5s ease-in-out;
     }
 }
-
+@media(min-width:800px){
+    .textRegion{
+        .messageBtn {
+            width:12.5%;
+            padding: 16px;
+            font-size: 16px;
+        }
+        .speechBtn{
+            display: inline;
+            width:12.5%;
+        }
+    }
+}
 @media(min-width:1100px){
     .textRegion{
         .messageInput {
             font-size: 16px;
             width:75%;
             padding:16px;
-        }
-        .speechBtn{
-            display: inline;
-            width:12.5%;
-        }
-        .messageBtn {
-            width:12.5%;
-            padding: 16px;
-            font-size: 16px;
         }
     }
 }
