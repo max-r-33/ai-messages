@@ -13,7 +13,7 @@ export default class Info extends React.Component {
             'Did the Spurs win?',
             'How many points did Kawhi Leonard have?',
             'When do the Cavs play again?',
-            "What's the Okc's record?",
+            "What's okc's record?",
             'Who leads the league in mpg?',
             "Show me the scores of yesterday's games"
         ];
@@ -172,7 +172,7 @@ export default class Info extends React.Component {
                         <h1 className='heading'>Hello.</h1>
                         <div className='subHeading'>
                             <p>Finding basketball statistics has never been this easy.</p>
-                            <div data-aos='fade-up' data-aos-delay='1050' className='formBtn formBtnLight'>
+                            <div data-aos='fade-up' data-aos-once='true' data-aos-offset='-500' data-aos-delay='1050' className='formBtn formBtnLight'>
                                 {this.state.button}
                             </div>
                         </div>

@@ -29,7 +29,7 @@ var buildMessageObject = function(body, apiaiResponse, date) {
 
     // finds casual date from number
     // provided by the days function
-    if (daysAgo === 0) {
+    if (daysAgo <= 0) {
         casualDate = ' today';
     } else if (daysAgo === 1) {
         casualDate = ' yesterday';

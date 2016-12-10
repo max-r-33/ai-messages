@@ -17,7 +17,6 @@ module.exports = {
     //deletes users messages by id,
     // then deletes their account
     deleteAccount: function(req, res, next){
-        console.log(req.body);
         db.delete_messages([req.body.id], function(err, user){
         });
         db.delete_account([req.body.id], function(err, user){

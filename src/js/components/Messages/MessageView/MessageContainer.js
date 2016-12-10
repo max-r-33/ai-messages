@@ -84,7 +84,7 @@ export default class MessageContainer extends React.Component {
         });
 
         return (
-            <div data-aos='fade-in' data-aos-delay='200' data-aos-easing='ease-in' id='msgCont' className='hiddenscrollbars message-container'>
+            <div data-aos='fade-in' data-aos-delay='200' data-aos-easing='ease-in' id='msgCont' className='message-container'>
                 {messagesToDisplay}
             </div>
         );

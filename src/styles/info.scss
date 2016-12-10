@@ -21,18 +21,19 @@
         width: 70vw;
         margin-left: auto;
         margin-right: auto;
-        font-size: 30px;
+        margin-top:50px;
+        font-size:20px;
         padding:0px;
         display: block;
     }
 
     .homeCard {
-        height: 100vh;
-        padding-top: 160px;
+        height:100vh;
+        padding-top: 120px;
         text-align: center;
 
         .heading {
-            font-size: 120px;
+            font-size: 100px;
             display: block;
             margin-bottom: 10vh;
         }
@@ -42,7 +43,7 @@
         }
 
         .subHeading {
-            font-size: 25px;
+            font-size: 23px;
             width: 80vw;
             margin-left: auto;
             margin-right: auto;
@@ -50,6 +51,10 @@
 
         .arrow {
             display: none;
+        }
+
+        .footerCard{
+            margin-top:100px;
         }
     }
 
@@ -61,6 +66,7 @@
         width:80vw;
         margin-left: auto;
         margin-right: auto;
+
         .messageArea{
             text-align: left;
             padding-top:45px;
@@ -97,6 +103,16 @@
         }
 
         .homeCard {
+            padding-top:160px;
+
+            .heading{
+                font-size:120px;
+            }
+
+            .subHeading{
+                font-size:25px;
+            }
+
             .arrow {
                 display: block;
                 font-size: 33px;
@@ -110,8 +126,6 @@
         }
 
         .footerCard {
-            // position: relative;
-            // top: 100px;
             background-color: $black;
             .bottomHeading {
                 font-size: 100px;

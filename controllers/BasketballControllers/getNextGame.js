@@ -15,7 +15,7 @@ var buildMessageObject = function(body, apiaiResponse) {
     var casualDate;
 
     //gets casual date
-    if (today.getDay() === game.getDay()) {
+    if (today.getDay() === game.getDay() || (game.getDay() - today.getDay()) < 0) {
         casualDate = ' today';
     } else if (today.getDay() === game.getDay() - 1) {
         casualDate = ' tomorrow';
