@@ -3,12 +3,9 @@
 .message-container {
     margin-bottom: 0;
     height: 86vh;
-    width:100vw;
+    width: 100vw;
     overflow: scroll;
-    padding-top:20px;
-    padding-bottom:33px;
-    padding-left: 10px;
-    padding-right:10px;
+    padding: 20px 10px 33px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
@@ -18,78 +15,30 @@
 }
 
 .messageSpacer {
-    width: 100%;
     height: 70px;
-    display: block;
 }
 
 .sportMessageSpacer {
-    width: 100%;
     height: 130px;
-    display: block;
-}
-
-.stockMessageSpacer {
-    width: 100%;
-    height:160px;
-    display: block;
-}
-
-.weatherMessageSpacer {
-    width: 100%;
-    height: 180px;
-    display: block;
 }
 
 .sportStatMessageSpacer {
-    width: 100%;
     height: 260px;
-    display: block;
-}
-
-.weatherForecastMessageSpacer {
-    width: 100%;
-    height: 200px;
-    display: block;
-}
-
-.sportScheduleMessageSpacer {
-    width: 100%;
-    height: 350px;
-    display: block;
 }
 
 .sportScheduleMessageSpacerCompleted {
-    width: 100%;
     height: 470px;
-    display: block;
 }
 
-.sportStandingMessageSpacer {
-    width: 100%;
-    height:440px;
-    display: block;
-}
 
 @media(min-width:600px) {
     .message-container{
         height:90vh;
         padding:0px;
+        padding-bottom:8px;
         padding-top: 10px;
         width:80vw;
     }
-    .weatherMessageSpacer {
-        height: 230px;
-    }
-
-    .stockMessageSpacer {
-        height: 240px;
-    }
-
-    .weatherForecastMessageSpacer {
-        height: 250px;
-    }
-
     .message-container {
         height: 86vh;
     }

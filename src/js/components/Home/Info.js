@@ -113,8 +113,8 @@ export default class Info extends React.Component {
         ];
         userMessages = userMessages.map(function(message, i) {
             return (
-                <div className='user' data-aos='slide-left' data-aos-once='true' data-aos-duration="600" data-aos-offset='100' data-aos-delay='200' key={i} className='messageSpacer'>
-                    <Message senderClass='user' messageText={message}/>
+                <div data-aos='slide-left' data-aos-once='true' data-aos-duration="600" key={i} className='messageSpacer'>
+                    <Message senderClass='homeUser user' messageText={message}/>
                 </div>
             );
         });

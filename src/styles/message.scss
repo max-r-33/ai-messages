@@ -1,20 +1,20 @@
 @import 'master';
 
 .message {
-    // border: 1px solid $white;
     font-family:'Helvetica Neue';
     font-size:13px;
-
+    color:$white;
     .spacing {
         padding: 12px;
         border-radius: 15px;
+        margin-bottom:20px;
     }
 
     .bot {
         float: left;
+        clear:both;
         border-bottom-left-radius: 0;
         background-color: $black;
-        color: $white;
         transition: background-color 0.3s ease-in-out;
     }
 
@@ -25,12 +25,15 @@
 
     .user {
         float: right;
+        clear:both;
         border-bottom-right-radius: 0;
         background-color: $green;
-        color: $white;
         transition: background-color 0.3s ease-in-out;
     }
 
+    .homeUser{
+        color:$blackHover;
+    }
     .user:hover {
         background-color: $greenHover;
         cursor:default;
@@ -40,6 +43,7 @@
 @media(min-width:1500px){
     .message{
         font-size:16px;
+        margin-bottom:25px;
         .spacing{
             padding:15px;
         }
