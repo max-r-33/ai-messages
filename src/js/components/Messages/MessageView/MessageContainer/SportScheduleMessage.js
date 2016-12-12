@@ -19,10 +19,10 @@ export default class ScheduleMessage extends React.Component {
             });
 
         if (scheduleArr.length > 5) {
-            if (scheduleArr.length - 6 === 1) {
-                showMore = <a className='info showMore' onClick={() => t.showMissingGames()}>Show {scheduleArr.length - 6} More Game</a>
+            if (scheduleArr.length - 5 === 1) {
+                showMore = <a className='info showMore' onClick={() => t.showMissingGames()}>Show {scheduleArr.length - 4} More Game</a>
             } else {
-                showMore = <a className='info showMore' onClick={() => t.showMissingGames()}>Show {scheduleArr.length - 6} More Games</a>
+                showMore = <a className='info showMore' onClick={() => t.showMissingGames()}>Show {scheduleArr.length - 4} More Games</a>
             }
         }
 
@@ -63,7 +63,7 @@ export default class ScheduleMessage extends React.Component {
         });
 
         gamesToDisplay = scheduleGrid.slice(0, 4);
-        hiddenGames = scheduleGrid.slice(5, scheduleArr.length - 1);
+        hiddenGames = scheduleGrid.slice(4, scheduleArr.length);
         this.state = {
             hiddenGames,
             schedule: gamesToDisplay,
