@@ -28,14 +28,14 @@ var AccountController = require('./controllers/UserControllers/AccountController
 //ENDPOINTS
 
 //messaging
-    app.post('/api/handleRequest',RequestController.handleRequest);
-    app.get('/api/getAllMessages/:id', MessagesController.getAllMessages);
+app.post('/api/handleRequest',RequestController.handleRequest);
+app.get('/api/getAllMessages/:id', MessagesController.getAllMessages);
 
 //user controls
-    app.post('/api/signup', SignupController.signup);
-    app.get('/api/login', LoginController.login);
-    app.put('/api/changeName', AccountController.changeName);
-    app.delete('/api/deleteAccount', AccountController.deleteAccount);
+app.post('/api/signup', SignupController.signup);
+app.get('/api/login', LoginController.login);
+app.put('/api/changeName', AccountController.changeName);
+app.delete('/api/deleteAccount', AccountController.deleteAccount);
 
 app.listen(config.port, function() {
     console.log('listening on ' + config.port);
